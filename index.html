@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IC Investing Cache Desk</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Dashboard navigation">
+        <div class="brand">
+          <div class="brand-mark">IC</div>
+          <div>
+            <div class="brand-title">IC Investing</div>
+            <div class="brand-subtitle">Cache Desk</div>
+          </div>
+        </div>
+        <nav class="nav-list">
+          <a href="#overview">Overview</a>
+          <a href="#watchlist">Watchlist</a>
+          <a href="#news">News</a>
+          <a href="#reddit">Reddit</a>
+          <a href="#risk">Risk</a>
+          <a href="#ideas">Ideas</a>
+          <a href="#context">Context</a>
+          <a href="#reports">Reports</a>
+          <a href="#sources">Sources</a>
+        </nav>
+        <div class="sidebar-status">
+          <span class="status-dot"></span>
+          <span id="sidebarStatus">Loading cache</span>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="hero-panel" id="overview">
+          <img src="./assets/market-command-center.png" alt="" class="hero-image">
+          <div class="hero-copy">
+            <div class="eyebrow">Live local cache</div>
+            <h1>Watchlist, news intelligence, Reddit pulse, and debate context.</h1>
+            <p id="heroMeta">Reading cache files...</p>
+            <div class="hero-actions">
+              <button class="primary-action" id="refreshButton" type="button">Refresh cache</button>
+              <span class="read-only-pill">Read-only dashboard</span>
+            </div>
+          </div>
+        </header>
+
+        <section class="kpi-grid" aria-label="Cache summary" id="kpiGrid"></section>
+
+        <section class="section-grid two-col">
+          <article class="panel" id="watchlist">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Active thesis</p>
+                <h2>Watchlist</h2>
+              </div>
+              <span class="mini-count" id="watchlistCount">0</span>
+            </div>
+            <div id="watchlistItems" class="stack-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Removed names</p>
+                <h2>Rejected Setups</h2>
+              </div>
+              <span class="mini-count" id="removedCount">0</span>
+            </div>
+            <div id="removedItems" class="compact-list"></div>
+          </article>
+        </section>
+
+        <section class="section-grid market-grid" id="news">
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Market tape</p>
+                <h2>Index Pulse</h2>
+              </div>
+            </div>
+            <div id="indexPulse" class="quote-grid"></div>
+            <div id="trendingSymbols" class="tag-cloud"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Why now</p>
+                <h2>Market Movers</h2>
+              </div>
+            </div>
+            <div id="marketMovers" class="stack-list"></div>
+          </article>
+        </section>
+
+        <section class="section-grid two-col">
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Headlines</p>
+                <h2>News Intelligence</h2>
+              </div>
+            </div>
+            <div id="headlineList" class="headline-list"></div>
+          </article>
+
+          <article class="panel" id="reddit">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Attention data</p>
+                <h2>Reddit Pulse</h2>
+              </div>
+            </div>
+            <div id="redditItems" class="stack-list"></div>
+          </article>
+        </section>
+
+        <section class="section-grid two-col">
+          <article class="panel" id="risk">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Guardrails</p>
+                <h2>News Risk State</h2>
+              </div>
+              <span id="riskBadge" class="risk-badge">UNKNOWN</span>
+            </div>
+            <div id="riskDetails" class="risk-details"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Pipeline input</p>
+                <h2>Social Leads</h2>
+              </div>
+            </div>
+            <div id="socialLeads" class="compact-list"></div>
+          </article>
+        </section>
+
+        <section class="section-grid two-col" id="ideas">
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Content layer</p>
+                <h2>Briefing Ideas</h2>
+              </div>
+            </div>
+            <div id="contentIdeas" class="stack-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Data notes</p>
+                <h2>Limitations</h2>
+              </div>
+            </div>
+            <div id="limitationsList" class="compact-list"></div>
+          </article>
+        </section>
+
+        <section class="section-grid two-col" id="context">
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Structured context</p>
+                <h2>Debate Candidates</h2>
+              </div>
+            </div>
+            <div id="candidateList" class="candidate-table"></div>
+          </article>
+
+          <article class="panel" id="sources">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Freshness</p>
+                <h2>Cache Sources</h2>
+              </div>
+            </div>
+            <div id="sourceList" class="source-list"></div>
+          </article>
+        </section>
+
+        <section class="section-grid two-col">
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Headline filter</p>
+                <h2>News Event Log</h2>
+              </div>
+            </div>
+            <div id="newsEvents" class="compact-list"></div>
+          </article>
+
+          <article class="panel" id="reports">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Local reports</p>
+                <h2>Latest Markdown</h2>
+              </div>
+            </div>
+            <div id="reportList" class="report-list"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <template id="emptyTemplate">
+      <div class="empty-state">No cached data found yet.</div>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
