@@ -477,4 +477,33 @@ function render() {
 }
 
 $("#refreshButton").addEventListener("click", loadCache);
+async function setupMotionRuntime() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  try {
+    const { animate, hover, stagger, inView } = await import("https://cdn.jsdelivr.net/npm/motion@latest/+esm");
+    document.documentElement.classList.add("motion-ready");
+
+    animate(
+      ".sidebar, .hero-panel, .kpi-card",
+      { opacity: [0, 1], y: [18, 0], filter: ["blur(10px)", "blur(0px)"] },
+      { duration: 0.72, delay: stagger(0.07), easing: [0.16, 1, 0.3, 1] }
+    );
+
+    inView(".panel, .item-card", (element) => {
+      animate(element, { opacity: [0, 1], y: [20, 0] }, { duration: 0.58, easing: [0.16, 1, 0.3, 1] });
+    }, { margin: "0px 0px -10% 0px" });
+
+    document.querySelectorAll(".primary-action, .nav-list a, .kpi-card, .panel").forEach((element) => {
+      hover(element, () => {
+        animate(element, { scale: 1.01 }, { type: "spring", stiffness: 420, damping: 32 });
+        return () => animate(element, { scale: 1 }, { type: "spring", stiffness: 420, damping: 32 });
+      });
+    });
+  } catch (error) {
+    document.documentElement.classList.remove("motion-ready");
+  }
+}
+
+setupMotionRuntime();
 loadCache();
