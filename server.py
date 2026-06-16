@@ -51,6 +51,24 @@ def read_text_preview(path: Path | None, max_chars: int = 2200) -> str:
     return text[:max_chars].rstrip() + "\n...[truncated]"
 
 
+def report_line_for_code(path: Path | None, code: str) -> str:
+    if not path or not path.exists() or not code:
+        return ""
+    try:
+        lines = path.read_text(encoding="utf-8-sig", errors="replace").splitlines()
+    except Exception:
+        return ""
+    needles = [f"`{code}`"]
+    market, symbol = split_market_symbol(code)
+    if symbol:
+        needles.append(f"`{symbol}`")
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("- ") and any(needle in stripped for needle in needles):
+            return stripped.removeprefix("- ").strip()
+    return ""
+
+
 def read_jsonl_tail(path: Path, limit: int = 25) -> list[dict[str, Any]]:
     if not path.exists():
         return []
@@ -211,7 +229,7 @@ def dashboard_gate(gate: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def dashboard_watchlist_item(item: dict[str, Any], bucket: str, generated_at: str) -> dict[str, Any]:
+def dashboard_watchlist_item(item: dict[str, Any], bucket: str, generated_at: str, bullbear_report: Path | None = None) -> dict[str, Any]:
     market, symbol = split_market_symbol(str(item.get("code") or item.get("symbol") or ""))
     setup = item.get("setup") or {}
     entry_zone = format_zone(setup.get("starter"))
@@ -245,6 +263,7 @@ def dashboard_watchlist_item(item: dict[str, Any], bucket: str, generated_at: st
         "reason": item.get("reason") or "",
         "bucket_label": setup.get("bucket") or bucket,
         "setup_label": setup.get("label") or item.get("name") or symbol,
+        "bullbear_theory": report_line_for_code(bullbear_report, str(item.get("code") or "")),
         "committee_blockers": [dashboard_gate(gate) for gate in as_list(item.get("committee_blockers")) if isinstance(gate, dict)],
         "committee_cautions": [dashboard_gate(gate) for gate in as_list(item.get("committee_cautions")) if isinstance(gate, dict)],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
@@ -277,9 +296,10 @@ def dashboard_removed_item(item: dict[str, Any], generated_at: str) -> dict[str,
 def dashboard_watchlist_from_pipeline(payload: dict[str, Any]) -> dict[str, Any]:
     generated_at = str(payload.get("generated_at") or utc_now())
     buckets = payload.get("buckets") or {}
+    bullbear_report = latest_file([PIPELINE_ROOT / "reports"], "bullbear_*.md")
     active = []
     for bucket in ("starter_now", "starter_only_if_funded", "watch_pullback"):
-        active.extend(dashboard_watchlist_item(item, bucket, generated_at) for item in as_list(buckets.get(bucket)))
+        active.extend(dashboard_watchlist_item(item, bucket, generated_at, bullbear_report) for item in as_list(buckets.get(bucket)))
     removed = [dashboard_removed_item(item, generated_at) for item in as_list(buckets.get("avoid_recheck"))]
     return {
         "updated_at": generated_at,

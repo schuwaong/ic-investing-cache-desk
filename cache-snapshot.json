@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T11:42:28.846666+00:00",
+  "generated_at": "2026-06-16T11:57:08.042798+00:00",
   "workspace": "/Users/j/Desktop",
   "files": {
     "watchlist": {
@@ -146,6 +146,7 @@
         "reason": "Inside deeper add zone; still require a later risk check.",
         "bucket_label": "quality platform dip",
         "setup_label": "Alphabet",
+        "bullbear_theory": "`US.GOOG` Alphabet: Cash-generative AI/platform exposure with less froth than the hot AI winners. Last 367.11, today +1.64%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -296,6 +297,7 @@
         "reason": "Inside starter zone.",
         "bucket_label": "defensive quality diversifier",
         "setup_label": "Danaher",
+        "bullbear_theory": "`US.DHR` Danaher: Life-science quality compounder and portfolio diversifier. Last 181.10, today -1.32%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -452,6 +454,7 @@
         "reason": "Inside starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Bunge Limited",
+        "bullbear_theory": "`US.BG` Bunge Limited: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 123.00, today -1.99%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -608,6 +611,7 @@
         "reason": "Inside starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Merck & Company, Inc.",
+        "bullbear_theory": "`US.MRK` Merck & Company, Inc.: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 114.90, today -3.87%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -764,6 +768,7 @@
         "reason": "Inside starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "eBay Inc.",
+        "bullbear_theory": "`US.EBAY` eBay Inc.: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 109.18, today +0.68%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -920,6 +925,7 @@
         "reason": "Inside starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "ONEOK, Inc.",
+        "bullbear_theory": "`US.OKE` ONEOK, Inc.: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 87.45, today -0.79%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -1076,6 +1082,7 @@
         "reason": "Inside starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Warner Bros. Discovery, Inc. - ",
+        "bullbear_theory": "`US.WBD` Warner Bros. Discovery, Inc. - : Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 26.83, today +1.36%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -1232,6 +1239,7 @@
         "reason": "Inside starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "SLB Limited",
+        "bullbear_theory": "`US.SLB` SLB Limited: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 53.71, today -5.02%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -1388,6 +1396,7 @@
         "reason": "Inside starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "DuPont de Nemours, Inc.",
+        "bullbear_theory": "`US.DD` DuPont de Nemours, Inc.: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 48.54, today +3.30%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -1544,6 +1553,7 @@
         "reason": "Inside starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Entergy Corporation",
+        "bullbear_theory": "`US.ETR` Entergy Corporation: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 111.08, today +2.75%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -1700,6 +1710,7 @@
         "reason": "Inside starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Phillips 66",
+        "bullbear_theory": "`US.PSX` Phillips 66: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 173.26, today -5.54%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -1863,6 +1874,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "NVIDIA Corporation",
+        "bullbear_theory": "`US.NVDA` NVIDIA Corporation: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 212.45, today +1.83%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -2014,6 +2026,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Broadcom Inc.",
+        "bullbear_theory": "`US.AVGO` Broadcom Inc.: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 393.94, today -0.67%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -2167,6 +2180,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "cloud/platform watch",
         "setup_label": "Amazon",
+        "bullbear_theory": "`US.AMZN` Amazon: AWS and retail margin platform, but not a deep dip unless it resets lower. Last 246.02, today +0.33%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -2328,6 +2342,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "HK platform watch",
         "setup_label": "NetEase",
+        "bullbear_theory": "`HK.09999` NetEase: Cash-generative gaming/platform exposure, but still China-policy exposed. Last 195.60, today +4.43%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -2484,6 +2499,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Baker Hughes Company",
+        "bullbear_theory": "`US.BKR` Baker Hughes Company: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 62.46, today -3.67%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -2646,6 +2662,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Apple Inc.",
+        "bullbear_theory": "`US.AAPL` Apple Inc.: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 296.42, today -1.70%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -2808,6 +2825,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Archer-Daniels-Midland Company",
+        "bullbear_theory": "`US.ADM` Archer-Daniels-Midland Company: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 79.27, today -1.18%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -2970,6 +2988,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Williams Companies, Inc. (The)",
+        "bullbear_theory": "`US.WMB` Williams Companies, Inc. (The): Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 71.49, today -0.14%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -3132,6 +3151,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Kinder Morgan, Inc.",
+        "bullbear_theory": "`US.KMI` Kinder Morgan, Inc.: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 31.46, today +0.54%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -3294,6 +3314,7 @@
         "reason": "Up more than 5% intraday; do not treat spike as a dip.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Starbucks Corporation",
+        "bullbear_theory": "`US.SBUX` Starbucks Corporation: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 101.59, today +7.14%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -3456,6 +3477,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "new quantum IPO watch",
         "setup_label": "Quantinuum",
+        "bullbear_theory": "`US.QNT` Quantinuum: Fresh quantum-computing IPO with real strategic backing, but valuation and first-week volatility require small sizing. Last 57.91, today -0.84%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -3615,6 +3637,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "quality platform dip",
         "setup_label": "Meta",
+        "bullbear_theory": "`US.META` Meta: Large-cap AI/ad platform dip; strong business but still growth-factor exposed. Last 593.48, today +1.38%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -3777,6 +3800,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "EOG Resources, Inc.",
+        "bullbear_theory": "`US.EOG` EOG Resources, Inc.: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 131.98, today -5.83%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -3939,6 +3963,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Iron Mountain Incorporated (Del",
+        "bullbear_theory": "`US.IRM` Iron Mountain Incorporated (Del: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 126.28, today +2.25%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -4101,6 +4126,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Halliburton Company",
+        "bullbear_theory": "`US.HAL` Halliburton Company: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 38.18, today -5.73%.",
         "committee_blockers": [],
         "committee_cautions": [
           {
@@ -4263,6 +4289,7 @@
         "reason": "Outside preferred starter zone.",
         "bucket_label": "S&P/Nasdaq quality-dip discovery",
         "setup_label": "Chevron Corporation",
+        "bullbear_theory": "`US.CVX` Chevron Corporation: Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high. Last 180.40, today -4.67%.",
         "committee_blockers": [],
         "committee_cautions": [
           {

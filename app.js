@@ -96,48 +96,121 @@ function gateSummary(gates = []) {
     .join(" / ") || "no agent gates";
 }
 
+function gateBySource(item, source) {
+  return (item.agent_gates || []).find((gate) => gate.source === source) || {};
+}
+
+function sentenceList(...values) {
+  return values
+    .flat()
+    .map((value) => String(value || "").replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+}
+
+function buildBullBear(item) {
+  const gates = item.agent_gates || [];
+  const passGates = gates.filter((gate) => gate.status === "pass");
+  const riskGates = gates.filter((gate) => ["caution", "block", "missing"].includes(gate.status || ""));
+  const opportunity = gateBySource(item, "opportunity-scan");
+  const technical = gateBySource(item, "technical");
+  const valuation = gateBySource(item, "valuation");
+  const bottleneck = gateBySource(item, "bottleneck");
+  const earnings = gateBySource(item, "earnings");
+  const redteam = gateBySource(item, "redteam");
+
+  const bull = sentenceList(
+    item.bullbear_theory || item.thesis,
+    opportunity.status === "pass" ? `Opportunity scan supports the setup: ${opportunity.reason}` : "",
+    technical.status === "pass" ? `Technical gate is clean: ${technical.evidence || technical.reason}` : "",
+    valuation.status === "pass" ? `Valuation gate is acceptable: ${valuation.evidence || valuation.reason}` : "",
+    passGates
+      .filter((gate) => !["opportunity-scan", "technical", "valuation"].includes(gate.source))
+      .slice(0, 3)
+      .map((gate) => `${gate.source}: ${gate.reason}`),
+  ).slice(0, 7);
+
+  const bear = sentenceList(
+    riskGates
+      .filter((gate) => gate.source !== "portfolio-risk")
+      .slice(0, 6)
+      .map((gate) => `${gate.source}: ${gate.reason}${gate.evidence ? ` - ${gate.evidence}` : ""}`),
+    bottleneck.status === "caution" ? "Bottleneck risk must be cleared before conviction sizing." : "",
+    earnings.status === "caution" ? "Earnings/catalyst timing is unresolved, so sizing before date confirmation is lower quality." : "",
+    redteam.reason ? `Redteam objection: ${redteam.evidence || redteam.reason}` : "",
+  ).slice(0, 8);
+
+  return { bull, bear };
+}
+
+function decisionLabel(item) {
+  if (item.status === "starter_now") return "Buy Now Candidate";
+  if (item.status === "starter_only_if_funded") return "Buy Only If Funded";
+  if (item.status === "watch_pullback") return "Watchlist / Pullback";
+  return "Recheck Before Action";
+}
+
 function renderStockReport(item, focusAgent = "") {
   const gates = item.agent_gates || [];
   const focused = focusAgent ? gates.filter((gate) => gate.source === focusAgent) : gates;
   const otherGates = focusAgent ? gates.filter((gate) => gate.source !== focusAgent) : [];
   const scoreRows = Object.entries(item.score_components || {}).slice(0, 8);
+  const { bull, bear } = buildBullBear(item);
   return `
-    <section class="report-summary">
-      <article>
-        <span>Status</span>
-        <strong>${escapeHtml(item.status || "watch")}</strong>
-      </article>
-      <article>
+    <section class="report-hero">
+      <div>
+        <p class="section-kicker">${escapeHtml(decisionLabel(item))}</p>
+        <h3>${escapeHtml(item.setup_label || item.symbol)} thesis</h3>
+        <p>${escapeHtml(item.thesis || item.reason || "No thesis saved.")}</p>
+      </div>
+      <aside>
         <span>Committee</span>
         <strong>${escapeHtml(item.confidence || "not run")}</strong>
-      </article>
-      <article>
-        <span>Score</span>
-        <strong>${escapeHtml(item.decision_score ?? item.setup_score_0_to_5 ?? "n/a")}</strong>
-      </article>
-      <article>
         <span>Agents</span>
         <strong>${escapeHtml(gateSummary(gates))}</strong>
+        <span>Decision score</span>
+        <strong>${escapeHtml(item.decision_score ?? item.setup_score_0_to_5 ?? "n/a")}</strong>
+      </aside>
+    </section>
+
+    <section class="report-block decision-why">
+      <h3>Why It Was Chosen</h3>
+      <p>${escapeHtml(item.reason || "No current reason saved.")}</p>
+      <p>${escapeHtml(item.bullbear_theory || "No bull/bear theory line found in the latest report.")}</p>
+      <div class="decision-tags">
+        <span>${escapeHtml(item.status || "watch")}</span>
+        <span>${escapeHtml(item.bucket_label || "watchlist")}</span>
+        <span>Max ${escapeHtml(item.max_nav_pct ?? "n/a")}% NAV</span>
+      </div>
+    </section>
+
+    <section class="thesis-grid">
+      <article class="case-card bull-card">
+        <div class="case-title"><span>Bull</span><strong>Why it could work</strong></div>
+        <ul>
+          ${bull.length ? bull.map((point) => `<li>${escapeHtml(point)}</li>`).join("") : "<li>No bull points found.</li>"}
+        </ul>
+      </article>
+      <article class="case-card bear-card">
+        <div class="case-title"><span>Bear</span><strong>What can break it</strong></div>
+        <ul>
+          ${bear.length ? bear.map((point) => `<li>${escapeHtml(point)}</li>`).join("") : "<li>No bear points found.</li>"}
+        </ul>
       </article>
     </section>
 
     <section class="report-block">
-      <h3>Why It Is On The Watchlist</h3>
-      <p>${escapeHtml(item.reason || "No current reason saved.")}</p>
-      <p>${escapeHtml(item.thesis || "No thesis saved.")}</p>
-      <div class="report-levels">
-        <span>Last <strong>${escapeHtml(item.current_price ?? "n/a")}</strong></span>
-        <span>Today <strong class="${pctClass(item.change_pct)}">${escapeHtml(formatPct(item.change_pct))}</strong></span>
+      <h3>Trade Plan / Invalidation</h3>
+      <div class="report-levels compact-levels">
         <span>Entry <strong>${escapeHtml(item.entry_zone || "n/a")}</strong></span>
         <span>Add <strong>${escapeHtml(item.add_zone || "n/a")}</strong></span>
         <span>Chase above <strong>${escapeHtml(item.chase_above ?? "n/a")}</strong></span>
         <span>Invalid <strong>${escapeHtml(item.invalidation ?? "n/a")}</strong></span>
-        <span>Max starter <strong>${escapeHtml(item.max_nav_pct ?? "n/a")}% NAV</strong></span>
       </div>
+      <p>${escapeHtml(item.remove_if || "Remove if committee gates block the setup.")}</p>
     </section>
 
     <section class="report-block">
-      <h3>${focusAgent ? `Focused Agent: ${escapeHtml(focusAgent)}` : "What Each Agent Says"}</h3>
+      <h3>${focusAgent ? `Focused Agent: ${escapeHtml(focusAgent)}` : "Agent Debate"}</h3>
       <div class="agent-report-list">
         ${(focused.length ? focused : gates).length
           ? (focused.length ? focused : gates)
@@ -148,7 +221,7 @@ function renderStockReport(item, focusAgent = "") {
                       <strong>${escapeHtml(gate.source || "agent")}</strong>
                       <span>${escapeHtml(gate.status || "missing")}</span>
                     </div>
-                    <p>${escapeHtml(gate.reason || "No agent reason saved.")}</p>
+                    <p><strong class="${gate.status === "pass" ? "bull-word" : gate.status === "block" ? "bear-word" : ""}">${escapeHtml(gate.reason || "No agent reason saved.")}</strong></p>
                     ${gate.evidence ? `<div class="agent-evidence">${escapeHtml(gate.evidence)}</div>` : ""}
                   </article>
                 `,
@@ -161,7 +234,7 @@ function renderStockReport(item, focusAgent = "") {
     ${focusAgent && otherGates.length
       ? `
         <section class="report-block">
-          <h3>Other Agents</h3>
+          <h3>Other Agent Votes</h3>
           <div class="agent-mini-grid">
             ${otherGates
               .map((gate) => `<span class="${statusClass(gate.status)}">${escapeHtml(gate.source)}: ${escapeHtml(gate.status)}</span>`)
@@ -174,7 +247,7 @@ function renderStockReport(item, focusAgent = "") {
     ${scoreRows.length
       ? `
         <section class="report-block">
-          <h3>Score Components</h3>
+          <h3>Model / Score Drivers</h3>
           <div class="score-grid">
             ${scoreRows
               .map(([key, value]) => `<span>${escapeHtml(key.replaceAll("_", " "))}<strong>${escapeHtml(value)}</strong></span>`)
@@ -183,12 +256,7 @@ function renderStockReport(item, focusAgent = "") {
         </section>
       `
       : ""}
-
-    <section class="report-block">
-      <h3>Removal Rule</h3>
-      <p>${escapeHtml(item.remove_if || "Remove if committee gates block the setup.")}</p>
-      ${(item.evidence_ids || []).length ? `<div class="agent-evidence">Evidence IDs: ${escapeHtml((item.evidence_ids || []).join(", "))}</div>` : ""}
-    </section>
+    ${(item.evidence_ids || []).length ? `<div class="agent-evidence">Evidence IDs: ${escapeHtml((item.evidence_ids || []).join(", "))}</div>` : ""}
   `;
 }
 
