@@ -23,6 +23,7 @@ APP_DIR = Path(__file__).resolve().parent
 TRADING_ROOT = APP_DIR.parent
 HOME = Path.home()
 APPDATA = Path(os.environ.get("APPDATA", HOME / "AppData" / "Roaming"))
+PIPELINE_ROOT = Path(os.environ.get("TRADING_PIPELINE_ROOT", HOME / ".codex" / "automations" / "trading_pipeline"))
 
 
 def utc_now() -> str:
@@ -83,11 +84,13 @@ def file_info(path: Path | None) -> dict[str, Any] | None:
     }
 
 
-def latest_file(paths: list[Path], pattern: str) -> Path | None:
+def latest_file(paths: list[Path], pattern: str | list[str]) -> Path | None:
+    patterns = [pattern] if isinstance(pattern, str) else pattern
     files: list[Path] = []
     for path in paths:
         if path.exists():
-            files.extend(item for item in path.glob(pattern) if item.is_file() and item.stat().st_size > 0)
+            for item_pattern in patterns:
+                files.extend(item for item in path.glob(item_pattern) if item.is_file() and item.stat().st_size > 0)
     if not files:
         return None
     return max(files, key=lambda item: item.stat().st_mtime)
@@ -102,6 +105,7 @@ def as_list(value: Any) -> list[Any]:
 def report_specs() -> list[dict[str, Any]]:
     auto = HOME / ".codex" / "automations"
     reports = TRADING_ROOT / "automation" / "reports"
+    pipeline_reports = PIPELINE_ROOT / "reports"
     return [
         {
             "key": "market_mover",
@@ -112,38 +116,38 @@ def report_specs() -> list[dict[str, Any]]:
         {
             "key": "watchlist",
             "label": "Watchlist Refresh",
-            "paths": [auto / "trading_watchlist" / "reports", reports],
-            "pattern": "watchlist_*.md",
+            "paths": [pipeline_reports, auto / "trading_watchlist" / "reports", reports],
+            "pattern": ["watchlist_current.md", "watchlist_*.md"],
         },
         {
             "key": "opportunity",
             "label": "Opportunity Scan",
-            "paths": [auto / "trading_opportunity_scan" / "reports", reports],
-            "pattern": "opportunity_scan_*.md",
+            "paths": [pipeline_reports, auto / "trading_opportunity_scan" / "reports", reports],
+            "pattern": ["opportunity-scan_*.md", "opportunity_scan_*.md"],
         },
         {
             "key": "committee",
             "label": "Latest Debate",
-            "paths": [auto / "trading_committee" / "reports", reports],
-            "pattern": "trading_*.md",
+            "paths": [pipeline_reports, auto / "trading_committee" / "reports", reports],
+            "pattern": ["debate_*.md", "trading_*.md"],
         },
         {
             "key": "scan_context",
             "label": "Scan Context",
-            "paths": [auto / "trading_scan_context" / "reports", reports],
-            "pattern": "scan_context_*.md",
+            "paths": [pipeline_reports, auto / "trading_scan_context" / "reports", reports],
+            "pattern": ["handoff-plan_*.md", "scan_context_*.md"],
         },
         {
             "key": "bottleneck",
             "label": "Industry Bottleneck",
-            "paths": [auto / "industry_bottleneck" / "reports", reports],
-            "pattern": "industry_bottleneck_*.md",
+            "paths": [pipeline_reports, auto / "industry_bottleneck" / "reports", reports],
+            "pattern": ["bottleneck_*.md", "industry_bottleneck_*.md"],
         },
         {
             "key": "ipo",
             "label": "IPO Scan",
-            "paths": [auto / "ipo_scan" / "reports", reports],
-            "pattern": "ipo_scan_*.md",
+            "paths": [pipeline_reports, auto / "ipo_scan" / "reports", reports],
+            "pattern": ["ipo_*.md", "ipo_scan_*.md"],
         },
         {
             "key": "crypto",
@@ -169,23 +173,183 @@ def build_reports() -> list[dict[str, Any]]:
     return output
 
 
+def split_market_symbol(code: str) -> tuple[str, str]:
+    text = str(code or "").strip()
+    if "." not in text:
+        return "", text
+    market, symbol = text.split(".", 1)
+    return market, symbol
+
+
+def format_zone(values: Any) -> str:
+    if isinstance(values, list) and len(values) >= 2:
+        return f"{values[0]}-{values[1]}"
+    if isinstance(values, tuple) and len(values) >= 2:
+        return f"{values[0]}-{values[1]}"
+    return str(values or "")
+
+
+def score_to_five(value: Any) -> float | None:
+    try:
+        return round(float(value) / 20, 1)
+    except (TypeError, ValueError):
+        return None
+
+
+def gate_sources(item: dict[str, Any]) -> list[str]:
+    gates = item.get("committee_gates") or []
+    sources = [str(gate.get("source")) for gate in gates if isinstance(gate, dict) and gate.get("source")]
+    return sources
+
+
+def dashboard_watchlist_item(item: dict[str, Any], bucket: str, generated_at: str) -> dict[str, Any]:
+    market, symbol = split_market_symbol(str(item.get("code") or item.get("symbol") or ""))
+    setup = item.get("setup") or {}
+    entry_zone = format_zone(setup.get("starter"))
+    add_zone = format_zone(setup.get("add"))
+    invalidation = setup.get("invalidation")
+    return {
+        "symbol": symbol,
+        "market": market,
+        "status": item.get("status") or bucket,
+        "setup_score_0_to_5": score_to_five(item.get("decision_score")),
+        "thesis": setup.get("thesis") or item.get("reason") or "",
+        "source_agents": gate_sources(item),
+        "current_price": item.get("last"),
+        "entry_zone": entry_zone,
+        "entry_point": entry_zone,
+        "add_zone": add_zone,
+        "invalidation": invalidation,
+        "stoploss": invalidation,
+        "first_target": "",
+        "confidence": item.get("committee_result") or "",
+        "reason": item.get("reason") or "",
+        "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
+        "last_reviewed": generated_at,
+        "raw_code": item.get("code"),
+        "bucket": bucket,
+        "change_pct": item.get("change_pct"),
+    }
+
+
+def dashboard_removed_item(item: dict[str, Any], generated_at: str) -> dict[str, Any]:
+    market, symbol = split_market_symbol(str(item.get("code") or item.get("symbol") or ""))
+    blockers = item.get("committee_blockers") or []
+    evidence_source = ", ".join(
+        str(gate.get("source"))
+        for gate in blockers
+        if isinstance(gate, dict) and gate.get("source")
+    )
+    return {
+        "symbol": symbol,
+        "market": market,
+        "removed_at": generated_at,
+        "reason": item.get("reason") or "Filtered into avoid/recheck by current watchlist gates.",
+        "evidence_source": evidence_source or ", ".join(gate_sources(item)) or "watchlist_refresh",
+        "raw_code": item.get("code"),
+        "status": item.get("status") or "avoid_recheck",
+    }
+
+
+def dashboard_watchlist_from_pipeline(payload: dict[str, Any]) -> dict[str, Any]:
+    generated_at = str(payload.get("generated_at") or utc_now())
+    buckets = payload.get("buckets") or {}
+    active = []
+    for bucket in ("starter_now", "starter_only_if_funded", "watch_pullback"):
+        active.extend(dashboard_watchlist_item(item, bucket, generated_at) for item in as_list(buckets.get(bucket)))
+    removed = [dashboard_removed_item(item, generated_at) for item in as_list(buckets.get("avoid_recheck"))]
+    return {
+        "updated_at": generated_at,
+        "items": active,
+        "removed": removed,
+        "source_reports": payload.get("source_reports") or {},
+        "quote_errors": payload.get("quote_errors") or [],
+        "market_volatility_warning": payload.get("market_volatility_warning") or {},
+    }
+
+
+def scan_context_from_pipeline(opportunity: dict[str, Any], watchlist_payload: dict[str, Any]) -> dict[str, Any]:
+    candidates: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for item in as_list(opportunity.get("decisions")) + as_list(watchlist_payload.get("committee_decisions")):
+        code = str(item.get("code") or "")
+        if not code or code in seen:
+            continue
+        seen.add(code)
+        market, symbol = split_market_symbol(code)
+        candidates.append(
+            {
+                "symbol": symbol,
+                "market": market,
+                "source_tags": [item.get("status") or item.get("committee_result") or "watchlist"],
+                "mentions": len(item.get("evidence_ids") or []),
+            }
+        )
+    return {"candidates": candidates}
+
+
+def market_from_pipeline(watchlist_payload: dict[str, Any]) -> dict[str, Any]:
+    warning = watchlist_payload.get("market_volatility_warning") or {}
+    index_pulse = [
+        {
+            "symbol": item.get("label") or item.get("code"),
+            "name": item.get("code"),
+            "price": item.get("last"),
+            "change_pct": item.get("change_pct"),
+            "currency": "",
+            "exchange": "",
+        }
+        for item in as_list(warning.get("benchmarks"))
+    ]
+    headlines = [
+        {
+            "title": item.get("title"),
+            "published": item.get("date"),
+            "description": item.get("job"),
+            "link": "",
+        }
+        for item in as_list(warning.get("headlines"))
+    ]
+    return {
+        "source": "trading_pipeline_watchlist_current",
+        "mode": "research_only_no_trading",
+        "generated_at": watchlist_payload.get("generated_at"),
+        "index_pulse": index_pulse,
+        "market_movers": [],
+        "yahoo_trending_symbols": [],
+        "headlines": headlines,
+        "limitations": watchlist_payload.get("quote_errors") or [],
+    }
+
+
 def build_cache_payload() -> dict[str, Any]:
     state_dir = TRADING_ROOT / "automation" / "state"
-    watchlist_path = APPDATA / "Telecodex" / "trading-watchlist.json"
+    pipeline_watchlist_path = PIPELINE_ROOT / "data" / "watchlist_current.json"
+    legacy_watchlist_path = APPDATA / "Telecodex" / "trading-watchlist.json"
+    watchlist_path = pipeline_watchlist_path if pipeline_watchlist_path.exists() else legacy_watchlist_path
     headline_events_path = state_dir / "trading-news-headlines.jsonl"
-    watchlist = read_json(watchlist_path, {"items": [], "removed": []})
+    raw_watchlist = read_json(watchlist_path, {"items": [], "removed": []})
+    pipeline_watchlist = raw_watchlist if isinstance(raw_watchlist, dict) and "buckets" in raw_watchlist else {}
+    watchlist = dashboard_watchlist_from_pipeline(pipeline_watchlist) if pipeline_watchlist else raw_watchlist
     market = read_json(state_dir / "market-mover-briefing-latest.json", {})
     reddit = read_json(state_dir / "reddit-stock-trends-latest.json", {"items": []})
     news_risk = read_json(state_dir / "trading-news-risk.json", {})
     social_leads = read_json(state_dir / "trading-social-leads.json", {"items": []})
+    opportunity_path = latest_file([PIPELINE_ROOT / "data"], "opportunity-scan_*.json")
+    opportunity = read_json(opportunity_path, {}) if opportunity_path else {}
     scan_context_path = latest_file(
         [
+            PIPELINE_ROOT / "data",
             HOME / ".codex" / "automations" / "trading_scan_context" / "data",
             state_dir,
         ],
-        "scan_context_*.json",
+        ["handoff-plan_*.json", "scan_context_*.json"],
     )
     scan_context = read_json(scan_context_path, {}) if scan_context_path else {}
+    if pipeline_watchlist:
+        scan_context = scan_context_from_pipeline(opportunity if isinstance(opportunity, dict) else {}, pipeline_watchlist)
+    if pipeline_watchlist:
+        market = market_from_pipeline(pipeline_watchlist)
 
     active_watch = as_list(watchlist.get("items")) if isinstance(watchlist, dict) else []
     removed_watch = as_list(watchlist.get("removed")) if isinstance(watchlist, dict) else []
@@ -260,7 +424,18 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Run the IC Investing cache dashboard.")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8787)
+    parser.add_argument(
+        "--export-snapshot",
+        nargs="?",
+        const=str(APP_DIR / "cache-snapshot.json"),
+        help="Write a static cache snapshot JSON file and exit.",
+    )
     args = parser.parse_args()
+    if args.export_snapshot:
+        output = Path(args.export_snapshot)
+        output.write_text(json.dumps(build_cache_payload(), ensure_ascii=False), encoding="utf-8")
+        print(f"Exported cache snapshot: {output}")
+        return
     server = ThreadingHTTPServer((args.host, args.port), CacheDashboardHandler)
     print(f"IC Investing cache dashboard: http://{args.host}:{args.port}")
     print("Press Ctrl+C to stop.")
