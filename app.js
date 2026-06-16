@@ -1,6 +1,7 @@
 const state = {
   cache: null,
   loading: false,
+  watchlistQuery: "",
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -272,8 +273,25 @@ function renderKpis(summary) {
 }
 
 function renderWatchlist(cache) {
-  const tableRows = cache.watchlist?.table || [];
-  const items = cache.watchlist?.items || [];
+  const query = state.watchlistQuery.trim().toLowerCase();
+  const matchesQuery = (item) => {
+    if (!query) return true;
+    return [
+      item.symbol,
+      item.raw_code,
+      item.name,
+      item.market,
+      item.status,
+      item.confidence,
+      item.reason,
+      item.thesis,
+    ]
+      .join(" ")
+      .toLowerCase()
+      .includes(query);
+  };
+  const tableRows = (cache.watchlist?.table || []).filter(matchesQuery);
+  const items = (cache.watchlist?.items || []).filter(matchesQuery);
   const removed = cache.watchlist?.removed || [];
   $("#watchlistCount").textContent = tableRows.length || items.length;
   $("#removedCount").textContent = removed.length;
@@ -691,6 +709,10 @@ function render() {
 }
 
 $("#refreshButton").addEventListener("click", loadCache);
+$("#watchlistSearch").addEventListener("input", (event) => {
+  state.watchlistQuery = event.target.value;
+  if (state.cache) renderWatchlist(state.cache);
+});
 $("#watchlistItems").addEventListener("click", (event) => {
   const trigger = event.target.closest("[data-symbol]");
   if (!trigger) return;

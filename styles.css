@@ -954,6 +954,28 @@ h3,
   color: #d9fff1;
 }
 
+.watchlist-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.watchlist-tools input {
+  width: min(180px, 34vw);
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid rgba(0, 230, 167, 0.22);
+  border-radius: 8px;
+  color: #ecf5ee;
+  background: rgba(236, 245, 238, 0.055);
+  font: inherit;
+  font-size: 12px;
+}
+
+.watchlist-tools input::placeholder {
+  color: rgba(210, 232, 224, 0.48);
+}
+
 .watchlist-table-wrap {
   max-height: min(72vh, 780px);
   border-color: rgba(0, 230, 167, 0.18);
