@@ -123,12 +123,67 @@ function renderKpis(summary) {
 }
 
 function renderWatchlist(cache) {
+  const tableRows = cache.watchlist?.table || [];
   const items = cache.watchlist?.items || [];
   const removed = cache.watchlist?.removed || [];
-  $("#watchlistCount").textContent = items.length;
+  $("#watchlistCount").textContent = tableRows.length || items.length;
   $("#removedCount").textContent = removed.length;
-  $("#watchlistItems").innerHTML =
-    items.length === 0
+  $("#watchlistItems").innerHTML = tableRows.length
+    ? `
+      <div class="watchlist-meta">
+        <span>${escapeHtml(cache.watchlist?.mode || "research-only")}</span>
+        <span>Updated ${escapeHtml(cache.watchlist?.table_generated_at || formatDate(cache.watchlist?.updated_at))}</span>
+      </div>
+      <div class="watchlist-table-wrap">
+        <table class="watchlist-table">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Symbol</th>
+              <th>Last</th>
+              <th>Today</th>
+              <th>Decision</th>
+              <th>ML</th>
+              <th>Entry / Add</th>
+              <th>Invalidation</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tableRows
+              .map(
+                (item) => `
+                  <tr class="watch-row status-${escapeHtml(item.status || "watch")}">
+                    <td><span class="status-chip">${escapeHtml(item.status_label || item.status || "watch")}</span></td>
+                    <td>
+                      <strong class="ticker">${escapeHtml(item.symbol)}</strong>
+                      <div class="meta-line">${escapeHtml(item.name || item.market || "")}</div>
+                    </td>
+                    <td>${escapeHtml(item.last ?? "n/a")}</td>
+                    <td><span class="${pctClass(item.change_pct)}">${escapeHtml(formatPct(item.change_pct))}</span></td>
+                    <td>${escapeHtml(item.decision_score ?? "n/a")}</td>
+                    <td>
+                      ${escapeHtml(item.ml_score ?? "n/a")}
+                      <div class="meta-line">${escapeHtml(item.ml_status || "")}</div>
+                    </td>
+                    <td>
+                      ${escapeHtml(item.entry_zone || "n/a")}
+                      <div class="meta-line">Add ${escapeHtml(item.add_zone || "n/a")}</div>
+                    </td>
+                    <td>${escapeHtml(item.invalidation ?? "n/a")}</td>
+                    <td>
+                      <strong>${escapeHtml(item.reason_tag || item.reason || "")}</strong>
+                      <div class="meta-line">${escapeHtml(compactText(item.thesis || item.reason || "", 150))}</div>
+                    </td>
+                  </tr>
+                `,
+              )
+              .join("")}
+          </tbody>
+        </table>
+      </div>
+    `
+    : items.length === 0
       ? empty("No active watchlist names in cache.")
       : items
           .map(

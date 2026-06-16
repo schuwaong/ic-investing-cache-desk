@@ -365,6 +365,75 @@ h3 {
   gap: 10px;
 }
 
+.watchlist-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.watchlist-meta span {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 0 9px;
+  border: 1px solid rgba(15, 140, 132, 0.2);
+  border-radius: 999px;
+  background: rgba(15, 140, 132, 0.06);
+}
+
+.watchlist-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.watchlist-table {
+  min-width: 1120px;
+}
+
+.watchlist-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #fffaf2;
+}
+
+.watchlist-table td {
+  font-size: 12px;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 0 8px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: var(--muted);
+  font-size: 11px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.status-starter_now .status-chip {
+  background: var(--green);
+}
+
+.status-watch_pullback .status-chip {
+  background: var(--amber);
+}
+
+.status-avoid .status-chip,
+.status-avoid_chase .status-chip,
+.status-no_quote .status-chip {
+  background: var(--red);
+}
+
 .item-card {
   padding: 13px;
   border: 1px solid rgba(222, 216, 207, 0.95);
