@@ -54,6 +54,10 @@ function pctClass(value) {
   return number > 0 ? "positive" : "negative";
 }
 
+function statusClass(value) {
+  return `gate-${String(value || "missing").toLowerCase().replace(/[^a-z0-9_-]/g, "-")}`;
+}
+
 function empty(message = "No cached data found yet.") {
   return `<div class="empty-state">${escapeHtml(message)}</div>`;
 }
@@ -62,6 +66,151 @@ function compactText(value, max = 220) {
   const text = String(value ?? "").replace(/\s+/g, " ").trim();
   if (text.length <= max) return text;
   return `${text.slice(0, max - 3).trim()}...`;
+}
+
+function watchlistItems() {
+  return state.cache?.watchlist?.items || [];
+}
+
+function findWatchlistItem(symbol) {
+  return watchlistItems().find((item) => item.symbol === symbol || item.raw_code === symbol);
+}
+
+function gateSummary(gates = []) {
+  const counts = gates.reduce(
+    (acc, gate) => {
+      const status = gate.status || "missing";
+      acc[status] = (acc[status] || 0) + 1;
+      return acc;
+    },
+    {},
+  );
+  return [
+    counts.pass ? `${counts.pass} pass` : "",
+    counts.caution ? `${counts.caution} caution` : "",
+    counts.block ? `${counts.block} block` : "",
+    counts.missing ? `${counts.missing} missing` : "",
+  ]
+    .filter(Boolean)
+    .join(" / ") || "no agent gates";
+}
+
+function renderStockReport(item, focusAgent = "") {
+  const gates = item.agent_gates || [];
+  const focused = focusAgent ? gates.filter((gate) => gate.source === focusAgent) : gates;
+  const otherGates = focusAgent ? gates.filter((gate) => gate.source !== focusAgent) : [];
+  const scoreRows = Object.entries(item.score_components || {}).slice(0, 8);
+  return `
+    <section class="report-summary">
+      <article>
+        <span>Status</span>
+        <strong>${escapeHtml(item.status || "watch")}</strong>
+      </article>
+      <article>
+        <span>Committee</span>
+        <strong>${escapeHtml(item.confidence || "not run")}</strong>
+      </article>
+      <article>
+        <span>Score</span>
+        <strong>${escapeHtml(item.decision_score ?? item.setup_score_0_to_5 ?? "n/a")}</strong>
+      </article>
+      <article>
+        <span>Agents</span>
+        <strong>${escapeHtml(gateSummary(gates))}</strong>
+      </article>
+    </section>
+
+    <section class="report-block">
+      <h3>Why It Is On The Watchlist</h3>
+      <p>${escapeHtml(item.reason || "No current reason saved.")}</p>
+      <p>${escapeHtml(item.thesis || "No thesis saved.")}</p>
+      <div class="report-levels">
+        <span>Last <strong>${escapeHtml(item.current_price ?? "n/a")}</strong></span>
+        <span>Today <strong class="${pctClass(item.change_pct)}">${escapeHtml(formatPct(item.change_pct))}</strong></span>
+        <span>Entry <strong>${escapeHtml(item.entry_zone || "n/a")}</strong></span>
+        <span>Add <strong>${escapeHtml(item.add_zone || "n/a")}</strong></span>
+        <span>Chase above <strong>${escapeHtml(item.chase_above ?? "n/a")}</strong></span>
+        <span>Invalid <strong>${escapeHtml(item.invalidation ?? "n/a")}</strong></span>
+        <span>Max starter <strong>${escapeHtml(item.max_nav_pct ?? "n/a")}% NAV</strong></span>
+      </div>
+    </section>
+
+    <section class="report-block">
+      <h3>${focusAgent ? `Focused Agent: ${escapeHtml(focusAgent)}` : "What Each Agent Says"}</h3>
+      <div class="agent-report-list">
+        ${(focused.length ? focused : gates).length
+          ? (focused.length ? focused : gates)
+              .map(
+                (gate) => `
+                  <article class="agent-report ${statusClass(gate.status)}">
+                    <div class="agent-report-top">
+                      <strong>${escapeHtml(gate.source || "agent")}</strong>
+                      <span>${escapeHtml(gate.status || "missing")}</span>
+                    </div>
+                    <p>${escapeHtml(gate.reason || "No agent reason saved.")}</p>
+                    ${gate.evidence ? `<div class="agent-evidence">${escapeHtml(gate.evidence)}</div>` : ""}
+                  </article>
+                `,
+              )
+              .join("")
+          : empty("No agent details found for this stock.")}
+      </div>
+    </section>
+
+    ${focusAgent && otherGates.length
+      ? `
+        <section class="report-block">
+          <h3>Other Agents</h3>
+          <div class="agent-mini-grid">
+            ${otherGates
+              .map((gate) => `<span class="${statusClass(gate.status)}">${escapeHtml(gate.source)}: ${escapeHtml(gate.status)}</span>`)
+              .join("")}
+          </div>
+        </section>
+      `
+      : ""}
+
+    ${scoreRows.length
+      ? `
+        <section class="report-block">
+          <h3>Score Components</h3>
+          <div class="score-grid">
+            ${scoreRows
+              .map(([key, value]) => `<span>${escapeHtml(key.replaceAll("_", " "))}<strong>${escapeHtml(value)}</strong></span>`)
+              .join("")}
+          </div>
+        </section>
+      `
+      : ""}
+
+    <section class="report-block">
+      <h3>Removal Rule</h3>
+      <p>${escapeHtml(item.remove_if || "Remove if committee gates block the setup.")}</p>
+      ${(item.evidence_ids || []).length ? `<div class="agent-evidence">Evidence IDs: ${escapeHtml((item.evidence_ids || []).join(", "))}</div>` : ""}
+    </section>
+  `;
+}
+
+function openStockReport(symbol, focusAgent = "") {
+  const item = findWatchlistItem(symbol);
+  if (!item) return;
+  $("#stockDialogTitle").textContent = `${item.symbol} ${item.market || ""} - ${item.setup_label || item.bucket_label || "Watchlist report"}`;
+  $("#stockDialogBody").innerHTML = renderStockReport(item, focusAgent);
+  const dialog = $("#stockDialog");
+  if (typeof dialog.showModal === "function") {
+    dialog.showModal();
+  } else {
+    dialog.setAttribute("open", "");
+  }
+}
+
+function closeStockReport() {
+  const dialog = $("#stockDialog");
+  if (dialog.open && typeof dialog.close === "function") {
+    dialog.close();
+  } else {
+    dialog.removeAttribute("open");
+  }
 }
 
 async function loadCache() {
@@ -154,9 +303,9 @@ function renderWatchlist(cache) {
               .map(
                 (item) => `
                   <tr class="watch-row status-${escapeHtml(item.status || "watch")}">
-                    <td><span class="status-chip">${escapeHtml(item.status_label || item.status || "watch")}</span></td>
+                    <td><button class="status-chip stock-report-trigger" type="button" data-symbol="${escapeHtml(item.symbol)}">${escapeHtml(item.status_label || item.status || "watch")}</button></td>
                     <td>
-                      <strong class="ticker">${escapeHtml(item.symbol)}</strong>
+                      <button class="link-button stock-report-trigger" type="button" data-symbol="${escapeHtml(item.symbol)}"><strong class="ticker">${escapeHtml(item.symbol)}</strong></button>
                       <div class="meta-line">${escapeHtml(item.name || item.market || "")}</div>
                     </td>
                     <td>${escapeHtml(item.last ?? "n/a")}</td>
@@ -188,13 +337,13 @@ function renderWatchlist(cache) {
       : items
           .map(
             (item) => `
-              <article class="item-card watchlist-card status-${escapeHtml(item.status || "watch")}">
+              <article class="item-card watchlist-card status-${escapeHtml(item.status || "watch")}" data-symbol="${escapeHtml(item.symbol)}">
                 <div class="item-topline">
                   <div>
-                    <h3><span class="ticker">${escapeHtml(item.symbol)}</span> ${escapeHtml(item.market || "")}</h3>
+                    <h3><button class="link-button stock-report-trigger" type="button" data-symbol="${escapeHtml(item.symbol)}"><span class="ticker">${escapeHtml(item.symbol)}</span> ${escapeHtml(item.market || "")}</button></h3>
                     <div class="status">${escapeHtml(item.confidence || item.status || "watch")}</div>
                   </div>
-                  <span class="status-chip">${escapeHtml(item.status || "watch")}</span>
+                  <button class="status-chip stock-report-trigger" type="button" data-symbol="${escapeHtml(item.symbol)}">${escapeHtml(item.status || "watch")}</button>
                 </div>
                 <div class="watch-metrics">
                   <span><small>Last</small><strong>${escapeHtml(item.current_price || "n/a")}</strong></span>
@@ -207,7 +356,7 @@ function renderWatchlist(cache) {
                 <div class="agent-strip">
                   ${(item.source_agents || [])
                     .slice(0, 8)
-                    .map((agent) => `<span>${escapeHtml(agent)}</span>`)
+                    .map((agent) => `<button type="button" data-symbol="${escapeHtml(item.symbol)}" data-agent="${escapeHtml(agent)}">${escapeHtml(agent)}</button>`)
                     .join("")}
                 </div>
               </article>
@@ -542,6 +691,15 @@ function render() {
 }
 
 $("#refreshButton").addEventListener("click", loadCache);
+$("#watchlistItems").addEventListener("click", (event) => {
+  const trigger = event.target.closest("[data-symbol]");
+  if (!trigger) return;
+  openStockReport(trigger.dataset.symbol, trigger.dataset.agent || "");
+});
+$("#closeStockDialog").addEventListener("click", closeStockReport);
+$("#stockDialog").addEventListener("click", (event) => {
+  if (event.target.id === "stockDialog") closeStockReport();
+});
 async function setupMotionRuntime() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 

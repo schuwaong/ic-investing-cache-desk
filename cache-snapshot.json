@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T10:47:25.972746+00:00",
+  "generated_at": "2026-06-16T11:42:28.846666+00:00",
   "workspace": "/Users/j/Desktop",
   "files": {
     "watchlist": {
@@ -39,6 +39,17 @@
         "market": "US",
         "status": "starter_now",
         "setup_score_0_to_5": 3.5,
+        "decision_score": 69.0,
+        "score_components": {
+          "source_quality_score": 0.5,
+          "freshness_score": 1.0,
+          "technical_score": 0.9,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Cash-generative AI/platform exposure with less froth than the hot AI winners.",
         "source_agents": [
           "opportunity-scan",
@@ -52,15 +63,128 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Inside deeper add zone; still require a later risk check.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (66.9/100).",
+            "evidence": "zone_alignment +27.6bp (inside deeper add zone); freshness +8.0bp (recency of linked evidence); tape_quality +7.4bp (+1.64% orderly tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.GOOG` Alphabet: last 367.11, today +1.64%; deep add zone; +2.42% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "pass",
+            "reason": "Valuation report does not flag a blocker.",
+            "evidence": "- `US.GOOG` Alphabet: last 367.11; valuation zone is acceptable only if fundamentals/catalysts are intact."
+          },
+          {
+            "source": "earnings",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.GOOG` Alphabet: last 367.11, today +1.64%; avoid full size until date confirmed."
+          },
+          {
+            "source": "bottleneck",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.GOOG` Alphabet: quality platform dip; last 367.11; must still pass bottleneck evidence for Grid power for AI/data centers, Platform monetization and regulation."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.GOOG` Alphabet: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "pass",
+            "reason": "No hostile symbol-specific context found in top items.",
+            "evidence": "macro: US Government Sold $646 billion of Treasury Securities this Week. 2nd Wave of Inflation Approaches 10-Year Treasury Yield - Wolf Street; geopolitics: Houthis’ threat to disrupt Red Sea shipping spooks energy market - The Arab Weekly; geopolitics: Saudi Arabia Joins Qatar, UAE, Egypt, Bahrain, Kuwait and Others as Fragile Ceasefire Between Iran and Israel Triggers Fresh Fears Over Strait of Hormuz Shipping, Red Sea Trade Routes, Oil Price Surges, Flight Disruptions, Tourism Fallout and a Wider Mid - Travel And Tour World"
+          }
+        ],
+        "evidence_ids": [
+          "evidence_afb9df8cfe440173",
+          "evidence_2855ec53fb436caa",
+          "evidence_fb98c650c97b9b0d",
+          "evidence_135bacc8972115f7",
+          "evidence_b6f6501ee17ede6f",
+          "evidence_e7c5250b31097489"
+        ],
         "current_price": 367.11,
         "entry_zone": "376-382",
         "entry_point": "376-382",
         "add_zone": "365-370",
+        "chase_above": 388,
         "invalidation": 360,
         "stoploss": 360,
+        "max_nav_pct": 3,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Inside deeper add zone; still require a later risk check.",
+        "bucket_label": "quality platform dip",
+        "setup_label": "Alphabet",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (66.9/100).",
+            "evidence": "zone_alignment +27.6bp (inside deeper add zone); freshness +8.0bp (recency of linked evidence); tape_quality +7.4bp (+1.64% orderly tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "earnings",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.GOOG` Alphabet: last 367.11, today +1.64%; avoid full size until date confirmed."
+          },
+          {
+            "source": "bottleneck",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.GOOG` Alphabet: quality platform dip; last 367.11; must still pass bottleneck evidence for Grid power for AI/data centers, Platform monetization and regulation."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.GOOG` Alphabet: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.GOOG",
@@ -72,6 +196,17 @@
         "market": "US",
         "status": "starter_now",
         "setup_score_0_to_5": 2.9,
+        "decision_score": 57.7,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.9,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Life-science quality compounder and portfolio diversifier.",
         "source_agents": [
           "opportunity-scan",
@@ -85,15 +220,127 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Inside starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (59.0/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); tape_quality +9.4bp (-1.32% controlled pullback); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.DHR` Danaher: last 181.10, today -1.32%; starter zone; +0.00% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "pass",
+            "reason": "Valuation report does not flag a blocker.",
+            "evidence": "- `US.DHR` Danaher: last 181.10; valuation zone is acceptable only if fundamentals/catalysts are intact."
+          },
+          {
+            "source": "earnings",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.DHR` Danaher: last 181.10, today -1.32%; starter zone, but earnings date must be checked first."
+          },
+          {
+            "source": "bottleneck",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.DHR` Danaher: defensive quality diversifier; last 181.10; must still pass bottleneck evidence for Healthcare workflow/admin capacity."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.DHR` Danaher: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 181.1,
         "entry_zone": "180-183",
         "entry_point": "180-183",
         "add_zone": "172-176",
+        "chase_above": 188,
         "invalidation": 170,
         "stoploss": 170,
+        "max_nav_pct": 3,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Inside starter zone.",
+        "bucket_label": "defensive quality diversifier",
+        "setup_label": "Danaher",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (59.0/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); tape_quality +9.4bp (-1.32% controlled pullback); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "earnings",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.DHR` Danaher: last 181.10, today -1.32%; starter zone, but earnings date must be checked first."
+          },
+          {
+            "source": "bottleneck",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.DHR` Danaher: defensive quality diversifier; last 181.10; must still pass bottleneck evidence for Healthcare workflow/admin capacity."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.DHR` Danaher: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.DHR",
@@ -105,6 +352,17 @@
         "market": "US",
         "status": "starter_now",
         "setup_score_0_to_5": 2.9,
+        "decision_score": 57.7,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.9,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -118,15 +376,127 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Inside starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (59.0/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); tape_quality +9.4bp (-1.99% controlled pullback); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.BG` Bunge Limited: last 123.00, today -1.99%; starter zone; +0.00% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "pass",
+            "reason": "Valuation report does not flag a blocker.",
+            "evidence": "- `US.BG` Bunge Limited: last 123.00; valuation zone is acceptable only if fundamentals/catalysts are intact."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.BG` Bunge Limited: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 123.0,
         "entry_zone": "122.56-128.84",
         "entry_point": "122.56-128.84",
         "add_zone": "118.88-121.33",
+        "chase_above": 132.85,
         "invalidation": 103.41,
         "stoploss": 103.41,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Inside starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Bunge Limited",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (59.0/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); tape_quality +9.4bp (-1.99% controlled pullback); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.BG` Bunge Limited: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.BG",
@@ -138,6 +508,17 @@
         "market": "US",
         "status": "starter_now",
         "setup_score_0_to_5": 2.9,
+        "decision_score": 57.7,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.9,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -151,15 +532,127 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Inside starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (59.0/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); tape_quality +9.4bp (-3.87% controlled pullback); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.MRK` Merck & Company, Inc.: last 114.90, today -3.87%; starter zone; +0.00% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "pass",
+            "reason": "Valuation report does not flag a blocker.",
+            "evidence": "- `US.MRK` Merck & Company, Inc.: last 114.90; valuation zone is acceptable only if fundamentals/catalysts are intact."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.MRK` Merck & Company, Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 114.9,
         "entry_zone": "113.86-119.69",
         "entry_point": "113.86-119.69",
         "add_zone": "112.7-112.72",
+        "chase_above": 123.26,
         "invalidation": 101.63,
         "stoploss": 101.63,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Inside starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Merck & Company, Inc.",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (59.0/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); tape_quality +9.4bp (-3.87% controlled pullback); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.MRK` Merck & Company, Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.MRK",
@@ -171,6 +664,17 @@
         "market": "US",
         "status": "starter_now",
         "setup_score_0_to_5": 2.9,
+        "decision_score": 57.7,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.9,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -184,15 +688,127 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Inside starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (57.0/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); tape_quality +7.4bp (+0.68% orderly tape); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.EBAY` eBay Inc.: last 109.18, today +0.68%; starter zone; +0.00% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "pass",
+            "reason": "Valuation report does not flag a blocker.",
+            "evidence": "- `US.EBAY` eBay Inc.: last 109.18; valuation zone is acceptable only if fundamentals/catalysts are intact."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.EBAY` eBay Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 109.18,
         "entry_zone": "104.39-109.74",
         "entry_point": "104.39-109.74",
         "add_zone": "95.03-97.96",
+        "chase_above": 117.52,
         "invalidation": 85.46,
         "stoploss": 85.46,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Inside starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "eBay Inc.",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (57.0/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); tape_quality +7.4bp (+0.68% orderly tape); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.EBAY` eBay Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.EBAY",
@@ -204,6 +820,17 @@
         "market": "US",
         "status": "starter_now",
         "setup_score_0_to_5": 2.9,
+        "decision_score": 57.7,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.9,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -217,15 +844,127 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Inside starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (57.0/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); tape_quality +7.4bp (-0.79% orderly tape); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.OKE` ONEOK, Inc.: last 87.45, today -0.79%; starter zone; +0.00% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "pass",
+            "reason": "Valuation report does not flag a blocker.",
+            "evidence": "- `US.OKE` ONEOK, Inc.: last 87.45; valuation zone is acceptable only if fundamentals/catalysts are intact."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.OKE` ONEOK, Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 87.45,
         "entry_zone": "86.5-90.94",
         "entry_point": "86.5-90.94",
         "add_zone": "83.85-85.64",
+        "chase_above": 94.63,
         "invalidation": 76.72,
         "stoploss": 76.72,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Inside starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "ONEOK, Inc.",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (57.0/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); tape_quality +7.4bp (-0.79% orderly tape); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.OKE` ONEOK, Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.OKE",
@@ -237,6 +976,17 @@
         "market": "US",
         "status": "starter_now",
         "setup_score_0_to_5": 2.9,
+        "decision_score": 57.7,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.9,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -250,15 +1000,127 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Inside starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (57.0/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); tape_quality +7.4bp (+1.36% orderly tape); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.WBD` Warner Bros. Discovery, Inc. - : last 26.83, today +1.36%; starter zone; +0.00% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "pass",
+            "reason": "Valuation report does not flag a blocker.",
+            "evidence": "- `US.WBD` Warner Bros. Discovery, Inc. - : last 26.83; valuation zone is acceptable only if fundamentals/catalysts are intact."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.WBD` Warner Bros. Discovery, Inc. - : must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 26.83,
         "entry_zone": "26.57-27.38",
         "entry_point": "26.57-27.38",
         "add_zone": "26.29-26.3",
+        "chase_above": 29.55,
         "invalidation": 24.12,
         "stoploss": 24.12,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Inside starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Warner Bros. Discovery, Inc. - ",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (57.0/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); tape_quality +7.4bp (+1.36% orderly tape); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.WBD` Warner Bros. Discovery, Inc. - : must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.WBD",
@@ -270,6 +1132,17 @@
         "market": "US",
         "status": "starter_now",
         "setup_score_0_to_5": 2.9,
+        "decision_score": 57.7,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.9,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -283,15 +1156,127 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Inside starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (55.1/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (-5.02% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.SLB` SLB Limited: last 53.71, today -5.02%; starter zone; +0.00% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "pass",
+            "reason": "Valuation report does not flag a blocker.",
+            "evidence": "- `US.SLB` SLB Limited: last 53.71; valuation zone is acceptable only if fundamentals/catalysts are intact."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.SLB` SLB Limited: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 53.71,
         "entry_zone": "53.66-56.41",
         "entry_point": "53.66-56.41",
         "add_zone": "50.55-52.11",
+        "chase_above": 57.94,
         "invalidation": 43.25,
         "stoploss": 43.25,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Inside starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "SLB Limited",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (55.1/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (-5.02% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.SLB` SLB Limited: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.SLB",
@@ -303,6 +1288,17 @@
         "market": "US",
         "status": "starter_now",
         "setup_score_0_to_5": 2.9,
+        "decision_score": 57.7,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.9,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -316,15 +1312,127 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Inside starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (55.1/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (+3.30% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.DD` DuPont de Nemours, Inc.: last 48.54, today +3.30%; starter zone; +0.00% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "pass",
+            "reason": "Valuation report does not flag a blocker.",
+            "evidence": "- `US.DD` DuPont de Nemours, Inc.: last 48.54; valuation zone is acceptable only if fundamentals/catalysts are intact."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.DD` DuPont de Nemours, Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 48.54,
         "entry_zone": "46.51-48.89",
         "entry_point": "46.51-48.89",
         "add_zone": "45.67-46.04",
+        "chase_above": 51.87,
         "invalidation": 40.73,
         "stoploss": 40.73,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Inside starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "DuPont de Nemours, Inc.",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (55.1/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (+3.30% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.DD` DuPont de Nemours, Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.DD",
@@ -336,6 +1444,17 @@
         "market": "US",
         "status": "starter_now",
         "setup_score_0_to_5": 2.9,
+        "decision_score": 57.7,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.9,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -349,15 +1468,127 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Inside starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (55.1/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (+2.75% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.ETR` Entergy Corporation: last 111.08, today +2.75%; starter zone; +0.00% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "pass",
+            "reason": "Valuation report does not flag a blocker.",
+            "evidence": "- `US.ETR` Entergy Corporation: last 111.08; valuation zone is acceptable only if fundamentals/catalysts are intact."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.ETR` Entergy Corporation: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 111.08,
         "entry_zone": "110.29-112.77",
         "entry_point": "110.29-112.77",
         "add_zone": "104.29-107.52",
+        "chase_above": 116.67,
         "invalidation": 97.26,
         "stoploss": 97.26,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Inside starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Entergy Corporation",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (55.1/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (+2.75% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.ETR` Entergy Corporation: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.ETR",
@@ -369,6 +1600,17 @@
         "market": "US",
         "status": "starter_now",
         "setup_score_0_to_5": 2.9,
+        "decision_score": 57.7,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.9,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -382,15 +1624,127 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Inside starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (55.1/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (-5.54% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.PSX` Phillips 66: last 173.26, today -5.54%; starter zone; +0.00% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "pass",
+            "reason": "Valuation report does not flag a blocker.",
+            "evidence": "- `US.PSX` Phillips 66: last 173.26; valuation zone is acceptable only if fundamentals/catalysts are intact."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.PSX` Phillips 66: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 173.26,
         "entry_zone": "168.98-175.84",
         "entry_point": "168.98-175.84",
         "add_zone": "162.23-167.24",
+        "chase_above": 187.75,
         "invalidation": 146.5,
         "stoploss": 146.5,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Inside starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Phillips 66",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (55.1/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (-5.54% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.PSX` Phillips 66: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.PSX",
@@ -402,6 +1756,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 3.2,
+        "decision_score": 63.8,
+        "score_components": {
+          "source_quality_score": 0.7,
+          "freshness_score": 1.0,
+          "technical_score": 0.45,
+          "valuation_score": 0.65,
+          "catalyst_score": 0.6,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.35,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -415,15 +1780,122 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (60.4/100).",
+            "evidence": "zone_alignment +18.6bp (outside zone but measurable); source_quality +8.4bp (external source quality); freshness +8.0bp (recency of linked evidence)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.NVDA` NVIDIA Corporation: last 212.45, today +1.83%; watch zone; +2.02% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.NVDA` NVIDIA Corporation: last 212.45; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "pass",
+            "reason": "Bottleneck report does not flag a blocker.",
+            "evidence": "Risk exposure: `US.AMZN`, `US.GOOG`, `US.META`, `US.MSFT`, `US.NVDA`, `US.AVGO`."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "pass",
+            "reason": "Redteam report does not flag a blocker.",
+            "evidence": "- `US.NVDA` NVIDIA Corporation: Core AI leader, but not a dip unless there is a real reset or earnings upgrade.."
+          },
+          {
+            "source": "context",
+            "status": "pass",
+            "reason": "No hostile symbol-specific context found in top items.",
+            "evidence": "congressional-growth: Trump Lifted the AI Chip Ban on China, Clearing Nvidia and AMD to Resume Sales: Now What? - Built In; options: NVDA Earnings Preview: AI Revenue & Blackwell Demand - tastylive; congressional-growth: US senators unveil bill to prevent easing of curbs on Nvidia chip sales to China - Reuters"
+          }
+        ],
+        "evidence_ids": [
+          "evidence_06ee85b3f2fe1230",
+          "evidence_afb9df8cfe440173",
+          "evidence_c7115b601cdf5a3a",
+          "evidence_88a64f796ec1305c",
+          "evidence_21d2570b95b0b4e8",
+          "evidence_70bebce1fa4782c9"
+        ],
         "current_price": 212.45,
         "entry_zone": "202.77-208.25",
         "entry_point": "202.77-208.25",
         "add_zone": "191.15-196.83",
+        "chase_above": 232.99,
         "invalidation": 160.98,
         "stoploss": 160.98,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "NVIDIA Corporation",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (60.4/100).",
+            "evidence": "zone_alignment +18.6bp (outside zone but measurable); source_quality +8.4bp (external source quality); freshness +8.0bp (recency of linked evidence)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.NVDA` NVIDIA Corporation: last 212.45; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.NVDA",
@@ -435,6 +1907,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 3.0,
+        "decision_score": 60.8,
+        "score_components": {
+          "source_quality_score": 0.5,
+          "freshness_score": 1.0,
+          "technical_score": 0.45,
+          "valuation_score": 0.65,
+          "catalyst_score": 0.6,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.35,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -448,15 +1931,128 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (59.6/100).",
+            "evidence": "zone_alignment +20.2bp (outside zone but measurable); freshness +8.0bp (recency of linked evidence); tape_quality +7.4bp (-0.67% orderly tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.AVGO` Broadcom Inc.: last 393.94, today -0.67%; watch zone; +1.11% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AVGO` Broadcom Inc.: last 393.94; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "pass",
+            "reason": "Bottleneck report does not flag a blocker.",
+            "evidence": "Risk exposure: `US.AMZN`, `US.GOOG`, `US.META`, `US.MSFT`, `US.NVDA`, `US.AVGO`."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "pass",
+            "reason": "Redteam report does not flag a blocker.",
+            "evidence": "- `US.AVGO` Broadcom Inc.: Best-in-class AI infrastructure, but extended and semiconductor factor is crowded.."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [
+          "evidence_f9658f55e4ff8de1",
+          "evidence_c6565dca95134717",
+          "evidence_9206f9cdd9e1162b",
+          "evidence_f2d28de62a3e3374",
+          "evidence_7bcbcebfed1e1756",
+          "evidence_4490f3288534a40e"
+        ],
         "current_price": 393.94,
         "entry_zone": "398.32-402.3",
         "entry_point": "398.32-402.3",
         "add_zone": "361.68-372.43",
+        "chase_above": 487.57,
         "invalidation": 284.16,
         "stoploss": 284.16,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Broadcom Inc.",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (59.6/100).",
+            "evidence": "zone_alignment +20.2bp (outside zone but measurable); freshness +8.0bp (recency of linked evidence); tape_quality +7.4bp (-0.67% orderly tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AVGO` Broadcom Inc.: last 393.94; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.AVGO",
@@ -468,6 +2064,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 3.0,
+        "decision_score": 60.0,
+        "score_components": {
+          "source_quality_score": 0.5,
+          "freshness_score": 1.0,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "AWS and retail margin platform, but not a deep dip unless it resets lower.",
         "source_agents": [
           "opportunity-scan",
@@ -481,15 +2088,130 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (55.3/100).",
+            "evidence": "zone_alignment +15.9bp (outside zone but measurable); freshness +8.0bp (recency of linked evidence); tape_quality +7.4bp (+0.33% orderly tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.AMZN` Amazon: last 246.02, today +0.33%; watch zone; +5.68% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AMZN` Amazon: last 246.02; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AMZN` Amazon: last 246.02, today +0.33%; avoid full size until date confirmed."
+          },
+          {
+            "source": "bottleneck",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AMZN` Amazon: cloud/platform watch; last 246.02; must still pass bottleneck evidence for Grid power for AI/data centers."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AMZN` Amazon: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "pass",
+            "reason": "No hostile symbol-specific context found in top items.",
+            "evidence": "options: Massive Bullish Put Trades Hit AMD, GOOG, and AMZN During AI Pullback | Smart Money Option - Moomoo; news: NVDA Reclaims $5 Trillion Market Cap After Best Day In Two Weeks: Retail Traders Stay On Sidelines"
+          }
+        ],
+        "evidence_ids": [
+          "evidence_afb9df8cfe440173",
+          "evidence_79cb556da48e8926"
+        ],
         "current_price": 246.02,
         "entry_zone": "260-265",
         "entry_point": "260-265",
         "add_zone": "248-255",
+        "chase_above": 275,
         "invalidation": 245,
         "stoploss": 245,
+        "max_nav_pct": 3,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "cloud/platform watch",
+        "setup_label": "Amazon",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (55.3/100).",
+            "evidence": "zone_alignment +15.9bp (outside zone but measurable); freshness +8.0bp (recency of linked evidence); tape_quality +7.4bp (+0.33% orderly tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AMZN` Amazon: last 246.02; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AMZN` Amazon: last 246.02, today +0.33%; avoid full size until date confirmed."
+          },
+          {
+            "source": "bottleneck",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AMZN` Amazon: cloud/platform watch; last 246.02; must still pass bottleneck evidence for Grid power for AI/data centers."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AMZN` Amazon: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.AMZN",
@@ -501,6 +2223,17 @@
         "market": "HK",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.8,
+        "decision_score": 55.0,
+        "score_components": {
+          "source_quality_score": 0.5,
+          "freshness_score": 0.35,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.6,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Cash-generative gaming/platform exposure, but still China-policy exposed.",
         "source_agents": [
           "opportunity-scan",
@@ -514,15 +2247,132 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (53.9/100).",
+            "evidence": "zone_alignment +18.9bp (outside zone but measurable); portfolio_fit +6.6bp (portfolio fit neutral); source_quality +6.0bp (external source quality)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `HK.09999` NetEase: last 195.60, today +4.43%; watch zone; +1.88% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `HK.09999` NetEase: last 195.60; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `HK.09999` NetEase: last 195.60, today +4.43%; avoid full size until date confirmed."
+          },
+          {
+            "source": "bottleneck",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `HK.09999` NetEase: HK platform watch; last 195.60; must still pass bottleneck evidence for Platform monetization and regulation."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `HK.09999` NetEase: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "pass",
+            "reason": "No hostile symbol-specific context found in top items.",
+            "evidence": "china-hk: NetEase Inc stock (KYG6427A1022): Q1 earnings and AI gaming push draw investor focus - AD HOC NEWS; china-hk: NetEase Inc stock (KYG6427A1022): earnings momentum and gaming pipeline in focus - AD HOC NEWS; china-hk: Apple fee cut to boost Tencent, NetEase margins in China, analysts say - TradingView"
+          }
+        ],
+        "evidence_ids": [
+          "evidence_f084a00b52985919",
+          "evidence_2274479bf6cfaf01",
+          "evidence_2e6947e26c166b04",
+          "evidence_f942e267aba68e14"
+        ],
         "current_price": 195.6,
         "entry_zone": "188-192",
         "entry_point": "188-192",
         "add_zone": "178-184",
+        "chase_above": 198,
         "invalidation": 176,
         "stoploss": 176,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "HK platform watch",
+        "setup_label": "NetEase",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (53.9/100).",
+            "evidence": "zone_alignment +18.9bp (outside zone but measurable); portfolio_fit +6.6bp (portfolio fit neutral); source_quality +6.0bp (external source quality)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `HK.09999` NetEase: last 195.60; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `HK.09999` NetEase: last 195.60, today +4.43%; avoid full size until date confirmed."
+          },
+          {
+            "source": "bottleneck",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `HK.09999` NetEase: HK platform watch; last 195.60; must still pass bottleneck evidence for Platform monetization and regulation."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `HK.09999` NetEase: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "HK.09999",
@@ -534,6 +2384,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.4,
+        "decision_score": 48.8,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -547,15 +2408,133 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (53.8/100).",
+            "evidence": "zone_alignment +20.0bp (outside zone but measurable); tape_quality +9.4bp (-3.67% controlled pullback); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.BKR` Baker Hughes Company: last 62.46, today -3.67%; watch zone; +0.96% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.BKR` Baker Hughes Company: last 62.46; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.BKR` Baker Hughes Company: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 62.46,
         "entry_zone": "63.06-64.08",
         "entry_point": "63.06-64.08",
         "add_zone": "60.21-62.07",
+        "chase_above": 69.35,
         "invalidation": 53.2,
         "stoploss": 53.2,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Baker Hughes Company",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (53.8/100).",
+            "evidence": "zone_alignment +20.0bp (outside zone but measurable); tape_quality +9.4bp (-3.67% controlled pullback); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.BKR` Baker Hughes Company: last 62.46; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.BKR` Baker Hughes Company: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.BKR",
@@ -567,6 +2546,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.4,
+        "decision_score": 48.8,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -580,15 +2570,133 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (52.4/100).",
+            "evidence": "zone_alignment +18.6bp (outside zone but measurable); tape_quality +9.4bp (-1.70% controlled pullback); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.AAPL` Apple Inc.: last 296.42, today -1.70%; watch zone; +0.79% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AAPL` Apple Inc.: last 296.42; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AAPL` Apple Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 296.42,
         "entry_zone": "279.78-294.11",
         "entry_point": "279.78-294.11",
         "add_zone": "269.54-276.98",
+        "chase_above": 312.64,
         "invalidation": 240.6,
         "stoploss": 240.6,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Apple Inc.",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (52.4/100).",
+            "evidence": "zone_alignment +18.6bp (outside zone but measurable); tape_quality +9.4bp (-1.70% controlled pullback); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AAPL` Apple Inc.: last 296.42; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.AAPL` Apple Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.AAPL",
@@ -600,6 +2708,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.4,
+        "decision_score": 48.8,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -613,15 +2732,133 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (52.1/100).",
+            "evidence": "zone_alignment +18.3bp (outside zone but measurable); tape_quality +9.4bp (-1.18% controlled pullback); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.ADM` Archer-Daniels-Midland Company: last 79.27, today -1.18%; watch zone; +1.12% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.ADM` Archer-Daniels-Midland Company: last 79.27; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.ADM` Archer-Daniels-Midland Company: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 79.27,
         "entry_zone": "74.57-78.39",
         "entry_point": "74.57-78.39",
         "add_zone": "70.3-72.48",
+        "chase_above": 84.09,
         "invalidation": 63.77,
         "stoploss": 63.77,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Archer-Daniels-Midland Company",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (52.1/100).",
+            "evidence": "zone_alignment +18.3bp (outside zone but measurable); tape_quality +9.4bp (-1.18% controlled pullback); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.ADM` Archer-Daniels-Midland Company: last 79.27; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.ADM` Archer-Daniels-Midland Company: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.ADM",
@@ -633,6 +2870,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.4,
+        "decision_score": 48.8,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -646,15 +2894,133 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (52.1/100).",
+            "evidence": "zone_alignment +20.3bp (outside zone but measurable); tape_quality +7.4bp (-0.14% orderly tape); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.WMB` Williams Companies, Inc. (The): last 71.49, today -0.14%; watch zone; +0.67% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.WMB` Williams Companies, Inc. (The): last 71.49; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.WMB` Williams Companies, Inc. (The): must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 71.49,
         "entry_zone": "71.97-73.15",
         "entry_point": "71.97-73.15",
         "add_zone": "70.23-71.25",
+        "chase_above": 78.88,
         "invalidation": 64.34,
         "stoploss": 64.34,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Williams Companies, Inc. (The)",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (52.1/100).",
+            "evidence": "zone_alignment +20.3bp (outside zone but measurable); tape_quality +7.4bp (-0.14% orderly tape); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.WMB` Williams Companies, Inc. (The): last 71.49; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.WMB` Williams Companies, Inc. (The): must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.WMB",
@@ -666,6 +3032,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.4,
+        "decision_score": 48.8,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -679,15 +3056,133 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (51.9/100).",
+            "evidence": "zone_alignment +20.1bp (outside zone but measurable); tape_quality +7.4bp (+0.54% orderly tape); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.KMI` Kinder Morgan, Inc.: last 31.46, today +0.54%; watch zone; +0.41% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.KMI` Kinder Morgan, Inc.: last 31.46; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.KMI` Kinder Morgan, Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 31.46,
         "entry_zone": "31.59-32.42",
         "entry_point": "31.59-32.42",
         "add_zone": "31.25-31.27",
+        "chase_above": 34.29,
         "invalidation": 28.79,
         "stoploss": 28.79,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Kinder Morgan, Inc.",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (51.9/100).",
+            "evidence": "zone_alignment +20.1bp (outside zone but measurable); tape_quality +7.4bp (+0.54% orderly tape); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.KMI` Kinder Morgan, Inc.: last 31.46; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.KMI` Kinder Morgan, Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.KMI",
@@ -699,6 +3194,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.1,
+        "decision_score": 42.8,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.2
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -712,15 +3218,133 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Up more than 5% intraday; do not treat spike as a dip.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (50.8/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); portfolio_fit +6.6bp (portfolio fit neutral); valuation_context +5.4bp (valuation/news context tags)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.SBUX` Starbucks Corporation: last 101.59, today +7.14%; intraday spike; do not treat as dip; +0.00% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "pass",
+            "reason": "Valuation report does not flag a blocker.",
+            "evidence": "- `US.SBUX` Starbucks Corporation: last 101.59; valuation zone is acceptable only if fundamentals/catalysts are intact."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.SBUX` Starbucks Corporation: intraday spike, not a dip."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 101.59,
         "entry_zone": "98.61-103.66",
         "entry_point": "98.61-103.66",
         "add_zone": "95.22-97.62",
+        "chase_above": 107.25,
         "invalidation": 83.89,
         "stoploss": 83.89,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Up more than 5% intraday; do not treat spike as a dip.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Starbucks Corporation",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (50.8/100).",
+            "evidence": "zone_alignment +25.2bp (inside starter zone); portfolio_fit +6.6bp (portfolio fit neutral); valuation_context +5.4bp (valuation/news context tags)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.SBUX` Starbucks Corporation: last 101.59, today +7.14%; intraday spike; do not treat as dip; +0.00% from starter band."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.SBUX` Starbucks Corporation: intraday spike, not a dip."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.SBUX",
@@ -732,6 +3356,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.4,
+        "decision_score": 47.8,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.55,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Fresh quantum-computing IPO with real strategic backing, but valuation and first-week volatility require small sizing.",
         "source_agents": [
           "opportunity-scan",
@@ -745,15 +3380,127 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (50.6/100).",
+            "evidence": "zone_alignment +19.6bp (outside zone but measurable); tape_quality +7.4bp (-0.84% orderly tape); portfolio_fit +5.8bp (1% max starter)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.QNT` Quantinuum: last 57.91, today -0.84%; watch zone; +0.16% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.QNT` Quantinuum: last 57.91; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.QNT` Quantinuum: last 57.91, today -0.84%; avoid full size until date confirmed."
+          },
+          {
+            "source": "bottleneck",
+            "status": "pass",
+            "reason": "Bottleneck report does not flag a blocker.",
+            "evidence": "- `US.QNT` Quantinuum: new quantum IPO watch; last 57.91."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.QNT` Quantinuum: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 57.91,
         "entry_zone": "58-60.5",
         "entry_point": "58-60.5",
         "add_zone": "53-56",
+        "chase_above": 68,
         "invalidation": 50,
         "stoploss": 50,
+        "max_nav_pct": 1,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "new quantum IPO watch",
+        "setup_label": "Quantinuum",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (50.6/100).",
+            "evidence": "zone_alignment +19.6bp (outside zone but measurable); tape_quality +7.4bp (-0.84% orderly tape); portfolio_fit +5.8bp (1% max starter)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.QNT` Quantinuum: last 57.91; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.QNT` Quantinuum: last 57.91, today -0.84%; avoid full size until date confirmed."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.QNT` Quantinuum: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.QNT",
@@ -765,6 +3512,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.6,
+        "decision_score": 51.5,
+        "score_components": {
+          "source_quality_score": 0.5,
+          "freshness_score": 0.15,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Large-cap AI/ad platform dip; strong business but still growth-factor exposed.",
         "source_agents": [
           "opportunity-scan",
@@ -778,15 +3536,136 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (49.9/100).",
+            "evidence": "zone_alignment +17.4bp (outside zone but measurable); tape_quality +7.4bp (+1.38% orderly tape); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.META` Meta: last 593.48, today +1.38%; watch zone; +4.47% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.META` Meta: last 593.48; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.META` Meta: last 593.48, today +1.38%; avoid full size until date confirmed."
+          },
+          {
+            "source": "bottleneck",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.META` Meta: quality platform dip; last 593.48; must still pass bottleneck evidence for Grid power for AI/data centers, Platform monetization and regulation."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.META` Meta: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "caution",
+            "reason": "Current context has hostile or volatility keywords.",
+            "evidence": "geopolitics: China to brief metals firms on rare earth export controls next month - Reuters; options: MSTR Options Exposure Dwarfs Tesla, Nvidia, Meta – Michael Saylor Says Bitcoin Makes The Stock ‘Interesting’ - Stocktwits"
+          }
+        ],
+        "evidence_ids": [
+          "evidence_1760c8a985013f0a",
+          "evidence_f43274bd9a995fe4"
+        ],
         "current_price": 593.48,
         "entry_zone": "620-625",
         "entry_point": "620-625",
         "add_zone": "600-610",
+        "chase_above": 640,
         "invalidation": 590,
         "stoploss": 590,
+        "max_nav_pct": 3,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "quality platform dip",
+        "setup_label": "Meta",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (49.9/100).",
+            "evidence": "zone_alignment +17.4bp (outside zone but measurable); tape_quality +7.4bp (+1.38% orderly tape); portfolio_fit +6.6bp (portfolio fit neutral)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.META` Meta: last 593.48; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.META` Meta: last 593.48, today +1.38%; avoid full size until date confirmed."
+          },
+          {
+            "source": "bottleneck",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.META` Meta: quality platform dip; last 593.48; must still pass bottleneck evidence for Grid power for AI/data centers, Platform monetization and regulation."
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.META` Meta: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "caution",
+            "reason": "Current context has hostile or volatility keywords.",
+            "evidence": "geopolitics: China to brief metals firms on rare earth export controls next month - Reuters; options: MSTR Options Exposure Dwarfs Tesla, Nvidia, Meta – Michael Saylor Says Bitcoin Makes The Stock ‘Interesting’ - Stocktwits"
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.META",
@@ -798,6 +3677,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.4,
+        "decision_score": 48.8,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -811,15 +3701,133 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (48.6/100).",
+            "evidence": "zone_alignment +18.6bp (outside zone but measurable); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (-5.83% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.EOG` EOG Resources, Inc.: last 131.98, today -5.83%; watch zone; +1.70% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.EOG` EOG Resources, Inc.: last 131.98; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.EOG` EOG Resources, Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 131.98,
         "entry_zone": "134.22-138.69",
         "entry_point": "134.22-138.69",
         "add_zone": "127.23-131.16",
+        "chase_above": 149.59,
         "invalidation": 116.97,
         "stoploss": 116.97,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "EOG Resources, Inc.",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (48.6/100).",
+            "evidence": "zone_alignment +18.6bp (outside zone but measurable); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (-5.83% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.EOG` EOG Resources, Inc.: last 131.98; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.EOG` EOG Resources, Inc.: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.EOG",
@@ -831,6 +3839,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.4,
+        "decision_score": 48.8,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -844,15 +3863,133 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (48.5/100).",
+            "evidence": "zone_alignment +18.6bp (outside zone but measurable); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (+2.25% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.IRM` Iron Mountain Incorporated (Del: last 126.28, today +2.25%; watch zone; +0.85% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.IRM` Iron Mountain Incorporated (Del: last 126.28; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.IRM` Iron Mountain Incorporated (Del: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 126.28,
         "entry_zone": "119.11-125.21",
         "entry_point": "119.11-125.21",
         "add_zone": "108.41-111.77",
+        "chase_above": 132.08,
         "invalidation": 94.97,
         "stoploss": 94.97,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Iron Mountain Incorporated (Del",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (48.5/100).",
+            "evidence": "zone_alignment +18.6bp (outside zone but measurable); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (+2.25% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.IRM` Iron Mountain Incorporated (Del: last 126.28; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.IRM` Iron Mountain Incorporated (Del: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.IRM",
@@ -864,6 +4001,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.4,
+        "decision_score": 48.8,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -877,15 +4025,133 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (48.2/100).",
+            "evidence": "zone_alignment +18.2bp (outside zone but measurable); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (-5.73% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.HAL` Halliburton Company: last 38.18, today -5.73%; watch zone; +2.51% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.HAL` Halliburton Company: last 38.18; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.HAL` Halliburton Company: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 38.18,
         "entry_zone": "39.14-40.19",
         "entry_point": "39.14-40.19",
         "add_zone": "36.5-37.63",
+        "chase_above": 42.94,
         "invalidation": 30.97,
         "stoploss": 30.97,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Halliburton Company",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (48.2/100).",
+            "evidence": "zone_alignment +18.2bp (outside zone but measurable); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (-5.73% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.HAL` Halliburton Company: last 38.18; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.HAL` Halliburton Company: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.HAL",
@@ -897,6 +4163,17 @@
         "market": "US",
         "status": "watch_pullback",
         "setup_score_0_to_5": 2.4,
+        "decision_score": 48.8,
+        "score_components": {
+          "source_quality_score": 0.25,
+          "freshness_score": 0.25,
+          "technical_score": 0.45,
+          "valuation_score": 0.5,
+          "catalyst_score": 0.45,
+          "risk_score": 0.75,
+          "portfolio_fit_score": 0.65,
+          "disagreement_penalty": 0.0
+        },
         "thesis": "Auto-discovered quality-dip candidate from the S&P 500/Nasdaq 100 universe; trend is above the 200DMA with a controlled pullback from the 52-week high.",
         "source_agents": [
           "opportunity-scan",
@@ -910,15 +4187,133 @@
           "redteam",
           "context"
         ],
+        "agent_gates": [
+          {
+            "source": "opportunity-scan",
+            "status": "pass",
+            "reason": "Outside preferred starter zone.",
+            "evidence": ""
+          },
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (48.1/100).",
+            "evidence": "zone_alignment +18.2bp (outside zone but measurable); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (-4.67% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "technical",
+            "status": "pass",
+            "reason": "Technical report does not flag a blocker.",
+            "evidence": "- `US.CVX` Chevron Corporation: last 180.40, today -4.67%; watch zone; +2.46% from starter band."
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.CVX` Chevron Corporation: last 180.40; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.CVX` Chevron Corporation: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
+        "evidence_ids": [],
         "current_price": 180.4,
         "entry_zone": "184.84-190.01",
         "entry_point": "184.84-190.01",
         "add_zone": "182.43-182.99",
+        "chase_above": 211.49,
         "invalidation": 166.3,
         "stoploss": 166.3,
+        "max_nav_pct": 2,
         "first_target": "",
         "confidence": "conditional",
         "reason": "Outside preferred starter zone.",
+        "bucket_label": "S&P/Nasdaq quality-dip discovery",
+        "setup_label": "Chevron Corporation",
+        "committee_blockers": [],
+        "committee_cautions": [
+          {
+            "source": "ml-alpha",
+            "status": "caution",
+            "reason": "ML alpha scaffold is mixed (48.1/100).",
+            "evidence": "zone_alignment +18.2bp (outside zone but measurable); portfolio_fit +6.6bp (portfolio fit neutral); tape_quality +5.5bp (-4.67% mixed tape)"
+          },
+          {
+            "source": "kronos-alpha",
+            "status": "missing",
+            "reason": "No Kronos forecast signal found for this symbol.",
+            "evidence": ""
+          },
+          {
+            "source": "valuation",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.CVX` Chevron Corporation: last 180.40; watchlist valuation gate; wait for better price or stronger evidence."
+          },
+          {
+            "source": "earnings",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "bottleneck",
+            "status": "missing",
+            "reason": "No per-symbol line found in latest report.",
+            "evidence": ""
+          },
+          {
+            "source": "portfolio-risk",
+            "status": "caution",
+            "reason": "Portfolio gate deferred; opportunity scan is market-only.",
+            "evidence": ""
+          },
+          {
+            "source": "redteam",
+            "status": "caution",
+            "reason": "Report requires confirmation before sizing.",
+            "evidence": "- `US.CVX` Chevron Corporation: must still pass earnings, macro, geopolitics, valuation, and portfolio-risk checks."
+          },
+          {
+            "source": "context",
+            "status": "missing",
+            "reason": "No symbol-specific current-context evidence found.",
+            "evidence": ""
+          }
+        ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": "2026-06-16 17:56:49",
         "raw_code": "US.CVX",

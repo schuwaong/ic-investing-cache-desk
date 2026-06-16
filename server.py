@@ -202,6 +202,15 @@ def gate_sources(item: dict[str, Any]) -> list[str]:
     return sources
 
 
+def dashboard_gate(gate: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "source": gate.get("source"),
+        "status": gate.get("status"),
+        "reason": gate.get("reason"),
+        "evidence": gate.get("evidence"),
+    }
+
+
 def dashboard_watchlist_item(item: dict[str, Any], bucket: str, generated_at: str) -> dict[str, Any]:
     market, symbol = split_market_symbol(str(item.get("code") or item.get("symbol") or ""))
     setup = item.get("setup") or {}
@@ -213,17 +222,31 @@ def dashboard_watchlist_item(item: dict[str, Any], bucket: str, generated_at: st
         "market": market,
         "status": item.get("status") or bucket,
         "setup_score_0_to_5": score_to_five(item.get("decision_score")),
+        "decision_score": item.get("decision_score"),
+        "score_components": item.get("score_components") or {},
         "thesis": setup.get("thesis") or item.get("reason") or "",
         "source_agents": gate_sources(item),
+        "agent_gates": [
+            dashboard_gate(gate)
+            for gate in as_list(item.get("committee_gates"))
+            if isinstance(gate, dict)
+        ],
+        "evidence_ids": item.get("evidence_ids") or [],
         "current_price": item.get("last"),
         "entry_zone": entry_zone,
         "entry_point": entry_zone,
         "add_zone": add_zone,
+        "chase_above": setup.get("chase_above"),
         "invalidation": invalidation,
         "stoploss": invalidation,
+        "max_nav_pct": setup.get("max_nav_pct"),
         "first_target": "",
         "confidence": item.get("committee_result") or "",
         "reason": item.get("reason") or "",
+        "bucket_label": setup.get("bucket") or bucket,
+        "setup_label": setup.get("label") or item.get("name") or symbol,
+        "committee_blockers": [dashboard_gate(gate) for gate in as_list(item.get("committee_blockers")) if isinstance(gate, dict)],
+        "committee_cautions": [dashboard_gate(gate) for gate in as_list(item.get("committee_cautions")) if isinstance(gate, dict)],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
         "last_reviewed": generated_at,
         "raw_code": item.get("code"),

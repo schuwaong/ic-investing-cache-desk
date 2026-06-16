@@ -213,6 +213,19 @@
       <div class="empty-state">No cached data found yet.</div>
     </template>
 
+    <dialog class="stock-dialog" id="stockDialog" aria-labelledby="stockDialogTitle">
+      <div class="dialog-shell">
+        <div class="dialog-head">
+          <div>
+            <p class="section-kicker">Agent report</p>
+            <h2 id="stockDialogTitle">Watchlist report</h2>
+          </div>
+          <button class="icon-action" id="closeStockDialog" type="button" aria-label="Close stock report">×</button>
+        </div>
+        <div id="stockDialogBody" class="stock-report"></div>
+      </div>
+    </dialog>
+
     <script src="./app.js"></script>
   </body>
 </html>
