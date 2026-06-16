@@ -188,18 +188,28 @@ function renderWatchlist(cache) {
       : items
           .map(
             (item) => `
-              <article class="item-card">
+              <article class="item-card watchlist-card status-${escapeHtml(item.status || "watch")}">
                 <div class="item-topline">
                   <div>
                     <h3><span class="ticker">${escapeHtml(item.symbol)}</span> ${escapeHtml(item.market || "")}</h3>
-                    <div class="status">${escapeHtml(item.status || "watch")}</div>
+                    <div class="status">${escapeHtml(item.confidence || item.status || "watch")}</div>
                   </div>
-                  <div class="mini-count">${escapeHtml(item.setup_score_0_to_5 ?? item.confidence ?? "watch")}</div>
+                  <span class="status-chip">${escapeHtml(item.status || "watch")}</span>
                 </div>
-                <div class="meta-line">
-                  Price ${escapeHtml(item.current_price || "n/a")} | Entry ${escapeHtml(item.entry_point || item.entry_zone || "n/a")} | Stop ${escapeHtml(item.stoploss || item.invalidation || "n/a")} | Target ${escapeHtml(item.first_target || "n/a")}
+                <div class="watch-metrics">
+                  <span><small>Last</small><strong>${escapeHtml(item.current_price || "n/a")}</strong></span>
+                  <span><small>Today</small><strong class="${pctClass(item.change_pct)}">${escapeHtml(formatPct(item.change_pct))}</strong></span>
+                  <span><small>Entry</small><strong>${escapeHtml(item.entry_point || item.entry_zone || "n/a")}</strong></span>
+                  <span><small>Add</small><strong>${escapeHtml(item.add_zone || "n/a")}</strong></span>
+                  <span><small>Invalid</small><strong>${escapeHtml(item.stoploss || item.invalidation || "n/a")}</strong></span>
                 </div>
                 <div class="reason">${escapeHtml(item.reason || item.thesis || "No thesis saved.")}</div>
+                <div class="agent-strip">
+                  ${(item.source_agents || [])
+                    .slice(0, 8)
+                    .map((agent) => `<span>${escapeHtml(agent)}</span>`)
+                    .join("")}
+                </div>
               </article>
             `,
           )

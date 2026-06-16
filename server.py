@@ -433,7 +433,7 @@ def main() -> None:
     args = parser.parse_args()
     if args.export_snapshot:
         output = Path(args.export_snapshot)
-        output.write_text(json.dumps(build_cache_payload(), ensure_ascii=False), encoding="utf-8")
+        output.write_text(json.dumps(build_cache_payload(), ensure_ascii=False, indent=2), encoding="utf-8")
         print(f"Exported cache snapshot: {output}")
         return
     server = ThreadingHTTPServer((args.host, args.port), CacheDashboardHandler)
