@@ -10,6 +10,7 @@ which reads the current Telegram bot cache files from the trading workspace.
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 import urllib.parse
@@ -37,6 +38,16 @@ def read_json(path: Path, default: Any) -> Any:
         return json.loads(path.read_text(encoding="utf-8-sig", errors="replace"))
     except Exception as exc:
         return {"error": str(exc), "path": str(path)}
+
+
+def read_csv_rows(path: Path | None, limit: int = 80) -> list[dict[str, Any]]:
+    if not path or not path.exists():
+        return []
+    try:
+        with path.open(newline="", encoding="utf-8-sig", errors="replace") as handle:
+            return [dict(row) for row in list(csv.DictReader(handle))[:limit]]
+    except Exception as exc:
+        return [{"error": str(exc), "path": str(path)}]
 
 
 def read_text_preview(path: Path | None, max_chars: int = 2200) -> str:
@@ -172,6 +183,18 @@ def report_specs() -> list[dict[str, Any]]:
             "label": "Crypto Scan",
             "paths": [auto / "crypto_scan" / "reports", reports],
             "pattern": "crypto_scan_*.md",
+        },
+        {
+            "key": "instagram",
+            "label": "Instagram Hype Scan",
+            "paths": [pipeline_reports, reports],
+            "pattern": "instagram_*.md",
+        },
+        {
+            "key": "geopolitics",
+            "label": "Geopolitics Scan",
+            "paths": [pipeline_reports, reports],
+            "pattern": "geopolitics_*.md",
         },
     ]
 
@@ -368,6 +391,7 @@ def market_from_pipeline(watchlist_payload: dict[str, Any]) -> dict[str, Any]:
 def build_cache_payload() -> dict[str, Any]:
     state_dir = TRADING_ROOT / "automation" / "state"
     pipeline_watchlist_path = PIPELINE_ROOT / "data" / "watchlist_current.json"
+    pipeline_data_dir = PIPELINE_ROOT / "data"
     legacy_watchlist_path = APPDATA / "Telecodex" / "trading-watchlist.json"
     watchlist_path = pipeline_watchlist_path if pipeline_watchlist_path.exists() else legacy_watchlist_path
     headline_events_path = state_dir / "trading-news-headlines.jsonl"
@@ -394,6 +418,16 @@ def build_cache_payload() -> dict[str, Any]:
     if pipeline_watchlist:
         market = market_from_pipeline(pipeline_watchlist)
 
+    instagram_path = latest_file([pipeline_data_dir], "instagram_*.json")
+    geopolitics_path = latest_file([pipeline_data_dir], "geopolitics_*.json")
+    opend_positions_csv_path = pipeline_data_dir / "opend_positions_current.csv"
+    opend_positions_json_path = pipeline_data_dir / "opend_positions_current.json"
+    active_portfolio_path = pipeline_data_dir / "active_portfolio.csv"
+    instagram = read_json(instagram_path, {"items": []}) if instagram_path else {"items": []}
+    geopolitics = read_json(geopolitics_path, {"items": []}) if geopolitics_path else {"items": []}
+    opend_positions = read_csv_rows(opend_positions_csv_path if opend_positions_csv_path.exists() else active_portfolio_path)
+    opend_metadata = read_json(opend_positions_json_path, {}) if opend_positions_json_path.exists() else {}
+
     active_watch = as_list(watchlist.get("items")) if isinstance(watchlist, dict) else []
     removed_watch = as_list(watchlist.get("removed")) if isinstance(watchlist, dict) else []
     market_movers = as_list(market.get("market_movers")) if isinstance(market, dict) else []
@@ -419,6 +453,10 @@ def build_cache_payload() -> dict[str, Any]:
             "news_headline_events": file_info(headline_events_path),
             "social_leads": file_info(state_dir / "trading-social-leads.json"),
             "scan_context": file_info(scan_context_path),
+            "instagram": file_info(instagram_path),
+            "geopolitics": file_info(geopolitics_path),
+            "opend_positions": file_info(opend_positions_csv_path if opend_positions_csv_path.exists() else None),
+            "active_portfolio": file_info(active_portfolio_path if active_portfolio_path.exists() else None),
         },
         "summary": {
             "active_watchlist": len(active_watch),
@@ -430,6 +468,9 @@ def build_cache_payload() -> dict[str, Any]:
             "social_leads": len(leads),
             "scan_candidates": len(candidates),
             "risk_state": risk_state,
+            "instagram_items": len(as_list(instagram.get("items"))) if isinstance(instagram, dict) else 0,
+            "geopolitics_items": len(as_list(geopolitics.get("items"))) if isinstance(geopolitics, dict) else 0,
+            "opend_positions": len(opend_positions),
         },
         "watchlist": watchlist,
         "market": market,
@@ -438,6 +479,14 @@ def build_cache_payload() -> dict[str, Any]:
         "news_headline_events": headline_events,
         "social_leads": social_leads,
         "scan_context": scan_context,
+        "content": {
+            "instagram": instagram,
+            "geopolitics": geopolitics,
+            "opend": {
+                "positions": opend_positions,
+                "metadata": opend_metadata,
+            },
+        },
         "reports": build_reports(),
     }
 

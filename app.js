@@ -2,6 +2,9 @@ const state = {
   cache: null,
   loading: false,
   watchlistQuery: "",
+  selectedContentSymbol: "",
+  contentFormat: "reel",
+  lastContentScript: "",
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -67,6 +70,35 @@ function compactText(value, max = 220) {
   const text = String(value ?? "").replace(/\s+/g, " ").trim();
   if (text.length <= max) return text;
   return `${text.slice(0, max - 3).trim()}...`;
+}
+
+function stripMarkup(value) {
+  const text = String(value ?? "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+  return text;
+}
+
+function sourceHost(value) {
+  try {
+    return new URL(value).hostname.replace(/^www\./, "");
+  } catch {
+    return String(value || "source");
+  }
+}
+
+function normalizeSymbol(value) {
+  return String(value || "")
+    .toUpperCase()
+    .replace(/^US\./, "")
+    .replace(/^HK\./, "")
+    .replace(/[^A-Z0-9]/g, "")
+    .replace(/^0+(?=\d)/, "");
 }
 
 function watchlistItems() {
@@ -140,6 +172,208 @@ function buildBullBear(item) {
   ).slice(0, 8);
 
   return { bull, bear };
+}
+
+function keywordTags(signal) {
+  const hits = signal?.keyword_hits || {};
+  return [
+    ...new Set(
+      Object.entries(hits).flatMap(([tag, values]) => [
+        tag,
+        ...(Array.isArray(values) ? values : []),
+      ]),
+    ),
+  ].filter(Boolean);
+}
+
+function signalText(signal) {
+  return [
+    signal?.title,
+    signal?.summary,
+    signal?.source,
+    keywordTags(signal).join(" "),
+  ]
+    .join(" ")
+    .toLowerCase();
+}
+
+function symbolThemes(item) {
+  const text = [
+    item?.symbol,
+    item?.raw_code,
+    item?.market,
+    item?.setup_label,
+    item?.thesis,
+    item?.reason,
+    item?.bullbear_theory,
+  ]
+    .join(" ")
+    .toLowerCase();
+  const symbol = String(item?.symbol || "").toUpperCase();
+  const themes = new Set(["market", "macro", "policy"]);
+  const techSymbols = ["AAPL", "AMZN", "AVGO", "GOOG", "META", "MSFT", "NVDA", "QNT", "TSLA"];
+  const energySymbols = ["BKR", "EOG", "KMI", "OKE", "PSX", "SLB", "WMB", "XOM", "CVX"];
+  const foodSymbols = ["ADM", "BG"];
+
+  if (item?.market === "HK" || /china|hong kong|adr|netease|tencent|alibaba|gaming/.test(text)) {
+    ["china", "tariff", "export controls", "geopolitics", "policy"].forEach((theme) => themes.add(theme));
+  }
+  if (techSymbols.includes(symbol) || /ai|semiconductor|chips|platform|cloud|quantum/.test(text)) {
+    ["ai", "semiconductor", "export controls", "rare earths", "china"].forEach((theme) => themes.add(theme));
+  }
+  if (energySymbols.includes(symbol) || /energy|oil|gas|pipeline|refiner|lng|drilling/.test(text)) {
+    ["energy", "oil", "shipping", "red sea", "hormuz"].forEach((theme) => themes.add(theme));
+  }
+  if (foodSymbols.includes(symbol) || /grain|agriculture|commodity|food/.test(text)) {
+    ["commodity", "shipping", "tariff", "china"].forEach((theme) => themes.add(theme));
+  }
+  return [...themes];
+}
+
+function rankContentSignals(signals, item, limit = 4) {
+  const themes = symbolThemes(item);
+  const symbol = normalizeSymbol(item?.symbol);
+  return (signals || [])
+    .map((signal) => {
+      const text = signalText(signal);
+      const tags = keywordTags(signal).map((tag) => String(tag).toLowerCase());
+      let rank = Number(signal.score || 0);
+      if (symbol && text.includes(symbol.toLowerCase())) rank += 6;
+      themes.forEach((theme) => {
+        if (text.includes(theme)) rank += 2.2;
+        if (tags.includes(theme)) rank += 2.8;
+      });
+      const age = Number(signal.age_days);
+      if (Number.isFinite(age)) {
+        if (age <= 3) rank += 5;
+        else if (age <= 14) rank += 3;
+        else if (age <= 45) rank += 1;
+        else if (age > 90) rank -= 3.5;
+      }
+      return { signal, rank };
+    })
+    .sort((a, b) => b.rank - a.rank)
+    .slice(0, limit)
+    .map((entry) => entry.signal);
+}
+
+function signalFreshness(signal) {
+  const age = Number(signal?.age_days);
+  if (!Number.isFinite(age)) return "undated";
+  if (age <= 3) return `${age.toFixed(1)}d fresh`;
+  if (age <= 14) return `${age.toFixed(1)}d recent`;
+  if (age <= 90) return `${age.toFixed(0)}d context`;
+  return `${age.toFixed(0)}d old context`;
+}
+
+function qualityLine(label, payload) {
+  const quality = payload?.quality || {};
+  const recency = quality.recency || {};
+  const count = quality.item_count ?? payload?.items?.length ?? 0;
+  const newest = Number(recency.newest_age_days);
+  const newestText = Number.isFinite(newest) ? `${newest.toFixed(1)}d newest` : "freshness n/a";
+  const failed = Number(quality.failed_sources || 0);
+  return `${label}: ${quality.status || "missing"} | ${formatNumber(count)} items | ${newestText} | ${failed} failed sources`;
+}
+
+function portfolioPosition(cache, item) {
+  const rows = cache.content?.opend?.positions || [];
+  const itemSymbols = [item?.symbol, item?.raw_code].map(normalizeSymbol).filter(Boolean);
+  return rows.find((row) => itemSymbols.includes(normalizeSymbol(row.Symbol || row.symbol || row.Code || row.code)));
+}
+
+function positionSummary(cache, item) {
+  const position = portfolioPosition(cache, item);
+  if (!position) return "No matching OpenD or active portfolio row in cache; treat this as watchlist-only context.";
+  return [
+    position["% of Portfolio"] ? `${position["% of Portfolio"]} of portfolio` : "",
+    position.Quantity ? `${position.Quantity} shares` : "",
+    position["Average Cost"] ? `avg ${position["Average Cost"]}` : "",
+    position["Current price"] ? `last ${position["Current price"]}` : "",
+  ]
+    .filter(Boolean)
+    .join(" | ");
+}
+
+function scriptDraft(cache, item, format) {
+  const { bull, bear } = buildBullBear(item);
+  const geopolitics = rankContentSignals(cache.content?.geopolitics?.items || [], item, 3);
+  const instagram = rankContentSignals(cache.content?.instagram?.items || [], item, 2);
+  const symbol = item.symbol || item.raw_code || "this setup";
+  const thesis = item.thesis || item.reason || item.bullbear_theory || "No thesis saved in the current cache.";
+  const bullLine = bull[0] || thesis;
+  const bearLine = bear[0] || "The bear case is not fully expressed in the current gates, so I would keep sizing conservative.";
+  const geoLine = geopolitics[0]
+    ? `${stripMarkup(geopolitics[0].title)} (${signalFreshness(geopolitics[0])})`
+    : "No fresh geopolitical signal matched this ticker in the cache.";
+  const socialLine = instagram[0]
+    ? `${stripMarkup(instagram[0].title)} (${signalFreshness(instagram[0])})`
+    : "No strong Instagram/social buzz signal matched this ticker in the cache.";
+  const levelLine = `Entry ${item.entry_zone || "n/a"}, add ${item.add_zone || "n/a"}, invalidation ${item.invalidation || "n/a"}, max ${item.max_nav_pct ?? "n/a"}% NAV.`;
+  const positionLine = positionSummary(cache, item);
+  const hook =
+    item.status === "watch_pullback"
+      ? `${symbol} is not a chase for me - it is a patience test.`
+      : `${symbol} is on my watchlist, but I want the bull case and the risk case side by side.`;
+
+  if (format === "carousel") {
+    return {
+      title: `${symbol} carousel script`,
+      beats: [
+        ["Slide 1", `${symbol}: a watchlist case study, not a buy signal.`],
+        ["Slide 2", `The simple thesis: ${thesis}`],
+        ["Slide 3", `Bull case: ${bullLine}`],
+        ["Slide 4", `Bear case: ${bearLine}`],
+        ["Slide 5", `Geopolitical overlay: ${geoLine}`],
+        ["Slide 6", `Position/zone check: ${positionLine}. ${levelLine}`],
+        ["Slide 7", "My rule: if the invalidation breaks or the risk news gets worse, the setup goes back to review."],
+      ],
+      caption: `Research-only watchlist note on ${symbol}. The point is not prediction; it is separating thesis, risk, and price discipline.`,
+    };
+  }
+
+  if (format === "voiceover") {
+    return {
+      title: `${symbol} voiceover script`,
+      beats: [
+        ["Open", hook],
+        ["Context", `The thesis is simple: ${thesis}`],
+        ["Bull", `The bull case is: ${bullLine}`],
+        ["Bear", `The bear case is: ${bearLine}`],
+        ["Geopolitics", `The geopolitical line I would keep on screen is: ${geoLine}`],
+        ["Social angle", `The content/buzz angle in the cache is: ${socialLine}`],
+        ["Process", `My level discipline is: ${levelLine} ${positionLine}`],
+        ["Close", "This is research-only. I am trying to decide what would make me wrong before I decide what would make me excited."],
+      ],
+      caption: `${symbol} in plain English: thesis, bear case, geopolitics, and invalidation before action.`,
+    };
+  }
+
+  return {
+    title: `${symbol} reel script`,
+    beats: [
+      ["0-3s", hook],
+      ["3-8s", `The bull case: ${bullLine}`],
+      ["8-14s", `The bear case: ${bearLine}`],
+      ["14-20s", `The geopolitics check: ${geoLine}`],
+      ["20-25s", `The social/content signal: ${socialLine}`],
+      ["25-32s", `The trading rule: ${levelLine}`],
+      ["32-38s", `OpenD/portfolio context: ${positionLine}`],
+      ["Close", "No hype, no prediction. Just thesis, risk, and the price where the idea is wrong."],
+    ],
+    caption: `Research-only ${symbol} watchlist breakdown: bull case, bear case, geopolitics, and invalidation before action.`,
+  };
+}
+
+function draftToText(draft) {
+  return [
+    draft.title,
+    "",
+    ...draft.beats.map(([label, text]) => `${label}: ${text}`),
+    "",
+    `Caption: ${draft.caption}`,
+    "Hashtags: #investing #stocks #watchlist #riskmanagement #geopolitics",
+  ].join("\n");
 }
 
 function decisionLabel(item) {
@@ -682,6 +916,129 @@ function renderIdeas(cache) {
           .join("");
 }
 
+function renderContent(cache) {
+  const items = watchlistItems();
+  const tickerSelect = $("#contentTickerSelect");
+  const formatSelect = $("#contentFormatSelect");
+  if (!items.length) {
+    tickerSelect.innerHTML = "";
+    $("#contentScript").innerHTML = empty("No watchlist names available for script generation.");
+    $("#contentSignals").innerHTML = empty("No content context available.");
+    return;
+  }
+
+  if (state.contentFormat !== formatSelect.value) {
+    state.contentFormat = formatSelect.value || "reel";
+  }
+  if (!state.selectedContentSymbol || !items.some((item) => item.symbol === state.selectedContentSymbol)) {
+    state.selectedContentSymbol = items[0].symbol;
+  }
+  formatSelect.value = state.contentFormat;
+  tickerSelect.innerHTML = items
+    .map((item) => `<option value="${escapeHtml(item.symbol)}" ${item.symbol === state.selectedContentSymbol ? "selected" : ""}>${escapeHtml(item.symbol)} - ${escapeHtml(item.setup_label || item.status || "watch")}</option>`)
+    .join("");
+
+  const item = findWatchlistItem(state.selectedContentSymbol) || items[0];
+  const draft = scriptDraft(cache, item, state.contentFormat);
+  const text = draftToText(draft);
+  state.lastContentScript = text;
+  const { bull, bear } = buildBullBear(item);
+  const geoSignals = rankContentSignals(cache.content?.geopolitics?.items || [], item, 4);
+  const instaSignals = rankContentSignals(cache.content?.instagram?.items || [], item, 4);
+  const contentRiskLabel = cache.summary?.risk_state === "RISK_OFF" ? "Hold / de-risk" : "Research / build";
+
+  $("#contentScript").innerHTML = `
+    <article class="item-card script-card">
+      <div class="item-topline">
+        <div>
+          <h3>${escapeHtml(draft.title)}</h3>
+          <div class="status">${escapeHtml(item.status || "watch")} | ${escapeHtml(item.market || "market")} | ${escapeHtml(contentRiskLabel)}</div>
+        </div>
+        <button class="status-chip" id="copyContentScript" type="button">Copy</button>
+      </div>
+      <div class="script-beats">
+        ${draft.beats
+          .map(
+            ([label, line]) => `
+              <div class="script-beat">
+                <span>${escapeHtml(label)}</span>
+                <p>${escapeHtml(line)}</p>
+              </div>
+            `,
+          )
+          .join("")}
+      </div>
+      <div class="script-caption">${escapeHtml(draft.caption)}</div>
+      <pre>${escapeHtml(text)}</pre>
+    </article>
+
+    <article class="item-card">
+      <div class="item-topline">
+        <h3>Trading Pipeline Check</h3>
+        <span class="status">${escapeHtml(item.confidence || "research")}</span>
+      </div>
+      <div class="script-mini-grid">
+        <span>Bull Case<strong>${escapeHtml(compactText(bull[0] || item.thesis || "No bull thesis saved.", 130))}</strong></span>
+        <span>Bear Case<strong>${escapeHtml(compactText(bear[0] || "No bear case saved.", 130))}</strong></span>
+        <span>Levels<strong>${escapeHtml(`Entry ${item.entry_zone || "n/a"} | Add ${item.add_zone || "n/a"} | Invalid ${item.invalidation || "n/a"}`)}</strong></span>
+        <span>OpenD<strong>${escapeHtml(positionSummary(cache, item))}</strong></span>
+      </div>
+    </article>
+  `;
+
+  const qualityRows = [
+    qualityLine("Instagram", cache.content?.instagram || {}),
+    qualityLine("Geopolitics", cache.content?.geopolitics || {}),
+  ];
+  $("#contentSignals").innerHTML = `
+    <article class="item-card">
+      <div class="item-topline">
+        <h3>Data Quality</h3>
+        <span class="status">${escapeHtml(cache.summary?.opend_positions ? `${cache.summary.opend_positions} positions` : "watchlist")}</span>
+      </div>
+      <div class="script-quality">
+        ${qualityRows.map((row) => `<div>${escapeHtml(row)}</div>`).join("")}
+      </div>
+    </article>
+    <article class="item-card">
+      <div class="item-topline">
+        <h3>Matched Geopolitics</h3>
+        <span class="status">${escapeHtml(symbolThemes(item).slice(0, 3).join(", "))}</span>
+      </div>
+      ${geoSignals.length
+        ? geoSignals
+            .map(
+              (signal) => `
+                <a class="signal-item" href="${escapeHtml(signal.link || "#")}" target="_blank" rel="noreferrer">
+                  <strong>${escapeHtml(compactText(stripMarkup(signal.title), 140))}</strong>
+                  <span>${escapeHtml(signalFreshness(signal))} | ${escapeHtml(sourceHost(signal.source || signal.link))} | ${escapeHtml(keywordTags(signal).slice(0, 5).join(", ") || "untagged")}</span>
+                </a>
+              `,
+            )
+            .join("")
+        : empty("No matched geopolitics signals.")}
+    </article>
+    <article class="item-card">
+      <div class="item-topline">
+        <h3>Matched Instagram/Social</h3>
+        <span class="status">${escapeHtml(cache.content?.instagram?.quality?.status || "missing")}</span>
+      </div>
+      ${instaSignals.length
+        ? instaSignals
+            .map(
+              (signal) => `
+                <a class="signal-item" href="${escapeHtml(signal.link || "#")}" target="_blank" rel="noreferrer">
+                  <strong>${escapeHtml(compactText(stripMarkup(signal.title), 140))}</strong>
+                  <span>${escapeHtml(signalFreshness(signal))} | ${escapeHtml(sourceHost(signal.source || signal.link))} | ${escapeHtml(keywordTags(signal).slice(0, 5).join(", ") || "untagged")}</span>
+                </a>
+              `,
+            )
+            .join("")
+        : empty("No matched Instagram/social signals.")}
+    </article>
+  `;
+}
+
 function sourceLabel(key) {
   const labels = {
     watchlist: "Watchlist",
@@ -691,6 +1048,10 @@ function sourceLabel(key) {
     news_headline_events: "News headline events",
     social_leads: "Social leads",
     scan_context: "Scan context",
+    instagram: "Instagram scan",
+    geopolitics: "Geopolitics scan",
+    opend_positions: "OpenD positions",
+    active_portfolio: "Active portfolio",
   };
   return labels[key] || key.replaceAll("_", " ");
 }
@@ -772,6 +1133,7 @@ function render() {
   renderRisk(cache);
   renderCandidates(cache);
   renderIdeas(cache);
+  renderContent(cache);
   renderSources(cache);
   renderReports(cache);
 }
@@ -780,6 +1142,26 @@ $("#refreshButton").addEventListener("click", loadCache);
 $("#watchlistSearch").addEventListener("input", (event) => {
   state.watchlistQuery = event.target.value;
   if (state.cache) renderWatchlist(state.cache);
+});
+$("#contentTickerSelect").addEventListener("change", (event) => {
+  state.selectedContentSymbol = event.target.value;
+  if (state.cache) renderContent(state.cache);
+});
+$("#contentFormatSelect").addEventListener("change", (event) => {
+  state.contentFormat = event.target.value;
+  if (state.cache) renderContent(state.cache);
+});
+$("#contentScript").addEventListener("click", async (event) => {
+  if (!event.target.closest("#copyContentScript")) return;
+  try {
+    await navigator.clipboard.writeText(state.lastContentScript || "");
+    event.target.textContent = "Copied";
+    setTimeout(() => {
+      event.target.textContent = "Copy";
+    }, 1200);
+  } catch {
+    event.target.textContent = "Select text";
+  }
 });
 $("#watchlistItems").addEventListener("click", (event) => {
   const trigger = event.target.closest("[data-symbol]");

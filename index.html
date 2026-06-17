@@ -23,6 +23,7 @@
           <a href="#reddit">Reddit</a>
           <a href="#risk">Risk</a>
           <a href="#ideas">Ideas</a>
+          <a href="#content">Scripts</a>
           <a href="#context">Context</a>
           <a href="#reports">Reports</a>
           <a href="#sources">Sources</a>
@@ -38,7 +39,7 @@
           <img src="./assets/market-command-center.png" alt="" class="hero-image">
           <div class="hero-copy">
             <div class="eyebrow">Live local cache</div>
-            <h1>Watchlist, news intelligence, Reddit pulse, and debate context.</h1>
+            <h1>Trading pipeline, Instagram scripts, and geopolitical context.</h1>
             <p id="heroMeta">Reading cache files...</p>
             <div class="hero-actions">
               <button class="primary-action" id="refreshButton" type="button">Refresh cache</button>
@@ -141,6 +142,36 @@
               </div>
             </div>
             <div id="socialLeads" class="compact-list"></div>
+          </article>
+        </section>
+
+        <section class="section-grid two-col" id="content">
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Content factory</p>
+                <h2>Instagram Scripts</h2>
+              </div>
+              <div class="content-controls">
+                <select id="contentTickerSelect" aria-label="Choose ticker"></select>
+                <select id="contentFormatSelect" aria-label="Choose format">
+                  <option value="reel">Reel</option>
+                  <option value="carousel">Carousel</option>
+                  <option value="voiceover">Voiceover</option>
+                </select>
+              </div>
+            </div>
+            <div id="contentScript" class="stack-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Context feed</p>
+                <h2>Instagram + Geopolitics</h2>
+              </div>
+            </div>
+            <div id="contentSignals" class="stack-list"></div>
           </article>
         </section>
 
