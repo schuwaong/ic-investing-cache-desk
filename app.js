@@ -2,6 +2,7 @@ const state = {
   cache: null,
   loading: false,
   watchlistQuery: "",
+  watchlistRegion: "all",
   selectedContentSymbol: "",
   contentFormat: "reel",
   lastContentScript: "",
@@ -99,6 +100,91 @@ function normalizeSymbol(value) {
     .replace(/^HK\./, "")
     .replace(/[^A-Z0-9]/g, "")
     .replace(/^0+(?=\d)/, "");
+}
+
+const WATCHLIST_REGIONS = [
+  { key: "all", label: "All" },
+  { key: "US", label: "US" },
+  { key: "MY", label: "Malaysia" },
+  { key: "SG", label: "Singapore" },
+  { key: "HK", label: "HK" },
+];
+
+const REGION_ALIAS_MAP = new Map(
+  Object.entries({
+    US: "US",
+    USA: "US",
+    UNITEDSTATES: "US",
+    NASDAQ: "US",
+    NYSE: "US",
+    NYSEARCA: "US",
+    AMEX: "US",
+    ARCA: "US",
+    OTC: "US",
+    USD: "US",
+    MY: "MY",
+    MYS: "MY",
+    MALAYSIA: "MY",
+    BURSAMALAYSIA: "MY",
+    BURSA: "MY",
+    MYX: "MY",
+    KLSE: "MY",
+    KLS: "MY",
+    KL: "MY",
+    MYR: "MY",
+    SG: "SG",
+    SGP: "SG",
+    SINGAPORE: "SG",
+    SGX: "SG",
+    SI: "SG",
+    SGD: "SG",
+    HK: "HK",
+    HKG: "HK",
+    HONGKONG: "HK",
+    HKEX: "HK",
+    SEHK: "HK",
+    HKD: "HK",
+  }),
+);
+
+function compactRegionValue(value) {
+  return String(value || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+}
+
+function regionFromValue(value) {
+  const compact = compactRegionValue(value);
+  if (!compact) return "";
+  return REGION_ALIAS_MAP.get(compact) || "";
+}
+
+function watchlistRegionForItem(item) {
+  const rawCode = String(item?.raw_code || item?.code || "").trim().toUpperCase();
+  const symbol = String(item?.symbol || "").trim().toUpperCase();
+
+  if (/^(US|USA|NASDAQ|NYSE|NYSEARCA|AMEX|ARCA|OTC)[.:]/.test(rawCode)) return "US";
+  if (/^(MY|MYS|MYX|KLSE|KLS|BURSA)[.:]/.test(rawCode) || /\.(KL|KLS|MYX)$/.test(rawCode)) return "MY";
+  if (/^(SG|SGP|SGX)[.:]/.test(rawCode) || /\.(SI|SGX|SG)$/.test(rawCode)) return "SG";
+  if (/^(HK|HKG|HKEX|SEHK)[.:]/.test(rawCode) || /\.HK$/.test(rawCode)) return "HK";
+
+  const explicitFields = [
+    item?.market,
+    item?.exchange,
+    item?.region,
+    item?.country,
+    item?.country_code,
+    item?.currency,
+  ];
+  for (const field of explicitFields) {
+    const region = regionFromValue(field);
+    if (region) return region;
+  }
+
+  if (/^[A-Z]{1,5}$/.test(symbol)) return "US";
+  return "other";
+}
+
+function watchlistRegionLabel(regionKey) {
+  return WATCHLIST_REGIONS.find((region) => region.key === regionKey)?.label || "Other";
 }
 
 function watchlistItems() {
@@ -516,6 +602,39 @@ function closeStockReport() {
   }
 }
 
+function closeVisitPopout() {
+  const popout = $("#visitPopout");
+  if (!popout || popout.hidden) return;
+  popout.hidden = true;
+  document.body.classList.remove("visit-popout-open");
+}
+
+function initVisitPopout() {
+  const popout = $("#visitPopout");
+  if (!popout) return;
+  const closeButton = $("#closeVisitPopout");
+  const openButton = $("#openAgentDesk");
+
+  document.body.classList.add("visit-popout-open");
+  setTimeout(() => closeButton?.focus(), 60);
+
+  closeButton?.addEventListener("click", closeVisitPopout);
+  openButton?.addEventListener("click", () => {
+    closeVisitPopout();
+    document.querySelector("#watchlist")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  popout.addEventListener("click", (event) => {
+    if (event.target === popout || event.target.closest(".paywall-links a")) {
+      closeVisitPopout();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeVisitPopout();
+  });
+}
+
 async function loadCache() {
   if (state.loading) return;
   state.loading = true;
@@ -576,6 +695,10 @@ function renderKpis(summary) {
 
 function renderWatchlist(cache) {
   const query = state.watchlistQuery.trim().toLowerCase();
+  const activeRegion = state.watchlistRegion || "all";
+  const allTableRows = cache.watchlist?.table || [];
+  const allItems = cache.watchlist?.items || [];
+  const sourceRows = allTableRows.length ? allTableRows : allItems;
   const matchesQuery = (item) => {
     if (!query) return true;
     return [
@@ -592,15 +715,42 @@ function renderWatchlist(cache) {
       .toLowerCase()
       .includes(query);
   };
-  const tableRows = (cache.watchlist?.table || []).filter(matchesQuery);
-  const items = (cache.watchlist?.items || []).filter(matchesQuery);
+  const matchesRegion = (item) => activeRegion === "all" || watchlistRegionForItem(item) === activeRegion;
+  const countForRegion = (regionKey) =>
+    sourceRows.filter((item) => (regionKey === "all" || watchlistRegionForItem(item) === regionKey) && matchesQuery(item)).length;
+  const regionCounts = Object.fromEntries(WATCHLIST_REGIONS.map((region) => [region.key, countForRegion(region.key)]));
+  const otherCount = sourceRows.filter((item) => watchlistRegionForItem(item) === "other" && matchesQuery(item)).length;
+  const tableRows = allTableRows.filter((item) => matchesQuery(item) && matchesRegion(item));
+  const items = allItems.filter((item) => matchesQuery(item) && matchesRegion(item));
   const removed = cache.watchlist?.removed || [];
   $("#watchlistCount").textContent = tableRows.length || items.length;
   $("#removedCount").textContent = removed.length;
+  $("#watchlistRegionTabs").innerHTML = [
+    ...WATCHLIST_REGIONS,
+    ...(otherCount ? [{ key: "other", label: "Other" }] : []),
+  ]
+    .map((region) => {
+      const selected = activeRegion === region.key;
+      return `
+        <button
+          class="region-tab"
+          type="button"
+          role="tab"
+          aria-selected="${selected ? "true" : "false"}"
+          data-region="${escapeHtml(region.key)}"
+        >
+          <span>${escapeHtml(region.label)}</span>
+          <strong>${escapeHtml(regionCounts[region.key] ?? otherCount)}</strong>
+        </button>
+      `;
+    })
+    .join("");
+
   $("#watchlistItems").innerHTML = tableRows.length
     ? `
       <div class="watchlist-meta">
         <span>${escapeHtml(cache.watchlist?.mode || "research-only")}</span>
+        <span>${escapeHtml(watchlistRegionLabel(activeRegion))} region</span>
         <span>Updated ${escapeHtml(cache.watchlist?.table_generated_at || formatDate(cache.watchlist?.updated_at))}</span>
       </div>
       <div class="watchlist-table-wrap">
@@ -653,7 +803,7 @@ function renderWatchlist(cache) {
       </div>
     `
     : items.length === 0
-      ? empty("No active watchlist names in cache.")
+      ? empty(`No ${watchlistRegionLabel(activeRegion)} watchlist names match the current filters.`)
       : items
           .map(
             (item) => `
@@ -1143,6 +1293,12 @@ $("#watchlistSearch").addEventListener("input", (event) => {
   state.watchlistQuery = event.target.value;
   if (state.cache) renderWatchlist(state.cache);
 });
+$("#watchlistRegionTabs").addEventListener("click", (event) => {
+  const tab = event.target.closest("[data-region]");
+  if (!tab) return;
+  state.watchlistRegion = tab.dataset.region || "all";
+  if (state.cache) renderWatchlist(state.cache);
+});
 $("#contentTickerSelect").addEventListener("change", (event) => {
   state.selectedContentSymbol = event.target.value;
   if (state.cache) renderContent(state.cache);
@@ -1201,4 +1357,5 @@ async function setupMotionRuntime() {
 }
 
 setupMotionRuntime();
+initVisitPopout();
 loadCache();
