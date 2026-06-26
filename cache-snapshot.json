@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-26T16:41:01.295156+00:00",
+  "generated_at": "2026-06-26T17:00:10.779458+00:00",
   "workspace": "static GitHub Pages snapshot",
   "files": {
     "watchlist": {
       "name": "watchlist_current.json",
-      "size": 206014,
-      "modified_at": "2026-06-26T16:41:00.936788+00:00"
+      "size": 204989,
+      "modified_at": "2026-06-26T17:00:10.427009+00:00"
     },
     "market_mover": null,
     "reddit": null,
@@ -13,24 +13,24 @@
     "news_headline_events": null,
     "social_leads": null,
     "scan_context": {
-      "name": "handoff-plan_2026-06-26_233915.json",
+      "name": "handoff-plan_2026-06-26_235820.json",
       "size": 6796,
-      "modified_at": "2026-06-26T16:39:15.797192+00:00"
+      "modified_at": "2026-06-26T16:58:20.617161+00:00"
     },
     "instagram": {
-      "name": "instagram_2026-06-26_233949.json",
+      "name": "instagram_2026-06-26_235853.json",
       "size": 58682,
-      "modified_at": "2026-06-26T16:39:49.419809+00:00"
+      "modified_at": "2026-06-26T16:58:53.596475+00:00"
     },
     "geopolitics": {
-      "name": "geopolitics_2026-06-26_233955.json",
-      "size": 147127,
-      "modified_at": "2026-06-26T16:39:55.792715+00:00"
+      "name": "geopolitics_2026-06-26_235900.json",
+      "size": 147124,
+      "modified_at": "2026-06-26T16:59:00.026101+00:00"
     },
     "news_feed": {
-      "name": "news_2026-06-26_233934.json",
-      "size": 91057,
-      "modified_at": "2026-06-26T16:39:34.425136+00:00"
+      "name": "news_2026-06-26_235838.json",
+      "size": 93115,
+      "modified_at": "2026-06-26T16:58:38.690702+00:00"
     },
     "opend_positions": {
       "name": "opend_positions_current.csv",
@@ -56,17 +56,17 @@
     "portfolio_trim_candidates": 6
   },
   "watchlist": {
-    "updated_at": "2026-06-26 23:41:00",
+    "updated_at": "2026-06-27 00:00:10",
     "items": [
       {
         "symbol": "03690",
         "market": "HK",
         "status": "starter_now",
-        "setup_score_0_to_5": 3.5,
-        "decision_score": 71.0,
+        "setup_score_0_to_5": 3.0,
+        "decision_score": 59.5,
         "score_components": {
-          "source_quality_score": 0.7,
-          "freshness_score": 1.0,
+          "source_quality_score": 0.5,
+          "freshness_score": 0.15,
           "technical_score": 0.9,
           "valuation_score": 0.5,
           "catalyst_score": 0.45,
@@ -97,8 +97,8 @@
           {
             "source": "ml-alpha",
             "status": "caution",
-            "reason": "ML alpha scaffold is mixed (63.7/100).",
-            "evidence": "zone_alignment +27.6bp (inside deeper add zone); source_quality +8.4bp (external source quality); freshness +8.0bp (recency of linked evidence)"
+            "reason": "ML alpha scaffold is mixed (54.5/100).",
+            "evidence": "zone_alignment +27.6bp (inside deeper add zone); source_quality +6.0bp (external source quality); portfolio_fit +5.8bp (1% max starter)"
           },
           {
             "source": "kronos-alpha",
@@ -150,7 +150,6 @@
           }
         ],
         "evidence_ids": [
-          "evidence_8f22e892a24dd258",
           "evidence_5bc6b0915fa92343",
           "evidence_30817747e788808f"
         ],
@@ -173,8 +172,8 @@
           {
             "source": "ml-alpha",
             "status": "caution",
-            "reason": "ML alpha scaffold is mixed (63.7/100).",
-            "evidence": "zone_alignment +27.6bp (inside deeper add zone); source_quality +8.4bp (external source quality); freshness +8.0bp (recency of linked evidence)"
+            "reason": "ML alpha scaffold is mixed (54.5/100).",
+            "evidence": "zone_alignment +27.6bp (inside deeper add zone); source_quality +6.0bp (external source quality); portfolio_fit +5.8bp (1% max starter)"
           },
           {
             "source": "kronos-alpha",
@@ -214,7 +213,7 @@
           }
         ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
-        "last_reviewed": "2026-06-26 23:41:00",
+        "last_reviewed": "2026-06-27 00:00:10",
         "raw_code": "HK.03690",
         "bucket": "starter_now",
         "change_pct": -10.515320334261835
@@ -373,7 +372,7 @@
           }
         ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
-        "last_reviewed": "2026-06-26 23:41:00",
+        "last_reviewed": "2026-06-27 00:00:10",
         "raw_code": "HK.09999",
         "bucket": "watch_pullback",
         "change_pct": -1.5748031496062964
@@ -537,7 +536,7 @@
           }
         ],
         "remove_if": "Breaks invalidation, moves above chase zone, or committee gates block the setup.",
-        "last_reviewed": "2026-06-26 23:41:00",
+        "last_reviewed": "2026-06-27 00:00:10",
         "raw_code": "HK.00700",
         "bucket": "watch_pullback",
         "change_pct": -6.451612903225801
@@ -545,54 +544,45 @@
     ],
     "removed": [
       {
-        "symbol": "TSM",
-        "market": "US",
-        "removed_at": "2026-06-26 23:41:00",
-        "reason": "Above chase threshold.",
-        "evidence_source": "ml-alpha, technical, valuation, redteam",
-        "raw_code": "US.TSM",
-        "status": "avoid_chase"
-      },
-      {
         "symbol": "AMZN",
         "market": "US",
-        "removed_at": "2026-06-26 23:41:00",
+        "removed_at": "2026-06-27 00:00:10",
         "reason": "Below invalidation; thesis needs review first.",
         "evidence_source": "ml-alpha, technical, valuation, redteam",
         "raw_code": "US.AMZN",
         "status": "avoid"
       },
       {
-        "symbol": "QNT",
-        "market": "US",
-        "removed_at": "2026-06-26 23:41:00",
-        "reason": "Blocked by committee gates: ml-alpha, valuation, redteam. Up more than 5% intraday; do not treat spike as a dip.",
-        "evidence_source": "ml-alpha, valuation, redteam",
-        "raw_code": "US.QNT",
-        "status": "committee_blocked"
-      },
-      {
-        "symbol": "META",
-        "market": "US",
-        "removed_at": "2026-06-26 23:41:00",
-        "reason": "Below invalidation; thesis needs review first.",
-        "evidence_source": "ml-alpha, technical, valuation, redteam",
-        "raw_code": "US.META",
-        "status": "avoid"
-      },
-      {
         "symbol": "GOOG",
         "market": "US",
-        "removed_at": "2026-06-26 23:41:00",
+        "removed_at": "2026-06-27 00:00:10",
         "reason": "Below invalidation; thesis needs review first.",
         "evidence_source": "ml-alpha, technical, valuation, redteam",
         "raw_code": "US.GOOG",
         "status": "avoid"
       },
       {
+        "symbol": "TSM",
+        "market": "US",
+        "removed_at": "2026-06-27 00:00:10",
+        "reason": "Above chase threshold.",
+        "evidence_source": "ml-alpha, technical, valuation, redteam",
+        "raw_code": "US.TSM",
+        "status": "avoid_chase"
+      },
+      {
+        "symbol": "META",
+        "market": "US",
+        "removed_at": "2026-06-27 00:00:10",
+        "reason": "Below invalidation; thesis needs review first.",
+        "evidence_source": "ml-alpha, technical, valuation, redteam",
+        "raw_code": "US.META",
+        "status": "avoid"
+      },
+      {
         "symbol": "UBER",
         "market": "US",
-        "removed_at": "2026-06-26 23:41:00",
+        "removed_at": "2026-06-27 00:00:10",
         "reason": "Blocked by committee gates: ml-alpha, valuation, redteam. Up more than 5% intraday; do not treat spike as a dip.",
         "evidence_source": "ml-alpha, valuation, redteam",
         "raw_code": "US.UBER",
@@ -601,7 +591,7 @@
       {
         "symbol": "09988",
         "market": "HK",
-        "removed_at": "2026-06-26 23:41:00",
+        "removed_at": "2026-06-27 00:00:10",
         "reason": "Below invalidation; thesis needs review first.",
         "evidence_source": "ml-alpha, technical, valuation, redteam",
         "raw_code": "HK.09988",
@@ -610,7 +600,7 @@
       {
         "symbol": "01810",
         "market": "HK",
-        "removed_at": "2026-06-26 23:41:00",
+        "removed_at": "2026-06-27 00:00:10",
         "reason": "Below invalidation; thesis needs review first.",
         "evidence_source": "ml-alpha, technical, valuation, redteam",
         "raw_code": "HK.01810",
@@ -619,7 +609,7 @@
       {
         "symbol": "CRM",
         "market": "US",
-        "removed_at": "2026-06-26 23:41:00",
+        "removed_at": "2026-06-27 00:00:10",
         "reason": "Below invalidation; thesis needs review first.",
         "evidence_source": "ml-alpha, technical, valuation, redteam",
         "raw_code": "US.CRM",
@@ -628,35 +618,44 @@
       {
         "symbol": "DHR",
         "market": "US",
-        "removed_at": "2026-06-26 23:41:00",
+        "removed_at": "2026-06-27 00:00:10",
         "reason": "Blocked by committee gates: ml-alpha, valuation, redteam. Up more than 5% intraday; do not treat spike as a dip.",
         "evidence_source": "ml-alpha, valuation, redteam",
         "raw_code": "US.DHR",
         "status": "committee_blocked"
+      },
+      {
+        "symbol": "QNT",
+        "market": "US",
+        "removed_at": "2026-06-27 00:00:10",
+        "reason": "Blocked by committee gates: ml-alpha, valuation, redteam. Up more than 5% intraday; do not treat spike as a dip.",
+        "evidence_source": "ml-alpha, valuation, redteam",
+        "raw_code": "US.QNT",
+        "status": "committee_blocked"
       }
     ],
     "source_reports": {
-      "opportunity-scan": "opportunity-scan_2026-06-26_234013.md",
-      "ml-alpha": "ml-alpha_2026-06-26_234013.md",
-      "kronos-alpha": "kronos-alpha_2026-06-26_234015.md",
-      "bullbear": "bullbear_2026-06-26_234015.md",
-      "congressional-growth": "congressional-growth_2026-06-26_233919.md",
-      "ipo": "ipo_2026-06-26_233921.md",
-      "bottleneck": "bottleneck_2026-06-26_234019.md",
-      "radar": "radar_2026-06-26_233927.md",
-      "leads": "leads_2026-06-26_234024.md",
-      "news": "news_2026-06-26_233934.md",
-      "tweet": "tweet_2026-06-26_233942.md",
-      "instagram": "instagram_2026-06-26_233949.md",
-      "geopolitics": "geopolitics_2026-06-26_233955.md",
-      "macro": "macro_2026-06-26_233959.md",
-      "earnings": "earnings_2026-06-26_234010.md",
-      "valuation": "valuation_2026-06-26_234012.md",
-      "technical": "technical_2026-06-26_234024.md",
-      "insiders": "insiders_2026-06-26_234001.md",
-      "options": "options_2026-06-26_234004.md",
-      "china-hk": "china-hk_2026-06-26_234007.md",
-      "redteam": "redteam_2026-06-26_234024.md",
+      "opportunity-scan": "opportunity-scan_2026-06-26_235917.md",
+      "ml-alpha": "ml-alpha_2026-06-26_235917.md",
+      "kronos-alpha": "kronos-alpha_2026-06-26_235919.md",
+      "bullbear": "bullbear_2026-06-26_235919.md",
+      "congressional-growth": "congressional-growth_2026-06-26_235824.md",
+      "ipo": "ipo_2026-06-26_235826.md",
+      "bottleneck": "bottleneck_2026-06-26_235923.md",
+      "radar": "radar_2026-06-26_235831.md",
+      "leads": "leads_2026-06-26_235929.md",
+      "news": "news_2026-06-26_235838.md",
+      "tweet": "tweet_2026-06-26_235847.md",
+      "instagram": "instagram_2026-06-26_235853.md",
+      "geopolitics": "geopolitics_2026-06-26_235900.md",
+      "macro": "macro_2026-06-26_235903.md",
+      "earnings": "earnings_2026-06-26_235914.md",
+      "valuation": "valuation_2026-06-26_235917.md",
+      "technical": "technical_2026-06-26_235929.md",
+      "insiders": "insiders_2026-06-26_235906.md",
+      "options": "options_2026-06-26_235908.md",
+      "china-hk": "china-hk_2026-06-26_235911.md",
+      "redteam": "redteam_2026-06-26_235929.md",
       "congressional-trades": "congressional_growth_2026-06-08_213001.md"
     },
     "quote_errors": [
@@ -671,32 +670,32 @@
         {
           "code": "US.SPY",
           "label": "S&P 500",
-          "last": 734.41,
-          "change_pct": -1.65
+          "last": 734.47,
+          "change_pct": -1.64
         },
         {
           "code": "US.QQQ",
           "label": "Nasdaq 100",
-          "last": 713.2,
-          "change_pct": -3.7
+          "last": 713.06,
+          "change_pct": -3.72
         },
         {
           "code": "US.DIA",
           "label": "Dow",
-          "last": 519.68,
-          "change_pct": 0.81
+          "last": 519.65,
+          "change_pct": 0.8
         },
         {
           "code": "US.IWM",
           "label": "Russell 2000",
-          "last": 298.7,
-          "change_pct": 1.05
+          "last": 298.42,
+          "change_pct": 0.96
         },
         {
           "code": "US.TLT",
           "label": "20Y Treasury",
-          "last": 87.32,
-          "change_pct": 0.66
+          "last": 87.31,
+          "change_pct": 0.65
         },
         {
           "code": "HK.02800",
@@ -717,9 +716,9 @@
           "title": "China Adds MP Materials and USA Rare Earth to Its Export Control List (June 2026) - Stock Titan"
         },
         {
-          "job": "geopolitics",
-          "date": "2026-06-22",
-          "title": "China targets US rare earth firms with new export controls in latest trade war escalation - Crypto Briefing"
+          "job": "news",
+          "date": "2026-06-26",
+          "title": "Trump threatens 100% tariff on countries putting 'Digital Services Tax on American Companies'"
         }
       ],
       "quote_errors": [
@@ -730,7 +729,7 @@
   "portfolio_analysis": {
     "label": "Sample portfolio analysis",
     "mode": "sample_only",
-    "updated_at": "2026-06-26T16:41:01.294835+00:00",
+    "updated_at": "2026-06-26T17:00:10.779157+00:00",
     "disclaimer": "Educational sample only. This is not financial advice, a recommendation, or a live order signal.",
     "summary": {
       "positions_reviewed": 20,
@@ -883,45 +882,45 @@
   "market": {
     "source": "trading_pipeline_watchlist_current",
     "mode": "research_only_no_trading",
-    "generated_at": "2026-06-26 23:41:00",
+    "generated_at": "2026-06-27 00:00:10",
     "index_pulse": [
       {
         "symbol": "S&P 500",
         "name": "US.SPY",
-        "price": 734.41,
-        "change_pct": -1.65,
+        "price": 734.47,
+        "change_pct": -1.64,
         "currency": "",
         "exchange": ""
       },
       {
         "symbol": "Nasdaq 100",
         "name": "US.QQQ",
-        "price": 713.2,
-        "change_pct": -3.7,
+        "price": 713.06,
+        "change_pct": -3.72,
         "currency": "",
         "exchange": ""
       },
       {
         "symbol": "Dow",
         "name": "US.DIA",
-        "price": 519.68,
-        "change_pct": 0.81,
+        "price": 519.65,
+        "change_pct": 0.8,
         "currency": "",
         "exchange": ""
       },
       {
         "symbol": "Russell 2000",
         "name": "US.IWM",
-        "price": 298.7,
-        "change_pct": 1.05,
+        "price": 298.42,
+        "change_pct": 0.96,
         "currency": "",
         "exchange": ""
       },
       {
         "symbol": "20Y Treasury",
         "name": "US.TLT",
-        "price": 87.32,
-        "change_pct": 0.66,
+        "price": 87.31,
+        "change_pct": 0.65,
         "currency": "",
         "exchange": ""
       },
@@ -950,9 +949,9 @@
         "link": ""
       },
       {
-        "title": "China targets US rare earth firms with new export controls in latest trade war escalation - Crypto Briefing",
-        "published": "2026-06-22",
-        "description": "geopolitics",
+        "title": "Trump threatens 100% tariff on countries putting 'Digital Services Tax on American Companies'",
+        "published": "2026-06-26",
+        "description": "news",
         "link": ""
       },
       {
@@ -963,10 +962,24 @@
         "source": "Futubull Financial News"
       },
       {
+        "title": "Trump threatens 100% tariff on countries putting 'Digital Services Tax on American Companies'",
+        "published": "Fri, 26 Jun 2026 16:46:23 GMT",
+        "description": "\"This TARIFF will supersede Trade Deals made with the Country, whether implemented, signed, or not,\" Trump wrote in a Truth Social post.",
+        "link": "https://www.cnbc.com/2026/06/26/trump-tariff-trade-tech-tax.html",
+        "source": "Futubull Financial News"
+      },
+      {
         "title": "Rise in memory chip costs puts pressure on retailers of laptops and smartphones",
         "published": "Fri, 26 Jun 2026 12:00:01 GMT",
         "description": "As the global race for AI moves forward, a shortage of memory chips has begun to drive up prices of consumer electronics and may lead to product shortages.",
         "link": "https://www.cnbc.com/2026/06/26/ai-memory-chip-shortage-consumer-electronics-prices.html",
+        "source": "Futubull Financial News"
+      },
+      {
+        "title": "The Quiet Gross Margin Reality Check That Points to a Dangerous Valuation Gap Between Marvell and Broadcom",
+        "published": "Fri, 26 Jun 2026 16:50:12 +0000",
+        "description": "Marvell Technology (NASDAQ: MRVL) and Broadcom (NASDAQ: AVGO) both just delivered AI-fueled earnings beats, yet the businesses look nothing alike under the hood. Marvell posted 231.37% YTD gains chasing custom XPU wins. Broadcom quietly compounded with elite margins and a software stack. The contrast deserves a closer look before anyone pays up. Custom Silicon Lifts ... The Quiet Gross Margin Reality Check That Points to a Dangerous Valuation Gap Between Marvell and Broadcom",
+        "link": "https://247wallst.com/investing/2026/06/26/the-quiet-gross-margin-reality-check-that-points-to-a-dangerous-valuation-gap-between-marvell-and-broadcom/?.tsrc=rss",
         "source": "Futubull Financial News"
       },
       {
@@ -991,10 +1004,24 @@
         "source": "Futubull Financial News"
       },
       {
+        "title": "SemiAnalysis: U.S. grid capacity could turn negative by 2027, forcing AI data centers into an era of 'self-supplied power'",
+        "published": "2026-06-26T16:19:38.181089+00:00",
+        "description": "wallstreetcn",
+        "link": "https://news.futunn.com/en/post/75179571/semianalysis-us-grid-capacity-could-turn-negative-by-2027-forcing",
+        "source": "Futubull Financial News"
+      },
+      {
         "title": "Trump administration buys stake in USA Rare Earth as wave of government deals in critical minerals continues - Fortune",
         "published": "Mon, 26 Jan 2026 08:00:00 GMT",
         "description": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNeDVfc2xKck9kVUd0OVc0OEhYcjNfdjh0c1ZZd2xVLVJuNUJlRXc2Z296YWR2OXhrQ0Z1TjlDTmV6ZVNVYVhuOGxKMnFJcV9JQ2xrdXFybUVrN1E1NlJRS3FHR1ZEc2NjVmlNaXpHRWN3Z3FlOFEtdU9GVFNycExnY1JBdEIwTWFSWDRQTUkxaWcyMnVXOVhGR1ZtU0YwTzA?oc=5\" target=\"_blank\">Trump administration buys stake in USA Rare Earth as wave of government deals in critical minerals continues</a> <font color=\"#6f6f6f\">Fortune</font>",
         "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNeDVfc2xKck9kVUd0OVc0OEhYcjNfdjh0c1ZZd2xVLVJuNUJlRXc2Z296YWR2OXhrQ0Z1TjlDTmV6ZVNVYVhuOGxKMnFJcV9JQ2xrdXFybUVrN1E1NlJRS3FHR1ZEc2NjVmlNaXpHRWN3Z3FlOFEtdU9GVFNycExnY1JBdEIwTWFSWDRQTUkxaWcyMnVXOVhGR1ZtU0YwTzA?oc=5",
+        "source": "Futubull Financial News"
+      },
+      {
+        "title": "1 Ultra-High-Yield Energy Stalwart With an 6% Payout That Is Safe to Hold for the Next 20 Years",
+        "published": "Fri, 26 Jun 2026 16:45:09 +0000",
+        "description": "Enterprise Products Partners (NYSE:EPD) is built for decade-long ownership because it sits on irreplaceable midstream infrastructure that collects fee-based tolls regardless of where crude or natural gas trades on any given morning. For an investor in their 50s or 60s who has been chewed up chasing momentum, the EPD profile fits a register-for-distribution-reinvestment, leave-it-alone holding. ... 1 Ultra-High-Yield Energy Stalwart With an 6% Payout That Is Safe to Hold for the Next 20 Years",
+        "link": "https://247wallst.com/investing/2026/06/26/1-ultra-high-yield-energy-stalwart-with-an-6-payout-that-is-safe-to-hold-for-the-next-20-years/?.tsrc=rss",
         "source": "Futubull Financial News"
       },
       {
@@ -1009,13 +1036,6 @@
         "published": "Fri, 26 Jun 2026 16:04:42 GMT",
         "description": "Kashkari said he sees a hike likely this year as the economy continues to feel the hit from spiking inflation.",
         "link": "https://www.cnbc.com/2026/06/26/minneapolis-fed-president-neel-kashkari-says-he-expects-a-rate-hike-this-year.html",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "AI quarterly revenue surpasses depreciation costs for the first time—has the trillion-dollar bet on computing power entered its payoff validation phase?",
-        "published": "2026-06-26T15:45:33.918646+00:00",
-        "description": "wallstreetcn",
-        "link": "https://news.futunn.com/en/post/75164728/ai-quarterly-revenue-surpasses-depreciation-costs-for-the-first-time",
         "source": "Futubull Financial News"
       },
       {
@@ -1061,17 +1081,24 @@
         "source": "Futubull Financial News"
       },
       {
+        "title": "Apple’s Massive 20% Hardware Price Hikes Just Handed Amazon a Golden AI Ticket",
+        "published": "Fri, 26 Jun 2026 16:48:32 +0000",
+        "description": "Apple (NASDAQ: AAPL) and Amazon (NASDAQ: AMZN) both posted record quarters, then collided with opposing forces: AI memory demand. Apple confirmed sweeping hardware price increases tied to a 20% “chipflation” tax, while Amazon collects rent on the data center buildout causing it. Apple Sells the Device. Amazon Rents the Cloud. Apple’s March quarter was its ... Apple’s Massive 20% Hardware Price Hikes Just Handed Amazon a Golden AI Ticket",
+        "link": "https://247wallst.com/investing/2026/06/26/apples-massive-20-hardware-price-hikes-just-handed-amazon-a-golden-ai-ticket/?.tsrc=rss",
+        "source": "Futubull Financial News"
+      },
+      {
+        "title": "Elon Musk and Tim Cook issue the same red alert over new crisis in America — and it’s unlike anything they’ve ever seen",
+        "published": "Fri, 26 Jun 2026 16:45:00 +0000",
+        "description": "They call it a ‘hundred-year flood.’ Is your nest egg already underwater?",
+        "link": "https://finance.yahoo.com/economy/articles/elon-musk-tim-cook-issue-164500375.html?.tsrc=rss",
+        "source": "Futubull Financial News"
+      },
+      {
         "title": "Is SpaceX Overvalued Right Now?",
         "published": "Fri, 26 Jun 2026 16:31:00 +0000",
         "description": "It's a hotly debated subject after the largest IPO in history.",
         "link": "https://www.fool.com/investing/2026/06/26/is-spacex-overvalued-right-now/?.tsrc=rss",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "HIVE Digital Technologies (TSX:HIVE) Completes Columbia AI Project That Puts Paraguay GPUs In Focus",
-        "published": "Fri, 26 Jun 2026 16:08:21 +0000",
-        "description": "HIVE Digital Technologies completed an AI research collaboration with Columbia University using its A40 GPUs in Paraguay. The project showed that, with software optimization, HIVE's A40 GPUs can match the performance of Nvidia's H100 GPUs for specific AI training tasks. The work provides a proof of concept for distributed, intercontinental AI training using HIVE's infrastructure. The results support HIVE's expansion into sovereign AI infrastructure in Paraguay, where construction of a...",
-        "link": "https://finance.yahoo.com/technology/ai/articles/hive-digital-technologies-tsx-hive-160821909.html?.tsrc=rss",
         "source": "Futubull Financial News"
       },
       {
@@ -1121,6 +1148,13 @@
         "published": "Thu, 31 Jul 2025 07:00:00 GMT",
         "description": "<a href=\"https://news.google.com/rss/articles/CBMi5AFBVV95cUxNSnlqZnRKWG1sbEVkaEU2azBxWXI3LTZKdElwSzFUa01wRlJZaXhnOTF4d0s0Qko3SnBGUnJJSW0xU1ZzajNrT0ItOUxqZXU4d0dDbnJLUXc4Uzlta3YxclZHWE04bHlUNjByaTBNS2xQb2tSYm5vQ0R1Q2RoWHY4c29TYXpMU2czWmp0aWFuZlNjbkZyQ2hjYVo3N2xhX3lqVHMxeDhteVRPaU5Cb3duaWF2dmNfOVBHc2pmWUJPSnFseDZDaDdHZk5GYlNaVHJjcmFEbzlMNldyTkVaeU14WWgxMGY?oc=5\" target=\"_blank\">Trump administration to expand price support for US rare earths projects, sources say</a> <font color=\"#6f6f6f\">Reuters</font>",
         "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNSnlqZnRKWG1sbEVkaEU2azBxWXI3LTZKdElwSzFUa01wRlJZaXhnOTF4d0s0Qko3SnBGUnJJSW0xU1ZzajNrT0ItOUxqZXU4d0dDbnJLUXc4Uzlta3YxclZHWE04bHlUNjByaTBNS2xQb2tSYm5vQ0R1Q2RoWHY4c29TYXpMU2czWmp0aWFuZlNjbkZyQ2hjYVo3N2xhX3lqVHMxeDhteVRPaU5Cb3duaWF2dmNfOVBHc2pmWUJPSnFseDZDaDdHZk5GYlNaVHJjcmFEbzlMNldyTkVaeU14WWgxMGY?oc=5",
+        "source": "Futubull Financial News"
+      },
+      {
+        "title": "AI quarterly revenue surpasses depreciation costs for the first time—has the trillion-dollar bet on computing power entered its payoff validation phase?",
+        "published": "",
+        "description": "wallstreetcn",
+        "link": "https://news.futunn.com/en/post/75164728/ai-quarterly-revenue-surpasses-depreciation-costs-for-the-first-time",
         "source": "Futubull Financial News"
       },
       {
@@ -1187,6 +1221,20 @@
         "source": "Futubull Financial News"
       },
       {
+        "title": "QCR Holdings (QCRH): Buy, Sell, or Hold Post Q1 Earnings?",
+        "published": "Fri, 26 Jun 2026 16:48:25 +0000",
+        "description": "QCR Holdings has had an impressive run over the past six months as its shares have beaten the S&P 500 by 7.8%. The stock now trades at $96.64, marking a 14% gain. This run-up might have investors contemplating their next move.",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/qcr-holdings-qcrh-buy-sell-164825150.html?.tsrc=rss",
+        "source": "Futubull Financial News"
+      },
+      {
+        "title": "Corporate America Is Quietly Buying Back Its Own Stock at a Record Pace, and It’s Not Just the Mag 7",
+        "published": "Fri, 26 Jun 2026 16:45:03 +0000",
+        "description": "The host’s bet on The Markets this week was simple and a little contrarian, given the headlines about a handful of mega-cap tech names dialing back repurchases. “My gut is that this year, despite some Mag Seven names pausing buybacks, we’ll have a record repurchase year from notional perspective and from a number of companies ... Corporate America Is Quietly Buying Back Its Own Stock at a Record Pace, and It’s Not Just the Mag 7",
+        "link": "https://247wallst.com/investing/2026/06/26/corporate-america-is-quietly-buying-back-its-own-stock-at-a-record-pace-and-its-not-just-the-mag-7/?.tsrc=rss",
+        "source": "Futubull Financial News"
+      },
+      {
         "title": "Wall Street Has 36 Buy Ratings on Oracle. Here’s How We See 47% Upside",
         "published": "Fri, 26 Jun 2026 16:30:35 +0000",
         "description": "Oracle (NYSE:ORCL) has been one of the most punished mega-cap AI stories of 2026, sliding from a $303.62 peak in October to $152.46 today. Our 24/7 Wall St. price target for Oracle is $223.70, implying 46.73% upside over the next 12 months. The recommendation is buy with high confidence (90%). Metric Value Current Price $152.46 ... Wall Street Has 36 Buy Ratings on Oracle. Here’s How We See 47% Upside",
@@ -1201,20 +1249,6 @@
         "source": "Futubull Financial News"
       },
       {
-        "title": "The Memory Shortage Is Minting Winners. 3 Stocks Not Named Micron That Could Cash In.",
-        "published": "Fri, 26 Jun 2026 16:23:00 +0000",
-        "description": "The memory shortage has become a windfall for storage makers.",
-        "link": "https://www.fool.com/investing/2026/06/26/the-memory-shortage-is-minting-winners-3-stocks-no/?.tsrc=rss",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "Is the Hut 8 Rally Sustainable?",
-        "published": "Fri, 26 Jun 2026 16:01:00 +0000",
-        "description": "Hut 8 has a multigigawatt pipeline of data center projects in the works, and lucrative hyperscaler deals that have fueled a meaningful rally.",
-        "link": "https://www.fool.com/investing/2026/06/26/is-the-hut-8-rally-sustainable/?.tsrc=rss",
-        "source": "Futubull Financial News"
-      },
-      {
         "title": "Trump says Iran violated ceasefire with drone attacks on Strait of Hormuz ships",
         "published": "Fri, 26 Jun 2026 16:17:28 GMT",
         "description": "The International Maritime Organization earlier paused efforts to evacuate ships and seafarers stranded in the Strait of Hormuz after a cargo vessel was struck.",
@@ -1222,17 +1256,17 @@
         "source": "Futubull Financial News"
       },
       {
-        "title": "OpenAI hasn't held pre-IPO investor meetings or set timeline yet, sources say",
-        "published": "Fri, 26 Jun 2026 15:34:49 GMT",
-        "description": "OpenAI said it confidentially filed its prospectus with the SEC earlier this month, but noted it \"may be a while\" before it goes public.",
-        "link": "https://www.cnbc.com/2026/06/26/open-ai-ipo-timeline-investors.html",
-        "source": "Futubull Financial News"
-      },
-      {
         "title": "Jeremy Grantham says this is the most expensive market in 'American history'",
         "published": "Fri, 26 Jun 2026 15:34:09 GMT",
         "description": "Jeremy Grantham says soaring valuations around AI makes the U.S. stock market historically expensive.",
         "link": "https://www.cnbc.com/2026/06/26/jeremy-grantham-says-this-is-the-most-expensive-market-in-american-history.html",
+        "source": "Futubull Financial News"
+      },
+      {
+        "title": "OpenAI hasn't held pre-IPO investor meetings or set timeline yet, sources say",
+        "published": "Fri, 26 Jun 2026 15:34:49 GMT",
+        "description": "OpenAI said it confidentially filed its prospectus with the SEC earlier this month, but noted it \"may be a while\" before it goes public.",
+        "link": "https://www.cnbc.com/2026/06/26/open-ai-ipo-timeline-investors.html",
         "source": "Futubull Financial News"
       },
       {
@@ -1278,17 +1312,17 @@
         "source": "Futubull Financial News"
       },
       {
-        "title": "Shipping rebounds in Strait of Hormuz one week after U.S.-Iran deal – but fragile confidence threatens recovery",
-        "published": "Fri, 26 Jun 2026 09:36:24 GMT",
-        "description": "Shipping traffic through the strategically vital Strait of Hormuz is recovering one week after the U.S. and Iran signed an interim peace deal.",
-        "link": "https://www.cnbc.com/2026/06/26/strait-of-hormuz-shipping-oil-us-iran.html",
+        "title": "Trump threatened to impose 100% tariffs on any country imposing a digital services tax.",
+        "published": "2026-06-26T16:36:38.180929+00:00",
+        "description": "Breakings",
+        "link": "https://news.futunn.com/en/post/75179979/trump-threatened-to-impose-100-tariffs-on-any-country-imposing",
         "source": "Futubull Financial News"
       },
       {
-        "title": "Trump threatened to impose 100% tariffs on any country imposing a digital services tax.",
-        "published": "2026-06-26T16:36:33.918596+00:00",
-        "description": "Breakings",
-        "link": "https://news.futunn.com/en/post/75179979/trump-threatened-to-impose-100-tariffs-on-any-country-imposing",
+        "title": "New cracks in the AI storage boom: Clients are finding ways to reduce their reliance on memory",
+        "published": "2026-06-26T16:19:38.181015+00:00",
+        "description": "wallstreetcn",
+        "link": "https://news.futunn.com/en/post/75179570/new-cracks-in-the-ai-storage-boom-clients-are-finding",
         "source": "Futubull Financial News"
       },
       {
@@ -1390,13 +1424,6 @@
         "source": "Futubull Financial News"
       },
       {
-        "title": "Market Snapshot | All three major indices closed lower, with the Hang Seng Tech Index down 3.41%; memory storage, optical communications, and smartphone supply chain-related stocks weakened. CSOP FTSE China A50 Daily Leveraged Bull Note on SK Hynix fell n",
-        "published": "",
-        "description": "Futu News",
-        "link": "https://news.futunn.com/en/post/75150286/market-snapshot-all-three-major-indices-closed-lower-with-the",
-        "source": "Futubull Financial News"
-      },
-      {
         "title": "Trump Admin Plans $12B Critical Mineral Stockpile - Tectonic Defense",
         "published": "Mon, 02 Feb 2026 08:00:00 GMT",
         "description": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxPNDdyX1BRRXlXdVdETzZWa2Q4Z2ZwYVFVXzNwWGd0cTZLamNMSUFNX2pUdW9UYWpwY2FMaS1Ya1VsdE8taDJMejZwdUw1R21rdE9sRjVxTHh2S0JLRzRpQkdzRHQ4OGlJcWNXdXJabnV2Ym1JMF8wbzVWeUt4RnhQVXdLT1A5SnlO?oc=5\" target=\"_blank\">Trump Admin Plans $12B Critical Mineral Stockpile</a> <font color=\"#6f6f6f\">Tectonic Defense</font>",
@@ -1425,73 +1452,52 @@
         "source": "Futubull Financial News"
       },
       {
+        "title": "The Bitcoin Mining ETF That Returned 52% in One Week, And Most Income Investors Have Never Heard of It",
+        "published": "Fri, 26 Jun 2026 16:47:40 +0000",
+        "description": "It’s no secret in the cryptocurrency world that Bitcoin has plummeted from a high of roughly $122,000 to $59,000 of late. However, the digital infrastructure costs of Bitcoin mining are transferable to other technology sectors – such as A.I. At the time of this writing, CoinShares Valkyrie Bitcoin Miners ETF (NASDAQ: WGMI) is up ... The Bitcoin Mining ETF That Returned 52% in One Week, And Most Income Investors Have Never Heard of It",
+        "link": "https://247wallst.com/investing/2026/06/26/the-bitcoin-mining-etf-that-returned-52-in-one-week-and-most-income-investors-have-never-heard-of-it/?.tsrc=rss",
+        "source": "Futubull Financial News"
+      },
+      {
+        "title": "3 Reasons to Avoid IBM and 1 Stock to Buy Instead",
+        "published": "Fri, 26 Jun 2026 16:40:25 +0000",
+        "description": "Over the past six months, IBM’s shares (currently trading at $258.55) have posted a disappointing 15.3% loss, well below the S&P 500’s 6.2% gain. This may have investors wondering how to approach the situation.",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-avoid-ibm-1-164025761.html?.tsrc=rss",
+        "source": "Futubull Financial News"
+      },
+      {
+        "title": "Update: US Equity Indexes Mixed as Steepest Decliner Technology Eats into Consumer Discretionary Gains",
+        "published": "Fri, 26 Jun 2026 16:39:40 +0000",
+        "description": "(Updates with index/price moves, macroeconomic data, and analyst comment from the first paragraph.)",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/us-equity-indexes-mixed-steepest-163940246.html?.tsrc=rss",
+        "source": "Futubull Financial News"
+      },
+      {
+        "title": "Why Acadia Pharmaceuticals Stock Is Soaring Today",
+        "published": "Fri, 26 Jun 2026 16:37:59 +0000",
+        "description": "An approval of one of its drugs for a major market is now looking likely.",
+        "link": "https://www.fool.com/investing/2026/06/26/why-acadia-pharmaceuticals-stock-is-soaring-today/?.tsrc=rss",
+        "source": "Futubull Financial News"
+      },
+      {
+        "title": "Coca Cola Price Prediction: The Case for 12% Upside",
+        "published": "Fri, 26 Jun 2026 16:37:58 +0000",
+        "description": "Our Coca-Cola (NYSE:KO) call is straightforward: this is a quality compounder trading just below where our model says it should. The 24/7 Wall St. price target for KO is $90.07, implying roughly 12% upside from the current $80.42 price. The recommendation is buy, with a confidence level we’d characterize as high (90%). 24/7 Wall St. ... Coca Cola Price Prediction: The Case for 12% Upside",
+        "link": "https://247wallst.com/investing/2026/06/26/coca-cola-price-prediction-the-case-for-12-upside/?.tsrc=rss",
+        "source": "Futubull Financial News"
+      },
+      {
+        "title": "3 Consumer Stocks That Fall Short",
+        "published": "Fri, 26 Jun 2026 16:32:25 +0000",
+        "description": "Regarded as defensive investments, consumer staples stocks are generally safe bets in choppy markets. But they’re also double-edged swords as they often lag in booming conditions, and this pattern has persisted recently. Over the past six months, the industry has recorded a loss of 2.4%, disappointing since the S&P 500 climbed 6.2%.",
+        "link": "https://finance.yahoo.com/markets/stocks/articles/3-consumer-stocks-fall-short-163225171.html?.tsrc=rss",
+        "source": "Futubull Financial News"
+      },
+      {
         "title": "Apple stock suffered its worst day in more than a year",
         "published": "Fri, 26 Jun 2026 16:27:54 +0000",
         "description": "Apple Stock Sinks After MacBook and iPad Price Increases. Why Wall Street Is Concerned",
         "link": "https://finance.yahoo.com/markets/stocks/articles/apple-stock-suffered-worst-day-162754364.html?.tsrc=rss",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "Which Is the Better Global ETF, Vanguard's VT or State Street's SPGM?",
-        "published": "Fri, 26 Jun 2026 16:21:01 +0000",
-        "description": "Explore how these global equity funds differ in diversification, sector exposure, and portfolio size to help refine your international investing strategy.",
-        "link": "https://www.fool.com/coverage/etfs/2026/06/26/which-is-the-better-global-etf-vanguard-s-vt-or-state-street-s-spgm/?.tsrc=rss",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "If a Stock Market Crash Is Coming, I'm Loading Up on This 1 Surefire Vanguard ETF",
-        "published": "Fri, 26 Jun 2026 16:20:00 +0000",
-        "description": "The right investment is more important than ever if a downturn is looming.",
-        "link": "https://www.fool.com/investing/2026/06/26/if-a-stock-market-crash-is-coming-im-loading-up-on/?.tsrc=rss",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "FTSE 100 falls as OpenAI delay report knocks tech",
-        "published": "Fri, 26 Jun 2026 16:19:29 +0000",
-        "description": "The FTSE 100 closed down 21.87 points, or 0.2%, at 10,508.02.",
-        "link": "https://uk.finance.yahoo.com/news/ftse-100-falls-openai-delay-161929773.html?.tsrc=rss",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "How the MemeCore Crypto Crashed 71% This Week",
-        "published": "Fri, 26 Jun 2026 16:09:05 +0000",
-        "description": "What happens when a thinly traded crypto with concentrated ownership hits a rough patch? MemeCore investors found out the hard way this week.",
-        "link": "https://www.fool.com/investing/2026/06/26/how-the-memecore-crypto-crashed-71-this-week/?.tsrc=rss",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "Stocks recover from tech tremors as oil prices fall",
-        "published": "Fri, 26 Jun 2026 16:05:41 +0000",
-        "description": "Wall Street's main stock indices overcame an early bout of tech jitters Friday thanks to buy-the-dip traders, while oil prices fell sharply.But the three main indices pushed into positive territory during the morning session in New York.",
-        "link": "https://finance.yahoo.com/markets/world-indices/articles/asian-stocks-drop-again-rollercoaster-022857774.html?.tsrc=rss",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "Micron Just Delivered Great News for Intel, AMD, Arm, and Qualcomm Stock Investors",
-        "published": "Fri, 26 Jun 2026 16:05:00 +0000",
-        "description": "Micron sees growth ahead for smartphones and PCs.",
-        "link": "https://www.fool.com/investing/2026/06/26/micron-just-delivered-great-news-for-intel-amd-arm/?.tsrc=rss",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "Moderna Is Up 14% Today: Is It Outperforming Other Vaccine Stocks Like Merck and Pfizer?",
-        "published": "Fri, 26 Jun 2026 16:01:13 +0000",
-        "description": "Shares of Moderna (NASDAQ:MRNA) are up 14% to $68 and change in afternoon trading Friday, extending a remarkable run for the mRNA pioneer. Intraday, MRNA stock hit a new 52-week high of $69.29. The rally easily outpaces peer vaccine makers. Merck (NYSE:MRK) stock is up 2% to $128, while Pfizer (NYSE:PFE) stock trades up 2% ... Moderna Is Up 14% Today: Is It Outperforming Other Vaccine Stocks Like Merck and Pfizer?",
-        "link": "https://247wallst.com/investing/2026/06/26/moderna-is-up-13-today-is-it-outperforming-other-vaccine-stocks-like-merck-and-pfizer/?.tsrc=rss",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "MEDIA ALERT: Fresno Charging Depot Grand Opening",
-        "published": "Fri, 26 Jun 2026 16:00:00 +0000",
-        "description": "FRESNO, Calif., June 26, 2026 (GLOBE NEWSWIRE) -- WattEV, the nation’s leading provider of heavy-duty electrification services and charging infrastructure, will hold the grand opening Tuesday, June 30, in Fresno of its seventh heavy-duty electric truck charging depot in California, creating a key link between the ports of Oakland, Stockton and inland freight hubs in the northern San Joaquin Valley. WHO:WattEV, the nation’s leading provider of heavy-duty electrification services and charging infr",
-        "link": "https://finance.yahoo.com/energy/articles/media-alert-fresno-charging-depot-160000706.html?.tsrc=rss",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "Update: Consumer Discretionary Helps Push US Equity Indexes Higher in Midday Trading",
-        "published": "Fri, 26 Jun 2026 15:58:47 +0000",
-        "description": "(Updates with index/price moves, macroeconomic data, and company/political news from the first parag",
-        "link": "https://finance.yahoo.com/markets/stocks/articles/consumer-discretionary-helps-push-us-155847170.html?.tsrc=rss",
         "source": "Futubull Financial News"
       },
       {
@@ -1530,17 +1536,17 @@
         "source": "Futubull Financial News"
       },
       {
-        "title": "Micron sinks, continuing a whipsaw week of trading",
-        "published": "Fri, 26 Jun 2026 15:40:54 GMT",
-        "description": "Micron Technology's shares tumbled on Friday amid a global sell-off in technology stocks.",
-        "link": "https://www.cnbc.com/2026/06/26/micron-stock-earnings-tech-selloff-ai.html",
-        "source": "Futubull Financial News"
-      },
-      {
         "title": "Honeywell Aerospace lands an analyst endorsement ahead of its debut. This is our plan for the stock",
         "published": "Fri, 26 Jun 2026 16:32:53 GMT",
         "description": "The Investing Club holds its \"Morning Meeting\" every weekday at 10:20 a.m. ET.",
         "link": "https://www.cnbc.com/2026/06/26/honeywell-aerospace-lands-an-analyst-endorsement-ahead-of-its-debut-this-is-our-plan-for-the-stock.html",
+        "source": "Futubull Financial News"
+      },
+      {
+        "title": "Micron sinks, continuing a whipsaw week of trading",
+        "published": "Fri, 26 Jun 2026 15:40:54 GMT",
+        "description": "Micron Technology's shares tumbled on Friday amid a global sell-off in technology stocks.",
+        "link": "https://www.cnbc.com/2026/06/26/micron-stock-earnings-tech-selloff-ai.html",
         "source": "Futubull Financial News"
       },
       {
@@ -1604,13 +1610,6 @@
         "published": "",
         "description": "Futu News",
         "link": "https://news.futunn.com/en/post/75142559/mid-year-review-storage-and-semiconductors-dominate-the-top-10",
-        "source": "Futubull Financial News"
-      },
-      {
-        "title": "Grey Market Intelligence | Lignosus Biopharma-B, a biopharmaceutical company focused on kidney disease therapies, is up nearly 74%, yielding a profit of HK$1,670 per lot.",
-        "published": "",
-        "description": "Futu News",
-        "link": "https://news.futunn.com/en/post/75097931/grey-market-intelligence-lignosus-biopharma-b-a-biopharmaceutical-company-focused",
         "source": "Futubull Financial News"
       }
     ],
@@ -1685,7 +1684,7 @@
         "source_tags": [
           "avoid_chase"
         ],
-        "mentions": 4
+        "mentions": 3
       },
       {
         "symbol": "00700",
@@ -1717,7 +1716,7 @@
         "source_tags": [
           "starter_now"
         ],
-        "mentions": 3
+        "mentions": 2
       },
       {
         "symbol": "01810",
@@ -1733,7 +1732,7 @@
         "source_tags": [
           "watch_pullback"
         ],
-        "mentions": 1
+        "mentions": 0
       }
     ]
   },
@@ -1761,7 +1760,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 3.45,
-          "age_days": 4.189702785868056
+          "age_days": 4.2029455815625
         },
         {
           "source": "https://blogs.microsoft.com/feed/",
@@ -1781,7 +1780,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.7,
-          "age_days": 2.193475793576389
+          "age_days": 2.206718589826389
         },
         {
           "source": "https://blogs.microsoft.com/feed/",
@@ -1803,7 +1802,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.3,
-          "age_days": 3.0380128979629633
+          "age_days": 3.051255693483796
         },
         {
           "source": "https://blogs.windows.com/feed/",
@@ -1821,7 +1820,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.7,
-          "age_days": 10.152573863368056
+          "age_days": 10.165816658148149
         },
         {
           "source": "https://blogs.windows.com/feed/",
@@ -1839,7 +1838,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.7,
-          "age_days": 24.004634409085646
+          "age_days": 24.01787720429398
         },
         {
           "source": "https://blogs.windows.com/feed/",
@@ -1859,7 +1858,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.7,
-          "age_days": 24.005652981909723
+          "age_days": 24.018895775925927
         },
         {
           "source": "https://blogs.windows.com/feed/",
@@ -1878,7 +1877,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.35,
-          "age_days": 1.9195528967824074
+          "age_days": 1.9327956951967593
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -1901,7 +1900,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 207.3609864034838
+          "age_days": 207.3742292118403
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -1923,7 +1922,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 52.40265311159722
+          "age_days": 52.41589591752315
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -1946,7 +1945,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 359.4026535666088
+          "age_days": 359.41589636961805
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -1969,7 +1968,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 220.3609870469213
+          "age_days": 220.37422984721067
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -1990,7 +1989,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 437.4026539583681
+          "age_days": 437.41589675497687
         },
         {
           "source": "https://blogs.windows.com/feed/",
@@ -2007,7 +2006,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.15,
-          "age_days": 6.980640924375
+          "age_days": 6.993883721331018
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2027,7 +2026,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 29.402652963703705
+          "age_days": 29.41589577478009
         },
         {
           "source": "https://blogs.microsoft.com/feed/",
@@ -2046,7 +2045,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 10.069297751724536
+          "age_days": 10.082540547465278
         },
         {
           "source": "https://blogs.microsoft.com/feed/",
@@ -2065,7 +2064,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 23.902503842199074
+          "age_days": 23.915746635983794
         },
         {
           "source": "https://blogs.windows.com/feed/",
@@ -2082,7 +2081,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 13.98237716136574
+          "age_days": 13.99561995451389
         },
         {
           "source": "https://blogs.windows.com/feed/",
@@ -2101,7 +2100,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 15.026775374479165
+          "age_days": 15.04001816564815
         },
         {
           "source": "https://blogs.windows.com/feed/",
@@ -2118,7 +2117,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 16.012851828541667
+          "age_days": 16.026094619560187
         },
         {
           "source": "https://blogs.windows.com/feed/",
@@ -2137,7 +2136,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 17.808534753564814
+          "age_days": 17.82177754861111
         },
         {
           "source": "https://blogs.windows.com/feed/",
@@ -2154,7 +2153,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 18.004553325868056
+          "age_days": 18.017796121724537
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2174,7 +2173,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 120.36098625474536
+          "age_days": 120.37422906695602
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2194,7 +2193,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 63.40265301924768
+          "age_days": 63.4158958278588
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2214,7 +2213,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 109.40265321645833
+          "age_days": 109.41589601988426
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2234,7 +2233,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 246.4026532521875
+          "age_days": 246.41589605559025
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2254,7 +2253,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 74.40265331239583
+          "age_days": 74.4158961153588
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2274,7 +2273,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 109.40265335688656
+          "age_days": 109.41589616016205
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2294,7 +2293,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 116.36098674629629
+          "age_days": 116.37422954842593
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2314,7 +2313,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 206.36098679828703
+          "age_days": 206.3742296014699
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2334,7 +2333,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 233.3609868491204
+          "age_days": 233.37422965260416
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2354,7 +2353,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 767.4026536049421
+          "age_days": 767.4158964078357
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2374,7 +2373,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 289.4026536584722
+          "age_days": 289.41589646158565
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2394,7 +2393,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 281.4026537588773
+          "age_days": 281.4158965589815
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2414,7 +2413,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 527.3609871396064
+          "age_days": 527.3742299392477
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2434,7 +2433,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 214.3609872423727
+          "age_days": 214.3742300390162
         },
         {
           "source": "https://blogs.microsoft.com/feed/",
@@ -2453,7 +2452,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 36.23421697215278
+          "age_days": 36.247459763530095
         },
         {
           "source": "https://blogs.microsoft.com/feed/",
@@ -2472,7 +2471,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 52.27764297065972
+          "age_days": 52.29088576983796
         },
         {
           "source": "https://blogs.microsoft.com/feed/",
@@ -2491,7 +2490,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 58.96183285295139
+          "age_days": 58.97507565200232
         },
         {
           "source": "https://blogs.microsoft.com/feed/",
@@ -2510,7 +2509,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 60.02761996832176
+          "age_days": 60.04086276607639
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2526,7 +2525,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.212,
-          "age_days": 24.402652749282407
+          "age_days": 24.415895563842593
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2541,7 +2540,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.212,
-          "age_days": 9.009203802685185
+          "age_days": 9.022446617025464
         },
         {
           "source": "https://blogs.microsoft.com/feed/",
@@ -2556,7 +2555,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.212,
-          "age_days": 23.90667059767361
+          "age_days": 23.919913390451388
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2572,7 +2571,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.163,
-          "age_days": 36.40265282396991
+          "age_days": 36.41589563828704
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2590,7 +2589,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.163,
-          "age_days": 60.402653167881944
+          "age_days": 60.41589597322917
         },
         {
           "source": "https://news.google.com/rss/search?q=Microsoft%20Instagram%20product%20launch%20Copilot%20Surface%20AI&hl=en-US&gl=US&ceid=US:en",
@@ -2606,7 +2605,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.163,
-          "age_days": 366.40265385934026
+          "age_days": 366.41589665718755
         }
       ],
       "errors": [
@@ -2727,7 +2726,7 @@
             }
           ],
           "score": 10.8,
-          "age_days": 1.6136759114004628
+          "age_days": 1.6269191501388889
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -2768,7 +2767,7 @@
             }
           ],
           "score": 8.28,
-          "age_days": 4.231117996030092
+          "age_days": 4.244361234409722
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -2805,7 +2804,7 @@
             }
           ],
           "score": 8.05,
-          "age_days": 4.509474611944444
+          "age_days": 4.522717858715278
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -2845,7 +2844,7 @@
             }
           ],
           "score": 7.13,
-          "age_days": 4.120782134409723
+          "age_days": 4.1340253671875
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -2879,7 +2878,7 @@
             }
           ],
           "score": 6.9,
-          "age_days": 4.505099566527778
+          "age_days": 4.518342807233796
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -2912,7 +2911,7 @@
             }
           ],
           "score": 6.75,
-          "age_days": 2.1610715941666667
+          "age_days": 2.174314832592593
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -2945,7 +2944,7 @@
             }
           ],
           "score": 6.75,
-          "age_days": 1.1596364641435186
+          "age_days": 1.17287970375
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -2980,7 +2979,7 @@
             }
           ],
           "score": 4.55,
-          "age_days": 151.36106146902776
+          "age_days": 151.37430490025463
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3003,7 +3002,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 4.37,
-          "age_days": 4.107402458981482
+          "age_days": 4.120645692372685
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3028,7 +3027,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 4.37,
-          "age_days": 3.6769057845486115
+          "age_days": 3.6901490870138893
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3064,7 +3063,7 @@
             }
           ],
           "score": 3.9,
-          "age_days": 151.36106157600693
+          "age_days": 151.37430501150462
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3091,7 +3090,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 3.77,
-          "age_days": 243.40272412395834
+          "age_days": 243.41596728721063
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3120,7 +3119,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 3.77,
-          "age_days": 43.40272772019676
+          "age_days": 43.415971121435184
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3149,7 +3148,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 3.77,
-          "age_days": 43.40272831998843
+          "age_days": 43.41597175603009
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3180,7 +3179,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 3.77,
-          "age_days": 42.402728475069445
+          "age_days": 42.41597191550926
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3213,7 +3212,7 @@
             }
           ],
           "score": 3.25,
-          "age_days": 150.3610620682176
+          "age_days": 150.37430551393518
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3235,7 +3234,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 3.22,
-          "age_days": 3.4429469272800923
+          "age_days": 3.4561901875694443
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3263,7 +3262,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 3.12,
-          "age_days": 42.40272714364583
+          "age_days": 42.41597042938657
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3291,7 +3290,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 3.12,
-          "age_days": 39.402727598078705
+          "age_days": 39.41597090609954
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3319,7 +3318,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 3.12,
-          "age_days": 171.36106151863427
+          "age_days": 171.37430495056714
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3345,7 +3344,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 3.12,
-          "age_days": 143.3610620198264
+          "age_days": 143.37430546685184
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3371,7 +3370,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.6,
-          "age_days": 501.3610580211342
+          "age_days": 501.37430119841434
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3395,7 +3394,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.6,
-          "age_days": 259.4027248628588
+          "age_days": 259.4159680443634
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3418,7 +3417,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.55,
-          "age_days": 9.402724241875001
+          "age_days": 9.41596741037037
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3441,7 +3440,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.55,
-          "age_days": 17.32741272625
+          "age_days": 17.34065591175926
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3464,7 +3463,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.55,
-          "age_days": 17.402725776689817
+          "age_days": 17.41596897309028
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3489,7 +3488,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.47,
-          "age_days": 37.40272725173611
+          "age_days": 37.41597054111111
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3514,7 +3513,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.47,
-          "age_days": 39.4027274465625
+          "age_days": 39.41597074182871
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3539,7 +3538,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.47,
-          "age_days": 37.40272777173611
+          "age_days": 37.41597119224537
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3562,7 +3561,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.47,
-          "age_days": 330.40272842427083
+          "age_days": 330.4159718641898
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3587,7 +3586,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.47,
-          "age_days": 234.3610618551389
+          "age_days": 234.3743052946875
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3612,7 +3611,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.47,
-          "age_days": 71.40272888872686
+          "age_days": 71.41597233748843
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3634,7 +3633,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.38,
-          "age_days": 11.402726968564815
+          "age_days": 11.415970218807871
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3656,7 +3655,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.38,
-          "age_days": 9.483722863206019
+          "age_days": 9.496966164340277
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3675,7 +3674,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.07,
-          "age_days": 3.2396942052430555
+          "age_days": 3.2529374368171293
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3694,7 +3693,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 2.07,
-          "age_days": 4.23424349900463
+          "age_days": 4.247486788923611
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3719,7 +3718,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.95,
-          "age_days": 36.402723960416665
+          "age_days": 36.415967122997685
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3744,7 +3743,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.95,
-          "age_days": 192.36105780017363
+          "age_days": 192.37430097385416
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3769,7 +3768,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.95,
-          "age_days": 403.40272450578703
+          "age_days": 403.4159676788889
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3792,7 +3791,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.95,
-          "age_days": 416.402724770544
+          "age_days": 416.4159679496296
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3815,7 +3814,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.95,
-          "age_days": 815.6432340834143
+          "age_days": 815.6564772664583
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3840,7 +3839,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.95,
-          "age_days": 186.3610622780903
+          "age_days": 186.37430572334492
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -3862,7 +3861,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.82,
-          "age_days": 260.4027241943287
+          "age_days": 260.41596736155094
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3884,7 +3883,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.82,
-          "age_days": 60.40272781849537
+          "age_days": 60.41597124231481
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3906,7 +3905,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.82,
-          "age_days": 151.3610611906713
+          "age_days": 151.37430461710647
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3928,7 +3927,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.82,
-          "age_days": 235.36106128608796
+          "age_days": 235.37430471538195
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3950,7 +3949,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.82,
-          "age_days": 103.40272799203703
+          "age_days": 103.41597141960649
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3972,7 +3971,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.82,
-          "age_days": 217.36106141675927
+          "age_days": 217.37430484689816
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -3994,7 +3993,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.82,
-          "age_days": 235.3610619126389
+          "age_days": 235.3743053543403
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4014,7 +4013,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.7,
-          "age_days": 17.40272506716435
+          "age_days": 17.415968248819443
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4034,7 +4033,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.7,
-          "age_days": 18.402725327349536
+          "age_days": 18.41596851236111
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -4056,7 +4055,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.7,
-          "age_days": 29.402728368541666
+          "age_days": 29.415971804270832
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4075,7 +4074,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.35,
-          "age_days": 2.189625539872685
+          "age_days": 2.202868832453704
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4097,7 +4096,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 42.40272378634259
+          "age_days": 42.415966932858794
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4119,7 +4118,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 42.40272391756944
+          "age_days": 42.415967073865744
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4139,7 +4138,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 239.40272402134258
+          "age_days": 239.41596718476853
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4161,7 +4160,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 254.40272406958331
+          "age_days": 254.41596723494214
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4183,7 +4182,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 197.3610578808218
+          "age_days": 197.3743010550926
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4205,7 +4204,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 49.402724603020836
+          "age_days": 49.41596777755787
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4227,7 +4226,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 319.4027247284954
+          "age_days": 319.4159679071412
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4249,7 +4248,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 256.4027250076736
+          "age_days": 256.4159681897801
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4269,7 +4268,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 36.40272543697917
+          "age_days": 36.4159686240162
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4289,7 +4288,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 88.40272599228008
+          "age_days": 88.4159691921412
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4309,7 +4308,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 116.36105939571759
+          "age_days": 116.37430259899305
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4331,7 +4330,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 87.40272637126158
+          "age_days": 87.41596959920139
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4351,7 +4350,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 117.32977503351852
+          "age_days": 117.34301826138888
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4373,7 +4372,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 46.40272719640046
+          "age_days": 46.415970484930554
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4395,7 +4394,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.3,
-          "age_days": 42.402727344039356
+          "age_days": 42.415970635243056
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -4414,7 +4413,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 1.17,
-          "age_days": 89.4027280371412
+          "age_days": 89.41597146642361
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4433,7 +4432,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 21.402725132997684
+          "age_days": 21.415968314525465
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4452,7 +4451,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 18.402725178587964
+          "age_days": 18.41596836377315
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4471,7 +4470,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 27.40272550622685
+          "age_days": 27.415968694571756
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4490,7 +4489,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 18.402725895694445
+          "age_days": 18.415969091400463
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4509,7 +4508,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.85,
-          "age_days": 14.402727076944446
+          "age_days": 14.415970357916667
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4528,7 +4527,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 41.40272382813657
+          "age_days": 41.41596697575232
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4547,7 +4546,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 45.40272387174769
+          "age_days": 45.415967026643514
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4566,7 +4565,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 251.40272429087963
+          "age_days": 251.41596745875
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4585,7 +4584,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 257.4027243325232
+          "age_days": 257.4159675056829
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4604,7 +4603,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 211.3610579809838
+          "age_days": 211.37430115847224
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4623,7 +4622,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 207.3610582650926
+          "age_days": 207.37430144564814
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4642,7 +4641,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 39.50244750142361
+          "age_days": 39.51569068586806
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4661,7 +4660,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 92.40272536998842
+          "age_days": 92.41596855498842
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4680,7 +4679,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 118.3610588926852
+          "age_days": 118.37430208359953
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4699,7 +4698,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 49.94491320175926
+          "age_days": 49.958156394652775
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4718,7 +4717,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 113.36105915925927
+          "age_days": 113.37430235614585
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4737,7 +4736,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 107.40272594346065
+          "age_days": 107.41596914214121
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4756,7 +4755,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 72.40272618671295
+          "age_days": 72.41596939665509
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4775,7 +4774,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 118.36105956561342
+          "age_days": 118.3743027782986
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4794,7 +4793,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 102.40272629229166
+          "age_days": 102.41596951015046
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -4813,7 +4812,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 213.36106196116899
+          "age_days": 213.3743054071875
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -4832,7 +4831,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 143.36106212436343
+          "age_days": 143.37430557244213
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -4851,7 +4850,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 134.36106217141202
+          "age_days": 134.3743056198148
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -4870,7 +4869,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.65,
-          "age_days": 149.3610623227199
+          "age_days": 149.3743057682986
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -4885,7 +4884,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.212,
-          "age_days": 28.402727903923612
+          "age_days": 28.415971331388892
         },
         {
           "source": "https://news.google.com/rss/search?q=China%20Taiwan%20semiconductor%20export%20controls%20tariffs%20sanctions%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4900,7 +4899,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.163,
-          "age_days": 242.40272441048612
+          "age_days": 242.41596758425925
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4915,7 +4914,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.163,
-          "age_days": 91.4027256494213
+          "age_days": 91.4159688422801
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4930,7 +4929,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.163,
-          "age_days": 101.40272613440972
+          "age_days": 101.41596934374999
         },
         {
           "source": "https://news.google.com/rss/search?q=Middle%20East%20oil%20shipping%20Red%20Sea%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4945,7 +4944,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.163,
-          "age_days": 59.402726484467586
+          "age_days": 59.41596971421296
         },
         {
           "source": "https://news.google.com/rss/search?q=rare%20earths%20export%20controls%20China%20US%20markets&hl=en-US&gl=US&ceid=US:en",
@@ -4960,7 +4959,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.163,
-          "age_days": 45.402727671747684
+          "age_days": 45.41597104021991
         },
         {
           "source": "https://news.google.com/rss/search?q=USA%20Rare%20Earth%20MP%20Materials%20Vulcan%20Elements%20rare%20earth%20magnets%20Trump&hl=en-US&gl=US&ceid=US:en",
@@ -4975,7 +4974,7 @@
           "private_entities": [],
           "entity_hits": [],
           "score": 0.163,
-          "age_days": 329.4027290431829
+          "age_days": 329.4159724873727
         }
       ],
       "errors": [],
@@ -4990,7 +4989,7 @@
           "dated_count": 100,
           "undated_count": 0,
           "newest_age_days": 1.2,
-          "oldest_age_days": 815.6,
+          "oldest_age_days": 815.7,
           "fresh_3d_count": 4,
           "recent_14d_count": 16,
           "stale_90d_count": 46
@@ -5126,9 +5125,9 @@
       "key": "watchlist",
       "label": "Watchlist Refresh",
       "file": {
-        "name": "watchlist_2026-06-26_234100.md",
-        "size": 13856,
-        "modified_at": "2026-06-26T16:41:00.937023+00:00"
+        "name": "watchlist_2026-06-27_000010.md",
+        "size": 13787,
+        "modified_at": "2026-06-26T17:00:10.427192+00:00"
       },
       "preview": ""
     },
@@ -5136,9 +5135,9 @@
       "key": "opportunity",
       "label": "Opportunity Scan",
       "file": {
-        "name": "opportunity-scan_2026-06-26_234013.md",
-        "size": 4227,
-        "modified_at": "2026-06-26T16:40:13.039142+00:00"
+        "name": "opportunity-scan_2026-06-26_235917.md",
+        "size": 4179,
+        "modified_at": "2026-06-26T16:59:17.384886+00:00"
       },
       "preview": ""
     },
@@ -5156,9 +5155,9 @@
       "key": "scan_context",
       "label": "Scan Context",
       "file": {
-        "name": "handoff-plan_2026-06-26_233915.md",
+        "name": "handoff-plan_2026-06-26_235820.md",
         "size": 4691,
-        "modified_at": "2026-06-26T16:39:15.796905+00:00"
+        "modified_at": "2026-06-26T16:58:20.616634+00:00"
       },
       "preview": ""
     },
@@ -5166,9 +5165,9 @@
       "key": "options",
       "label": "Options / Volatility Scan",
       "file": {
-        "name": "options_2026-06-26_234004.md",
-        "size": 6607,
-        "modified_at": "2026-06-26T16:40:04.795530+00:00"
+        "name": "options_2026-06-26_235908.md",
+        "size": 6245,
+        "modified_at": "2026-06-26T16:59:08.986194+00:00"
       },
       "preview": ""
     },
@@ -5176,9 +5175,9 @@
       "key": "cache_audit",
       "label": "Cache Audit",
       "file": {
-        "name": "cache-audit_2026-06-26_234101.md",
+        "name": "cache-audit_2026-06-27_000010.md",
         "size": 6364,
-        "modified_at": "2026-06-26T16:41:01.193274+00:00"
+        "modified_at": "2026-06-26T17:00:10.676201+00:00"
       },
       "preview": ""
     },
@@ -5186,9 +5185,9 @@
       "key": "bottleneck",
       "label": "Industry Bottleneck",
       "file": {
-        "name": "bottleneck_2026-06-26_234019.md",
-        "size": 9207,
-        "modified_at": "2026-06-26T16:40:19.037554+00:00"
+        "name": "bottleneck_2026-06-26_235923.md",
+        "size": 8591,
+        "modified_at": "2026-06-26T16:59:23.108204+00:00"
       },
       "preview": ""
     },
@@ -5196,9 +5195,9 @@
       "key": "ipo",
       "label": "IPO Scan",
       "file": {
-        "name": "ipo_2026-06-26_233921.md",
+        "name": "ipo_2026-06-26_235826.md",
         "size": 776,
-        "modified_at": "2026-06-26T16:39:21.541386+00:00"
+        "modified_at": "2026-06-26T16:58:26.185602+00:00"
       },
       "preview": ""
     },
@@ -5212,9 +5211,9 @@
       "key": "instagram",
       "label": "Instagram Hype Scan",
       "file": {
-        "name": "instagram_2026-06-26_233949.md",
+        "name": "instagram_2026-06-26_235853.md",
         "size": 4896,
-        "modified_at": "2026-06-26T16:39:49.418787+00:00"
+        "modified_at": "2026-06-26T16:58:53.595513+00:00"
       },
       "preview": ""
     },
@@ -5222,9 +5221,9 @@
       "key": "geopolitics",
       "label": "Geopolitics Scan",
       "file": {
-        "name": "geopolitics_2026-06-26_233955.md",
+        "name": "geopolitics_2026-06-26_235900.md",
         "size": 7007,
-        "modified_at": "2026-06-26T16:39:55.790491+00:00"
+        "modified_at": "2026-06-26T16:59:00.023600+00:00"
       },
       "preview": ""
     }
