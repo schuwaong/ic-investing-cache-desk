@@ -17,6 +17,7 @@ import urllib.parse
 from datetime import datetime, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from math import ceil, floor
 from typing import Any
 
 
@@ -25,6 +26,11 @@ TRADING_ROOT = APP_DIR.parent
 HOME = Path.home()
 APPDATA = Path(os.environ.get("APPDATA", HOME / "AppData" / "Roaming"))
 PIPELINE_ROOT = Path(os.environ.get("TRADING_PIPELINE_ROOT", HOME / ".codex" / "automations" / "trading_pipeline"))
+AVOID_STATUSES = {"avoid", "avoid_chase", "committee_blocked"}
+SYMBOL_ALIASES = {
+    "GOOG": {"GOOG", "GOOGL"},
+    "GOOGL": {"GOOG", "GOOGL"},
+}
 
 
 def utc_now() -> str:
@@ -167,6 +173,18 @@ def report_specs() -> list[dict[str, Any]]:
             "pattern": ["handoff-plan_*.md", "scan_context_*.md"],
         },
         {
+            "key": "options",
+            "label": "Options / Volatility Scan",
+            "paths": [pipeline_reports, reports],
+            "pattern": "options_*.md",
+        },
+        {
+            "key": "cache_audit",
+            "label": "Cache Audit",
+            "paths": [pipeline_reports, reports],
+            "pattern": "cache-audit_*.md",
+        },
+        {
             "key": "bottleneck",
             "label": "Industry Bottleneck",
             "paths": [pipeline_reports, auto / "industry_bottleneck" / "reports", reports],
@@ -220,6 +238,108 @@ def split_market_symbol(code: str) -> tuple[str, str]:
         return "", text
     market, symbol = text.split(".", 1)
     return market, symbol
+
+
+def normalize_symbol(value: Any) -> str:
+    text = str(value or "").strip().upper()
+    if "." in text:
+        _, text = split_market_symbol(text)
+    return "".join(ch for ch in text if ch.isalnum())
+
+
+def symbol_keys(value: Any) -> set[str]:
+    normalized = normalize_symbol(value)
+    if not normalized:
+        return set()
+    return set(SYMBOL_ALIASES.get(normalized, {normalized}))
+
+
+def parse_float(value: Any) -> float | None:
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+    text = str(value).strip().replace(",", "")
+    if not text or text in {"--", "N/A", "n/a"}:
+        return None
+    text = text.removeprefix("+").removesuffix("%")
+    try:
+        return float(text)
+    except ValueError:
+        return None
+
+
+def market_from_position(row: dict[str, Any]) -> str:
+    symbol = str(row.get("Symbol") or row.get("symbol") or "").strip().upper()
+    currency = str(row.get("Currency") or row.get("currency") or "").strip().upper()
+    if symbol.isdigit() or currency == "HKD":
+        return "HK"
+    if currency == "USD":
+        return "US"
+    if currency == "SGD":
+        return "SG"
+    if currency == "MYR":
+        return "MY"
+    return ""
+
+
+def price_step(value: float | None) -> float:
+    number = float(value or 0)
+    if number >= 500:
+        return 5.0
+    if number >= 200:
+        return 2.0
+    if number >= 100:
+        return 1.0
+    if number >= 25:
+        return 0.5
+    if number >= 10:
+        return 0.2
+    if number >= 1:
+        return 0.1
+    return 0.05
+
+
+def round_to_step(value: float, step: float, direction: str) -> float:
+    if step <= 0:
+        return value
+    scaled = value / step
+    rounded = floor(scaled) if direction == "down" else ceil(scaled)
+    return round(rounded * step, 4)
+
+
+def format_price(value: float | None, currency: str = "") -> str:
+    if value is None:
+        return "n/a"
+    number = float(value)
+    step = price_step(number)
+    decimals = 0
+    if step < 1:
+        decimals = 1 if step >= 0.1 else 2
+    elif number < 100 and step <= 0.5:
+        decimals = 1
+    formatted = f"{number:.{decimals}f}"
+    suffix = f" {currency}" if currency else ""
+    return f"{formatted}{suffix}"
+
+
+def format_band(low: float | None, high: float | None, currency: str = "") -> str:
+    if low is None and high is None:
+        return "n/a"
+    if low is None:
+        return format_price(high, currency)
+    if high is None or abs(high - low) < 1e-9:
+        return format_price(low, currency)
+    step = min(price_step(low), price_step(high))
+    decimals = 0
+    if step < 1:
+        decimals = 1 if step >= 0.1 else 2
+    elif max(low, high) < 100 and step <= 0.5:
+        decimals = 1
+    low_text = f"{low:.{decimals}f}"
+    high_text = f"{high:.{decimals}f}"
+    suffix = f" {currency}" if currency else ""
+    return f"{low_text}-{high_text}{suffix}"
 
 
 def format_zone(values: Any) -> str:
@@ -388,6 +508,247 @@ def market_from_pipeline(watchlist_payload: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def build_watchlist_lookup(payload: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    lookup: dict[str, dict[str, Any]] = {}
+    buckets = payload.get("buckets") or {}
+    for items in buckets.values():
+        for item in as_list(items):
+            if not isinstance(item, dict):
+                continue
+            keys = symbol_keys(item.get("code")) | symbol_keys(item.get("symbol"))
+            for key in keys:
+                lookup[key] = item
+    return lookup
+
+
+def sample_sell_band(position: dict[str, Any], watch_item: dict[str, Any] | None) -> str:
+    current = parse_float(position.get("Current price"))
+    currency = str(position.get("Currency") or "")
+    if current is None:
+        return "n/a"
+
+    setup = watch_item.get("setup") if isinstance(watch_item, dict) else {}
+    invalidation = parse_float((setup or {}).get("invalidation"))
+    chase_above = parse_float((setup or {}).get("chase_above"))
+    market = position.get("_market") or market_from_position(position)
+    status = str((watch_item or {}).get("status") or "")
+
+    low: float | None
+    high: float | None
+    if status in AVOID_STATUSES:
+        invalidation_gap = ((invalidation - current) / current) if invalidation and current else None
+        if invalidation_gap is not None and 0 < invalidation_gap <= 0.08:
+            low = current * (1.02 if invalidation_gap > 0.03 else 1.01)
+            high = invalidation
+        else:
+            low = current * 1.01
+            high = current * (1.04 if market == "HK" else 1.05)
+    elif status == "watch_pullback":
+        if chase_above and chase_above > current:
+            low = chase_above * 0.99
+            high = chase_above
+        else:
+            low = current * 1.05
+            high = current * 1.08
+    else:
+        low = current * (1.02 if market == "HK" else 1.03)
+        high = current * (1.05 if market == "HK" else 1.06)
+
+    step = price_step(current)
+    low = round_to_step(low, step, "down")
+    high = round_to_step(max(high, low), step, "up")
+    return format_band(low, high, currency)
+
+
+def sample_sell_discipline(position: dict[str, Any], watch_item: dict[str, Any] | None) -> str:
+    current = parse_float(position.get("Current price"))
+    currency = str(position.get("Currency") or "")
+    avg_cost = parse_float(position.get("Average Cost"))
+    setup = watch_item.get("setup") if isinstance(watch_item, dict) else {}
+    invalidation = parse_float((setup or {}).get("invalidation"))
+    chase_above = parse_float((setup or {}).get("chase_above"))
+    status = str((watch_item or {}).get("status") or "")
+
+    if status in AVOID_STATUSES:
+        trim_zone = sample_sell_band(position, watch_item)
+        if current and invalidation and current < invalidation:
+            gap = (invalidation - current) / current if current else 0.0
+            if gap <= 0.08:
+                return f"Position is already below the watch invalidation ({format_price(invalidation, currency)}); treat {trim_zone} as the sample rebound-trim zone."
+            return f"Position sits well below the preferred setup; use {trim_zone} as the sample trim-on-bounce zone instead of waiting for a full recovery."
+        floor_level = invalidation or (current * 0.97 if current else None)
+        return f"Sample trim into strength near {trim_zone}; recheck fast below {format_price(floor_level, currency)}."
+
+    if status == "watch_pullback":
+        sell_line = invalidation or avg_cost or (current * 0.94 if current else None)
+        trim_line = chase_above or (current * 1.08 if current else None)
+        return f"Hold for now; only trim above {format_price(trim_line, currency)} if reducing size. Thesis breaks below {format_price(sell_line, currency)}."
+
+    review_line = avg_cost or (current * 0.95 if current else None)
+    trim_line = current * 1.06 if current else None
+    return f"Hold unless the thesis weakens; sample trim window {format_price(trim_line, currency)} and below-{format_price(review_line, currency)} is the review line."
+
+
+def sample_portfolio_analysis(positions_rows: list[dict[str, Any]], watchlist_payload: dict[str, Any]) -> dict[str, Any]:
+    if not positions_rows:
+        return {
+            "label": "Sample portfolio analysis",
+            "mode": "sample_only",
+            "updated_at": utc_now(),
+            "disclaimer": "Educational sample only. Not financial advice or a live order signal.",
+            "summary": {
+                "positions_reviewed": 0,
+                "trim_candidates": 0,
+                "hold_review_names": 0,
+            },
+            "trim_candidates": [],
+            "hold_review": [],
+            "notes": [
+                "No OpenD positions were available in this cache export.",
+                "Run the latest portfolio export before publishing the sample portfolio analysis block.",
+            ],
+        }
+
+    watch_lookup = build_watchlist_lookup(watchlist_payload if isinstance(watchlist_payload, dict) else {})
+    parsed_positions: list[dict[str, Any]] = []
+    for row in positions_rows:
+        if not isinstance(row, dict):
+            continue
+        weight = parse_float(row.get("% of Portfolio"))
+        current = parse_float(row.get("Current price"))
+        pnl_pct = parse_float(row.get("% Unrealized P/L"))
+        total_pl = parse_float(row.get("Total P/L"))
+        market = market_from_position(row)
+        keys = symbol_keys(row.get("Symbol")) | symbol_keys(row.get("symbol"))
+        watch_item = next((watch_lookup[key] for key in keys if key in watch_lookup), None)
+        parsed = dict(row)
+        parsed["_weight"] = weight or 0.0
+        parsed["_current"] = current
+        parsed["_pnl_pct"] = pnl_pct
+        parsed["_total_pl"] = total_pl
+        parsed["_market"] = market
+        parsed["_watch_item"] = watch_item
+        parsed_positions.append(parsed)
+
+    def trim_rank(row: dict[str, Any]) -> float:
+        watch_item = row.get("_watch_item") or {}
+        status = str(watch_item.get("status") or "")
+        market = row.get("_market") or ""
+        weight = float(row.get("_weight") or 0.0)
+        pnl_pct = parse_float(row.get("_pnl_pct"))
+        total_pl = parse_float(row.get("_total_pl"))
+        score = 0.0
+        if status in AVOID_STATUSES:
+            score += 7.0
+        if market == "HK":
+            score += 1.5
+        if weight >= 4:
+            score += weight / 2
+        if pnl_pct is not None and pnl_pct <= -10:
+            score += 2.0
+        if pnl_pct is not None and pnl_pct >= 20:
+            score += 1.25
+        if total_pl is not None and total_pl <= -1000:
+            score += 1.0
+        return score
+
+    trim_pool = []
+    for row in parsed_positions:
+        watch_item = row.get("_watch_item") or {}
+        status = str(watch_item.get("status") or "")
+        market = row.get("_market") or ""
+        weight = float(row.get("_weight") or 0.0)
+        pnl_pct = parse_float(row.get("_pnl_pct"))
+        include = (
+            status in AVOID_STATUSES
+            or (market == "HK" and pnl_pct is not None and pnl_pct <= -15)
+            or (weight >= 8 and pnl_pct is not None and (pnl_pct >= 15 or pnl_pct <= -5))
+        )
+        if include:
+            trim_pool.append(row)
+
+    trim_candidates = []
+    for priority, row in enumerate(sorted(trim_pool, key=trim_rank, reverse=True)[:6], start=1):
+        watch_item = row.get("_watch_item") or {}
+        status = str(watch_item.get("status") or "review")
+        symbol = str(row.get("Symbol") or row.get("symbol") or "")
+        name = str(row.get("Name") or row.get("name") or symbol)
+        current = parse_float(row.get("Current price"))
+        weight = float(row.get("_weight") or 0.0)
+        reason = str(watch_item.get("reason") or "")
+        thesis = str(((watch_item.get("setup") or {}).get("thesis")) or "")
+        sample_action = "Trim into strength" if status in AVOID_STATUSES else "Reduce concentration on strength"
+        trim_candidates.append(
+            {
+                "priority": priority,
+                "symbol": symbol,
+                "name": name,
+                "market": row.get("_market") or "",
+                "status": status,
+                "last_price": format_price(current, str(row.get("Currency") or "")),
+                "portfolio_weight_pct": round(weight, 2),
+                "unrealized_pct": row.get("% Unrealized P/L"),
+                "sample_action": sample_action,
+                "sample_sell_band": sample_sell_band(row, watch_item),
+                "when_to_sell": sample_sell_discipline(row, watch_item),
+                "why": reason or thesis or "Position sits outside the strongest current setup window.",
+            }
+        )
+
+    trimmed_symbols = {item["symbol"] for item in trim_candidates}
+    hold_review = []
+    for row in sorted(parsed_positions, key=lambda item: float(item.get("_weight") or 0.0), reverse=True):
+        symbol = str(row.get("Symbol") or row.get("symbol") or "")
+        if symbol in trimmed_symbols:
+            continue
+        watch_item = row.get("_watch_item") or {}
+        status = str(watch_item.get("status") or "")
+        weight = float(row.get("_weight") or 0.0)
+        pnl_pct = parse_float(row.get("_pnl_pct"))
+        include = status == "watch_pullback" or weight >= 6 or (pnl_pct is not None and pnl_pct >= 20)
+        if not include:
+            continue
+        hold_review.append(
+            {
+                "symbol": symbol,
+                "name": str(row.get("Name") or row.get("name") or symbol),
+                "status": status or "hold_review",
+                "last_price": format_price(parse_float(row.get("Current price")), str(row.get("Currency") or "")),
+                "portfolio_weight_pct": round(weight, 2),
+                "unrealized_pct": row.get("% Unrealized P/L"),
+                "sample_action": "Hold for now",
+                "sample_sell_band": sample_sell_band(row, watch_item),
+                "when_to_sell": sample_sell_discipline(row, watch_item),
+                "why": str(watch_item.get("reason") or ((watch_item.get("setup") or {}).get("thesis")) or "No active trim pressure from the latest watchlist gates."),
+            }
+        )
+        if len(hold_review) >= 4:
+            break
+
+    trim_focus = "China/HK drawdown names and blocked US megacap setups"
+    if not trim_candidates:
+        trim_focus = "Concentration review only; no urgent trim bucket was generated."
+
+    return {
+        "label": "Sample portfolio analysis",
+        "mode": "sample_only",
+        "updated_at": utc_now(),
+        "disclaimer": "Educational sample only. This is not financial advice, a recommendation, or a live order signal.",
+        "summary": {
+            "positions_reviewed": len(parsed_positions),
+            "trim_candidates": len(trim_candidates),
+            "hold_review_names": len(hold_review),
+            "focus": trim_focus,
+        },
+        "trim_candidates": trim_candidates,
+        "hold_review": hold_review,
+        "notes": [
+            "Built from the latest cached OpenD positions and current trading-pipeline watchlist gates.",
+            "Sell timing is presented as a sample trim plan so the public site can show process without exposing full account detail.",
+        ],
+    }
+
+
 def build_cache_payload() -> dict[str, Any]:
     state_dir = TRADING_ROOT / "automation" / "state"
     pipeline_watchlist_path = PIPELINE_ROOT / "data" / "watchlist_current.json"
@@ -420,13 +781,16 @@ def build_cache_payload() -> dict[str, Any]:
 
     instagram_path = latest_file([pipeline_data_dir], "instagram_*.json")
     geopolitics_path = latest_file([pipeline_data_dir], "geopolitics_*.json")
+    news_feed_path = latest_file([pipeline_data_dir], "news_*.json")
     opend_positions_csv_path = pipeline_data_dir / "opend_positions_current.csv"
     opend_positions_json_path = pipeline_data_dir / "opend_positions_current.json"
     active_portfolio_path = pipeline_data_dir / "active_portfolio.csv"
     instagram = read_json(instagram_path, {"items": []}) if instagram_path else {"items": []}
     geopolitics = read_json(geopolitics_path, {"items": []}) if geopolitics_path else {"items": []}
+    news_feed = read_json(news_feed_path, {"items": []}) if news_feed_path else {"items": []}
     opend_positions = read_csv_rows(opend_positions_csv_path if opend_positions_csv_path.exists() else active_portfolio_path)
     opend_metadata = read_json(opend_positions_json_path, {}) if opend_positions_json_path.exists() else {}
+    portfolio_analysis = sample_portfolio_analysis(opend_positions, pipeline_watchlist if isinstance(pipeline_watchlist, dict) else {})
 
     active_watch = as_list(watchlist.get("items")) if isinstance(watchlist, dict) else []
     removed_watch = as_list(watchlist.get("removed")) if isinstance(watchlist, dict) else []
@@ -437,6 +801,32 @@ def build_cache_payload() -> dict[str, Any]:
     reddit_items = as_list(reddit.get("items")) if isinstance(reddit, dict) else []
     leads = as_list(social_leads.get("items")) if isinstance(social_leads, dict) else []
     candidates = as_list(scan_context.get("candidates")) if isinstance(scan_context, dict) else []
+    news_items = as_list(news_feed.get("items")) if isinstance(news_feed, dict) else []
+    news_headlines = [
+        {
+            "title": item.get("title"),
+            "published": item.get("published"),
+            "description": item.get("summary") or item.get("source") or "",
+            "link": item.get("link"),
+            "source": "Futubull Financial News",
+        }
+        for item in news_items
+        if isinstance(item, dict) and item.get("title")
+    ]
+    if isinstance(market, dict) and news_headlines:
+        existing_headlines = as_list(market.get("headlines"))
+        combined_headlines: list[dict[str, Any]] = []
+        seen_headlines: set[tuple[str, str]] = set()
+        for item in existing_headlines + news_headlines:
+            if not isinstance(item, dict):
+                continue
+            key = (str(item.get("title") or ""), str(item.get("link") or ""))
+            if key in seen_headlines:
+                continue
+            seen_headlines.add(key)
+            combined_headlines.append(item)
+        market["headlines"] = combined_headlines
+        market["news_sources"] = ["Futubull Financial News"]
 
     risk_state = "UNKNOWN"
     if isinstance(news_risk, dict):
@@ -455,6 +845,7 @@ def build_cache_payload() -> dict[str, Any]:
             "scan_context": file_info(scan_context_path),
             "instagram": file_info(instagram_path),
             "geopolitics": file_info(geopolitics_path),
+            "news_feed": file_info(news_feed_path),
             "opend_positions": file_info(opend_positions_csv_path if opend_positions_csv_path.exists() else None),
             "active_portfolio": file_info(active_portfolio_path if active_portfolio_path.exists() else None),
         },
@@ -470,9 +861,12 @@ def build_cache_payload() -> dict[str, Any]:
             "risk_state": risk_state,
             "instagram_items": len(as_list(instagram.get("items"))) if isinstance(instagram, dict) else 0,
             "geopolitics_items": len(as_list(geopolitics.get("items"))) if isinstance(geopolitics, dict) else 0,
+            "news_items": len(news_items),
             "opend_positions": len(opend_positions),
+            "portfolio_trim_candidates": len(as_list(portfolio_analysis.get("trim_candidates"))),
         },
         "watchlist": watchlist,
+        "portfolio_analysis": portfolio_analysis,
         "market": market,
         "reddit": reddit,
         "news_risk": news_risk,
@@ -489,6 +883,71 @@ def build_cache_payload() -> dict[str, Any]:
         },
         "reports": build_reports(),
     }
+
+
+def public_file_info(info: dict[str, Any] | None) -> dict[str, Any] | None:
+    if not info:
+        return None
+    return {
+        "name": info.get("name"),
+        "size": info.get("size"),
+        "modified_at": info.get("modified_at"),
+    }
+
+
+def redact_local_paths(value: Any) -> Any:
+    if isinstance(value, list):
+        return [redact_local_paths(item) for item in value]
+    if isinstance(value, dict):
+        redacted: dict[str, Any] = {}
+        for key, item in value.items():
+            lowered = str(key).lower()
+            if lowered in {"path", "config_source"}:
+                continue
+            if lowered == "source_reports" and isinstance(item, dict):
+                redacted[key] = {
+                    report_key: Path(str(report_path)).name
+                    for report_key, report_path in item.items()
+                }
+                continue
+            redacted[key] = redact_local_paths(item)
+        return redacted
+    if isinstance(value, str) and ("/Users/" in value or "\\Users\\" in value):
+        return Path(value).name
+    return value
+
+
+def public_cache_payload(payload: dict[str, Any]) -> dict[str, Any]:
+    public = redact_local_paths(json.loads(json.dumps(payload)))
+    public["workspace"] = "static GitHub Pages snapshot"
+    public["files"] = {
+        key: public_file_info(value)
+        for key, value in (payload.get("files") or {}).items()
+    }
+    public["reports"] = [
+        {
+            "key": report.get("key"),
+            "label": report.get("label"),
+            "file": public_file_info(report.get("file")),
+            "preview": "",
+        }
+        for report in payload.get("reports", [])
+    ]
+    if isinstance(public.get("content"), dict):
+        public["content"]["opend"] = {
+            "positions": [],
+            "metadata": {
+                "visibility": "redacted_public_snapshot",
+                "note": "Raw OpenD rows are hidden in the public snapshot. Review the sample portfolio analysis block instead.",
+            },
+        }
+    if isinstance(public.get("summary"), dict):
+        public["summary"]["opend_positions"] = 0
+    if isinstance(public.get("portfolio_analysis"), dict):
+        public["portfolio_analysis"]["notes"] = as_list(public["portfolio_analysis"].get("notes")) + [
+            "Public snapshot note: raw position rows, account identifiers, and funds metadata are intentionally hidden.",
+        ]
+    return public
 
 
 class CacheDashboardHandler(SimpleHTTPRequestHandler):
@@ -522,10 +981,18 @@ def main() -> None:
         const=str(APP_DIR / "cache-snapshot.json"),
         help="Write a static cache snapshot JSON file and exit.",
     )
+    parser.add_argument(
+        "--public-snapshot",
+        action="store_true",
+        help="Redact local paths and report previews from exported static snapshots.",
+    )
     args = parser.parse_args()
     if args.export_snapshot:
         output = Path(args.export_snapshot)
-        output.write_text(json.dumps(build_cache_payload(), ensure_ascii=False, indent=2), encoding="utf-8")
+        payload = build_cache_payload()
+        if args.public_snapshot:
+            payload = public_cache_payload(payload)
+        output.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
         print(f"Exported cache snapshot: {output}")
         return
     server = ThreadingHTTPServer((args.host, args.port), CacheDashboardHandler)

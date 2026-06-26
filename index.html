@@ -19,11 +19,11 @@
         <nav class="nav-list">
           <a href="#overview">Overview</a>
           <a href="#watchlist">Watchlist</a>
+          <a href="#portfolio">Portfolio</a>
           <a href="#news">News</a>
           <a href="#reddit">Reddit</a>
           <a href="#risk">Risk</a>
-          <a href="#ideas">Ideas</a>
-          <a href="#content">Scripts</a>
+          <a href="#signals">Signals</a>
           <a href="#context">Context</a>
           <a href="#reports">Reports</a>
           <a href="#sources">Sources</a>
@@ -39,7 +39,7 @@
           <img src="./assets/market-command-center.png" alt="" class="hero-image">
           <div class="hero-copy">
             <div class="eyebrow">Live local cache</div>
-            <h1>Trading pipeline, Instagram scripts, and geopolitical context.</h1>
+            <h1>Trading pipeline, watchlist checks, and geopolitical context.</h1>
             <p id="heroMeta">Reading cache files...</p>
             <div class="hero-actions">
               <button class="primary-action" id="refreshButton" type="button">Refresh cache</button>
@@ -104,6 +104,19 @@
               <span class="mini-count" id="removedCount">0</span>
             </div>
             <div id="removedItems" class="compact-list"></div>
+          </article>
+        </section>
+
+        <section class="section-grid one-col" id="portfolio">
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Sample only</p>
+                <h2>Portfolio Analysis</h2>
+              </div>
+              <span class="risk-badge">Educational sample</span>
+            </div>
+            <div id="portfolioAnalysis"></div>
           </article>
         </section>
 
@@ -175,47 +188,32 @@
           </article>
         </section>
 
-        <section class="section-grid two-col" id="content">
+        <section class="section-grid two-col" id="signals">
           <article class="panel">
             <div class="panel-heading">
               <div>
-                <p class="section-kicker">Content factory</p>
-                <h2>Instagram Scripts</h2>
+                <p class="section-kicker">Research lens</p>
+                <h2>Watchlist Signals</h2>
               </div>
-              <div class="content-controls">
-                <select id="contentTickerSelect" aria-label="Choose ticker"></select>
-                <select id="contentFormatSelect" aria-label="Choose format">
-                  <option value="reel">Reel</option>
-                  <option value="carousel">Carousel</option>
-                  <option value="voiceover">Voiceover</option>
-                </select>
+              <div class="signal-controls">
+                <select id="signalTickerSelect" aria-label="Choose ticker"></select>
               </div>
             </div>
-            <div id="contentScript" class="stack-list"></div>
+            <div id="signalLens" class="stack-list"></div>
           </article>
 
           <article class="panel">
             <div class="panel-heading">
               <div>
                 <p class="section-kicker">Context feed</p>
-                <h2>Instagram + Geopolitics</h2>
+                <h2>News + Geopolitics Sources</h2>
               </div>
             </div>
-            <div id="contentSignals" class="stack-list"></div>
+            <div id="signalFeed" class="stack-list"></div>
           </article>
         </section>
 
-        <section class="section-grid two-col" id="ideas">
-          <article class="panel">
-            <div class="panel-heading">
-              <div>
-                <p class="section-kicker">Content layer</p>
-                <h2>Briefing Ideas</h2>
-              </div>
-            </div>
-            <div id="contentIdeas" class="stack-list"></div>
-          </article>
-
+        <section class="section-grid one-col">
           <article class="panel">
             <div class="panel-heading">
               <div>
@@ -349,6 +347,18 @@
               <p>Looks for the weakest part of the idea before you act, so shaky setups get challenged early.</p>
             </div>
           </div>
+          <div class="agent-row">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M4 17h16M6 13l3-3 3 2 5-7"></path>
+                <path d="M7 7h10"></path>
+              </svg>
+            </span>
+            <div>
+              <h3>Options Desk</h3>
+              <p>Tracks volatility and event risk so options ideas start with a clearer setup and a clearer caution flag.</p>
+            </div>
+          </div>
         </div>
 
         <div class="agent-chip-cloud" aria-label="Active agent names">
@@ -357,13 +367,15 @@
           <span>value check</span>
           <span>news watch</span>
           <span>risk challenge</span>
+          <span>options desk</span>
         </div>
 
         <button class="paywall-cta" id="openAgentDesk" type="button">Open the desk</button>
 
         <div class="paywall-links">
           <a href="#watchlist">Watchlist</a>
-          <a href="#content">Scripts</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#signals">Signals</a>
           <a href="#sources">Sources</a>
         </div>
       </div>
